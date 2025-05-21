@@ -1,0 +1,17 @@
+{
+  "extends": ["../../tsconfig.ui.base.json"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "../../node_modules/.tmp/tsconfig.ui.tsbuildinfo",
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@@/*": ["../../*"]
+    },
+  },
+  "include": [
+    ".",
+    "typings.d.ts",
+    "../vite-env.d.ts"
+  ]
+}

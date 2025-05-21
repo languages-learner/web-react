@@ -1,0 +1,1 @@
+export { WorkspaceDictionaryPage } from "./WorkspaceDictionaryPage";

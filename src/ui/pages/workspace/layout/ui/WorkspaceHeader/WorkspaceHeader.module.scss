@@ -1,0 +1,20 @@
+.workspaceHeader {
+  height: 64px;
+  align-items: center;
+  display: grid;
+  background: var(--g-color-base-generic-ultralight);
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
+
+}
+
+.workspaceHeaderContent {
+  padding-top: var(--g-spacing-1);
+  height: 100%;
+  padding: 0 var(--g-spacing-3);
+  align-items: center;
+}
+
+.userAvatarButton {
+  --_--border-radius:  10%;
+  --_--padding: 0;
+}
