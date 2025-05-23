@@ -35,10 +35,9 @@ export const WordsTable: React.FC<WordsTableProps> = ({ words }) => {
                             status,
                         }),
                         {
-                            id: "words-table-update-word-status",
-                            successText: "Статус успешно обновлен!",
-                            errorText:
-                                "Произошла ошибка при обновлении статуса.",
+                            name: "words-table-update-word-status",
+                            success: "Статус успешно обновлен!",
+                            error: "Произошла ошибка при обновлении статуса",
                         },
                     ),
             }),
@@ -76,5 +75,5 @@ export const WordsTable: React.FC<WordsTableProps> = ({ words }) => {
         },
     });
 
-    return <Table table={table} />;
+    return <Table table={table} withHeader={false} />;
 };

@@ -1,0 +1,1 @@
+export { CreateWordCard } from "./CreateWordCard";

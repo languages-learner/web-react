@@ -1,12 +1,11 @@
 import { toaster as baseToaster } from "@gravity-ui/uikit/toaster-singleton";
 
-import { getErrorMessage } from "@/shared/error";
-
 import type { ToastProps } from "@gravity-ui/uikit";
 
 const DEFAULT_TOAST_TIMEOUT = 5000;
 
-// TODO: Fix type
+export type CustomToastProps = Omit<ToastProps, "theme">;
+
 export const toaster = {
     destroy: baseToaster.destroy,
     remove: baseToaster.remove,
@@ -14,113 +13,46 @@ export const toaster = {
     update: baseToaster.update,
     has: baseToaster.has,
     subscribe: baseToaster.subscribe,
-    createNormalToast: (
-        name: string,
-        title: string,
-        opts?: Partial<ToastProps>,
-    ) => {
+    createNormalToast: (props: CustomToastProps) => {
         return baseToaster.add({
-            name,
-            title,
             theme: "normal",
             autoHiding: DEFAULT_TOAST_TIMEOUT,
-            ...opts,
+            ...props,
         });
     },
-    createInfoToast: (
-        name: string,
-        title: string,
-        opts?: Partial<ToastProps>,
-    ) => {
+    createInfoToast: (props: CustomToastProps) => {
         return baseToaster.add({
-            name,
-            title,
             theme: "info",
             autoHiding: DEFAULT_TOAST_TIMEOUT,
-            ...opts,
+            ...props,
         });
     },
-    createSuccessToast: (
-        name: string,
-        title: string,
-        opts?: Partial<ToastProps>,
-    ) => {
+    createSuccessToast: (props: CustomToastProps) => {
         return baseToaster.add({
-            name,
-            title,
             theme: "success",
             autoHiding: DEFAULT_TOAST_TIMEOUT,
-            ...opts,
+            ...props,
         });
     },
-    createWarningToast: (
-        name: string,
-        title: string,
-        opts?: Partial<ToastProps>,
-    ) => {
+    createWarningToast: (props: CustomToastProps) => {
         return baseToaster.add({
-            name,
-            title,
             theme: "warning",
             autoHiding: DEFAULT_TOAST_TIMEOUT,
-            ...opts,
+            ...props,
         });
     },
-    createErrorToast: (
-        name: string,
-        title: string,
-        error?: unknown,
-        opts?: Partial<ToastProps>,
-    ) => {
+    createErrorToast: (props: CustomToastProps) => {
         return baseToaster.add({
-            name,
-            title,
             theme: "danger",
             autoHiding: DEFAULT_TOAST_TIMEOUT,
-            content: getErrorMessage(error),
-            ...opts,
+            ...props,
         });
     },
-    createUtilityToast: (
-        name: string,
-        title: string,
-        opts?: Partial<ToastProps>,
-    ) => {
+    createUtilityToast: (props: CustomToastProps) => {
         return baseToaster.add({
-            name,
-            title,
             theme: "utility",
             autoHiding: DEFAULT_TOAST_TIMEOUT,
-            ...opts,
+            ...props,
         });
     },
 } as const;
-
-export interface WithToastsOptions {
-    id: string;
-    successText?: string;
-    errorText?: string;
-}
-
-export async function withToasts<T>(
-    promise: Promise<T>,
-    opts: WithToastsOptions,
-): Promise<T> {
-    const { id, successText, errorText } = opts;
-
-    try {
-        const result = await promise;
-
-        if (successText) {
-            toaster.createSuccessToast(id, successText);
-        }
-
-        return result;
-    } catch (error) {
-        if (errorText) {
-            toaster.createErrorToast(id, errorText, error);
-        }
-
-        throw error;
-    }
-}

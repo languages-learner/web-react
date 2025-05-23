@@ -1,2 +1,3 @@
 export { ToasterProvider } from "./ToasterProvider";
-export { toaster, withToasts, type WithToastsOptions } from "./toaster";
+export { toaster } from "./toaster";
+export { withToasts, type WithToastsOptions } from "./withToasts";

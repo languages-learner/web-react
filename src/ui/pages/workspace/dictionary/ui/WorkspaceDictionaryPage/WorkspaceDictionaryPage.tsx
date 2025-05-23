@@ -1,15 +1,24 @@
+import React from "react";
+
 import { useQueryData } from "@gravity-ui/data-source";
-import { Flex } from "@gravity-ui/uikit";
+import { Flex, spacing } from "@gravity-ui/uikit";
+import classNames from "classnames";
 
 import { useUserSafe } from "@/entities/user";
-import { wordsDataSource } from "@/entities/word";
+import { CreateWordCard, wordsDataSource } from "@/entities/word";
 import { WorkspaceLayout } from "@/pages/workspace/layout";
 import { DataInfiniteLoader } from "@/shared/data-source";
 import { PlaceholderContainer, PlaceholderContainerStatus } from "@/shared/ui";
-import { WordsTable } from "@/widgets/words/table";
+import {
+    WordsTable,
+    WordsTableFilters,
+    type WordsTableFiltersType,
+} from "@/widgets/words/table";
 
 export const WorkspaceDictionaryPage = () => {
     const { user } = useUserSafe();
+    const [filters, setFilters] = React.useState<WordsTableFiltersType>({});
+    const [showAddWordCard, setShowAddWordCard] = React.useState(true);
     const wordsQuery = useQueryData(wordsDataSource, {
         pageSize: 1,
         language: user.activeLearningLanguage,
@@ -28,7 +37,25 @@ export const WorkspaceDictionaryPage = () => {
             >
                 {wordsQuery.data.length > 0 ? (
                     <Flex justifyContent={"center"}>
-                        <WordsTable words={wordsQuery.data} />
+                        <Flex
+                            justifyContent={"center"}
+                            direction={"column"}
+                            style={{ maxWidth: 960 }}
+                            gap={5}
+                        >
+                            <WordsTableFilters
+                                filters={filters}
+                                onUpdate={setFilters}
+                                onAddWordClick={() => setShowAddWordCard(true)}
+                                showAddWordButton={!showAddWordCard}
+                            />
+                            {showAddWordCard ? (
+                                <CreateWordCard
+                                    onClose={() => setShowAddWordCard(false)}
+                                />
+                            ) : null}
+                            <WordsTable words={wordsQuery.data} />
+                        </Flex>
                     </Flex>
                 ) : (
                     <PlaceholderContainer
