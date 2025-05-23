@@ -9,6 +9,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router";
 import { UserProvider } from "@/entities/user";
 import { dataManager } from "@/shared/data-source";
 import { SupabaseAuthProvider } from "@/shared/services/auth";
+import { ToasterProvider } from "@/shared/ui";
 
 import { routes } from "../routes";
 
@@ -34,7 +35,9 @@ const bootstrap = () => {
                     <SupabaseAuthProvider>
                         <UserProvider>
                             <ThemeProvider theme={"dark"}>
-                                <RouterProvider router={router} />
+                                <ToasterProvider>
+                                    <RouterProvider router={router} />
+                                </ToasterProvider>
                             </ThemeProvider>
                         </UserProvider>
                     </SupabaseAuthProvider>

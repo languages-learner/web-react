@@ -6,7 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { useUser, userDataSource } from "@/entities/user";
 import { LANGUAGE_NAME, Language } from "@/shared/languages";
-import { supabase } from "@/shared/services/api";
+import { sdk } from "@/shared/services/api";
 
 export const LearningLanguageSelector: React.FC = () => {
     const { user } = useUser();
@@ -18,10 +18,12 @@ export const LearningLanguageSelector: React.FC = () => {
                 return;
             }
 
-            await supabase
-                .from("user")
-                .update({ active_learning_language: activeLearningLanguage })
-                .eq("id", user.uid);
+            await sdk.user.updateUser({
+                userId: user.uid,
+                payload: {
+                    active_learning_language: activeLearningLanguage,
+                },
+            });
         },
         onSuccess: () => {
             dataManager.invalidateSource(userDataSource);

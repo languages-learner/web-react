@@ -16,3 +16,4 @@ export type {
     PaginatedResponse,
     PaginatedRequestParams,
 } from "./types";
+export { getErrorMessage } from "./utils/getErrorMessage";

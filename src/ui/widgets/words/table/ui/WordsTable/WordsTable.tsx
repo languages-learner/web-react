@@ -8,6 +8,7 @@ import {
 } from "@gravity-ui/table/tanstack";
 
 import { useWordActions, wordColumns } from "@/entities/word";
+import { withToasts } from "@/shared/ui";
 
 import type { ApiDatabase, ApiTables } from "@/shared/services/api";
 
@@ -28,10 +29,18 @@ export const WordsTable: React.FC<WordsTableProps> = ({ words }) => {
             }),
             wordColumns.status({
                 onUpdate: ({ item, status }) =>
-                    updateWordStatus({
-                        word: item,
-                        status,
-                    }),
+                    withToasts(
+                        updateWordStatus({
+                            word: item,
+                            status,
+                        }),
+                        {
+                            id: "words-table-update-word-status",
+                            successText: "Статус успешно обновлен!",
+                            errorText:
+                                "Произошла ошибка при обновлении статуса.",
+                        },
+                    ),
             }),
             wordColumns.edit({
                 onEditClick: ({ item }) => {

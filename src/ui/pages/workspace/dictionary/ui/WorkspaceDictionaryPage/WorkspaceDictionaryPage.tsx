@@ -1,4 +1,5 @@
 import { useQueryData } from "@gravity-ui/data-source";
+import { Flex } from "@gravity-ui/uikit";
 
 import { useUserSafe } from "@/entities/user";
 import { wordsDataSource } from "@/entities/word";
@@ -26,7 +27,9 @@ export const WorkspaceDictionaryPage = () => {
                 errorViewProps={{ size: "m" }}
             >
                 {wordsQuery.data.length > 0 ? (
-                    <WordsTable words={wordsQuery.data} />
+                    <Flex justifyContent={"center"}>
+                        <WordsTable words={wordsQuery.data} />
+                    </Flex>
                 ) : (
                     <PlaceholderContainer
                         status={PlaceholderContainerStatus.Empty}

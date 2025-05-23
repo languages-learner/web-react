@@ -5,4 +5,4 @@ export const landingRoutes = {
 export const workspaceRoutes = {
     root: "/workspace/",
     dictionary: "/workspace/dictionary",
-};
+} as const;

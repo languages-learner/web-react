@@ -1,16 +1,10 @@
-import { type ApiDatabase, supabase } from "@/shared/services/api";
+import { supabase } from "@/shared/services/api";
+
 import {
-    type PaginatedRequestParams,
-    type PaginatedResponse,
-} from "@/shared/services/api/types";
-
-export interface FetchWordsRequestParams extends PaginatedRequestParams {
-    language: string;
-}
-
-export interface FetchWordsResponse extends PaginatedResponse {
-    words: ApiDatabase["public"]["Tables"]["words"]["Row"][];
-}
+    type FetchWordsRequestParams,
+    type FetchWordsResponse,
+    type UpdateWordStatusParams,
+} from "./types";
 
 export const fetchWords = async (
     props: FetchWordsRequestParams,
@@ -38,4 +32,12 @@ export const fetchWords = async (
         words: itemsResponse.data?.slice(0, props.pageSize) ?? [],
         nextPageToken,
     };
+};
+
+export const updateWordStatus = async (props: UpdateWordStatusParams) => {
+    await supabase
+        .from("words")
+        .update({ status: props.status })
+        .eq("id", props.wordId)
+        .throwOnError();
 };
