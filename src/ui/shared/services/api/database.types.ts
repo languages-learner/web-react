@@ -1,14 +1,53 @@
-export type Json =
-    | string
-    | number
-    | boolean
-    | null
-    | { [key: string]: Json | undefined }
-    | Json[];
+export type Json = string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export type Database = {
     public: {
         Tables: {
+            translations: {
+                Row: {
+                    created_at: string;
+                    id: string;
+                    language: string;
+                    text: string;
+                    updated_at: string;
+                    user_id: string;
+                    word_id: string;
+                };
+                Insert: {
+                    created_at?: string;
+                    id?: string;
+                    language: string;
+                    text: string;
+                    updated_at?: string;
+                    user_id?: string;
+                    word_id: string;
+                };
+                Update: {
+                    created_at?: string;
+                    id?: string;
+                    language?: string;
+                    text?: string;
+                    updated_at?: string;
+                    user_id?: string;
+                    word_id?: string;
+                };
+                Relationships: [
+                    {
+                        foreignKeyName: "translations_user_id_fkey";
+                        columns: ["user_id"];
+                        isOneToOne: false;
+                        referencedRelation: "user";
+                        referencedColumns: ["id"];
+                    },
+                    {
+                        foreignKeyName: "translations_word_id_fkey";
+                        columns: ["word_id"];
+                        isOneToOne: false;
+                        referencedRelation: "words";
+                        referencedColumns: ["id"];
+                    },
+                ];
+            };
             user: {
                 Row: {
                     active_learning_language: string;
@@ -35,9 +74,9 @@ export type Database = {
                     created_at: string;
                     id: string;
                     language: string;
+                    sort_id: number;
                     status: Database["public"]["Enums"]["UserWordStatus"];
                     text: string;
-                    translations: string[];
                     updated_at: string;
                     user_id: string;
                 };
@@ -45,19 +84,19 @@ export type Database = {
                     created_at?: string;
                     id?: string;
                     language: string;
+                    sort_id?: number;
                     status?: Database["public"]["Enums"]["UserWordStatus"];
                     text: string;
-                    translations: string[];
                     updated_at?: string;
-                    user_id: string;
+                    user_id?: string;
                 };
                 Update: {
                     created_at?: string;
                     id?: string;
                     language?: string;
+                    sort_id?: number;
                     status?: Database["public"]["Enums"]["UserWordStatus"];
                     text?: string;
-                    translations?: string[];
                     updated_at?: string;
                     user_id?: string;
                 };

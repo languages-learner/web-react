@@ -5,7 +5,7 @@ import { Select } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
 
 import { useUser, userDataSource } from "@/entities/user";
-import { LANGUAGE_NAME, Language } from "@/shared/languages";
+import { LANGUAGE_NAME, type Language } from "@/shared/languages";
 import { sdk } from "@/shared/services/api";
 
 export const LearningLanguageSelector: React.FC = () => {
@@ -43,21 +43,17 @@ export const LearningLanguageSelector: React.FC = () => {
     );
 
     return user ? (
-        <Select
+        <Select<Language>
             title="Sample select"
             label={"Learn"}
             onUpdate={(values) => updateActiveLearningLanguage(values[0])}
-            value={[user.activeLearningLanguage]}
+            value={[user.activeLearningLanguage as Language]}
             size={"l"}
+            filterable
         >
-            <Select.Option
-                content={LANGUAGE_NAME[Language.En]}
-                value={Language.En}
-            />
-            <Select.Option
-                content={LANGUAGE_NAME[Language.Ru]}
-                value={Language.Ru}
-            />
+            {Object.entries(LANGUAGE_NAME).map(([language, name]) => {
+                return <Select.Option key={language} content={name} value={language} />;
+            })}
         </Select>
     ) : null;
 };

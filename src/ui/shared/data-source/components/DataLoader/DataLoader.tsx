@@ -12,11 +12,5 @@ export const DataLoader: React.FC<DataLoaderProps> = ({
     ErrorView = ErrorContainer,
     ...restProps
 }) => {
-    return (
-        <DataLoaderBase
-            LoadingView={LoadingView}
-            ErrorView={ErrorView}
-            {...restProps}
-        />
-    );
+    return <DataLoaderBase LoadingView={LoadingView} ErrorView={ErrorView} {...restProps} />;
 };

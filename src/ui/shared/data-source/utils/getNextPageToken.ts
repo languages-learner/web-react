@@ -1,9 +1,6 @@
-import {
-    type PaginatedRequestParams,
-    type PaginatedResponse,
-} from "@/shared/services/api/types";
+import { type PaginatedRequestParams, type PaginatedResponse } from "@/shared/services/api/types";
 
-export const getNextPageToken = ({
+export const getNextPageToken = <T>({
     nextPageToken,
-}: PaginatedResponse): Pick<PaginatedRequestParams, "pageToken"> | null =>
+}: PaginatedResponse<T>): Pick<PaginatedRequestParams<T>, "pageToken"> | null =>
     nextPageToken ? { pageToken: nextPageToken } : null;

@@ -6,13 +6,9 @@ import { supabase } from "@/shared/services/api";
 
 import { SupabaseAuthContext } from "./constants";
 
-export const SupabaseAuthProvider: React.FC<React.PropsWithChildren> = ({
-    children,
-}) => {
+export const SupabaseAuthProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [isInitialized, setIsInitialized] = React.useState(false);
-    const [currentSession, setCurrentSession] = React.useState<Session | null>(
-        null,
-    );
+    const [currentSession, setCurrentSession] = React.useState<Session | null>(null);
 
     React.useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
@@ -28,10 +24,7 @@ export const SupabaseAuthProvider: React.FC<React.PropsWithChildren> = ({
         return () => subscription.unsubscribe();
     }, []);
 
-    const isLoggedIn = React.useMemo(
-        () => Boolean(currentSession),
-        [currentSession],
-    );
+    const isLoggedIn = React.useMemo(() => Boolean(currentSession), [currentSession]);
 
     return isInitialized ? (
         <SupabaseAuthContext.Provider

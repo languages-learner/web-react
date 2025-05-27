@@ -8,8 +8,6 @@ export interface AuthState {
     supabase: SupabaseClient;
 }
 
-export const SupabaseAuthContext = React.createContext<AuthState>(
-    {} as AuthState,
-);
+export const SupabaseAuthContext = React.createContext<AuthState>({} as AuthState);
 
 export const useAuth = () => React.useContext(SupabaseAuthContext);

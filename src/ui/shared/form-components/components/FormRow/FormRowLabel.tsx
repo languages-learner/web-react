@@ -16,10 +16,7 @@ export const FormRowLabel: React.FC<FormRowLabelProps> = ({
     // required,
 }) => {
     const noteElement = note ? (
-        <HelpMark
-            className={styles.Note}
-            popoverProps={{ placement: ["bottom", "top"] }}
-        >
+        <HelpMark className={styles.Note} popoverProps={{ placement: ["bottom", "top"] }}>
             {note}
         </HelpMark>
     ) : null;

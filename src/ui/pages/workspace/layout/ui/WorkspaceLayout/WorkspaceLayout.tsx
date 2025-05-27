@@ -6,9 +6,7 @@ import { WorkspaceHeader } from "../WorkspaceHeader";
 
 export type WorkspaceLayoutProps = React.PropsWithChildren;
 
-export const WorkspaceLayout: React.FC<WorkspaceLayoutProps> = ({
-    children,
-}) => {
+export const WorkspaceLayout: React.FC<WorkspaceLayoutProps> = ({ children }) => {
     return (
         <div>
             <WorkspaceHeader />

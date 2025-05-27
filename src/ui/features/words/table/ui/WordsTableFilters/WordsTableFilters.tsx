@@ -1,22 +1,10 @@
 import React from "react";
 
-import {
-    Button,
-    Checkbox,
-    Flex,
-    SegmentedRadioGroup,
-    TextInput,
-} from "@gravity-ui/uikit";
+import { Button, Checkbox, Flex, SegmentedRadioGroup, TextInput } from "@gravity-ui/uikit";
 
-import type { ApiTables } from "@/shared/services/api";
+import { type WordsTableFiltersType } from "./lib";
 
 import styles from "./WordsTableFilters.module.scss";
-
-export interface WordsTableFiltersType {
-    allSelected?: boolean;
-    search?: string;
-    status?: ApiTables<"words">["status"];
-}
 
 export interface WordsTableFiltersProps {
     filters: WordsTableFiltersType;
@@ -33,11 +21,7 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
 }) => {
     return (
         <Flex gap={3} justifyContent={"space-between"}>
-            <Flex
-                gap={3}
-                alignItems={"center"}
-                className={styles.WordsTableFilters}
-            >
+            <Flex gap={3} alignItems={"center"} className={styles.WordsTableFilters}>
                 <Checkbox
                     checked={filters.allSelected}
                     onUpdate={(value) =>
@@ -50,33 +34,31 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                 <TextInput
                     placeholder="Search"
                     size="l"
-                    value={filters.search}
+                    value={filters.text}
                     onUpdate={(value) =>
                         onUpdate({
                             ...filters,
-                            search: value,
+                            text: value,
                         })
                     }
+                    hasClear
                 />
                 {showAddWordButton ? (
-                    <Button
-                        view="outlined-action"
-                        size="l"
-                        onClick={onAddWordClick}
-                    >
+                    <Button view="outlined-action" size="l" onClick={onAddWordClick}>
                         Add word
                     </Button>
                 ) : null}
             </Flex>
-            <Flex
-                gap={3}
-                alignItems={"center"}
-                className={styles.WordsTableFilters}
-            >
-                <SegmentedRadioGroup<ApiTables<"words">["status"] | "All">
+            <Flex gap={3} alignItems={"center"} className={styles.WordsTableFilters}>
+                <SegmentedRadioGroup<NonNullable<WordsTableFiltersType["status"]> | "All">
                     size="l"
-                    value={filters.status}
-                    defaultValue="All"
+                    value={filters.status ?? "All"}
+                    onUpdate={(value) =>
+                        onUpdate({
+                            ...filters,
+                            status: value === "All" ? undefined : value,
+                        })
+                    }
                     options={[
                         { value: "All", content: "All" },
                         { value: "New", content: "New" },

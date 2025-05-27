@@ -9,9 +9,7 @@ import { type User } from "../../types";
 
 import { UserContext } from "./constants";
 
-export const UserProvider: React.FC<React.PropsWithChildren> = ({
-    children,
-}) => {
+export const UserProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     const { session } = useAuth();
 
     const userQuery = useQueryData(userDataSource, session ? {} : idle);

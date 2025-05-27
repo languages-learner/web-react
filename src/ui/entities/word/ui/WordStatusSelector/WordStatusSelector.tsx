@@ -6,22 +6,15 @@ import { type ApiDatabase } from "@/shared/services/api";
 
 export interface WordStatusSelectorProps {
     status: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"];
-    onUpdate: (
-        status: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"],
-    ) => unknown;
+    onUpdate: (status: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"]) => unknown;
 }
 
-export const WordStatusSelector: React.FC<WordStatusSelectorProps> = ({
-    status,
-    onUpdate,
-}) => {
+export const WordStatusSelector: React.FC<WordStatusSelectorProps> = ({ status, onUpdate }) => {
     return (
         <Select
             title="Word status"
             onUpdate={(values) =>
-                onUpdate(
-                    values[0] as ApiDatabase["public"]["Tables"]["words"]["Row"]["status"],
-                )
+                onUpdate(values[0] as ApiDatabase["public"]["Tables"]["words"]["Row"]["status"])
             }
             value={[status]}
             size={"l"}

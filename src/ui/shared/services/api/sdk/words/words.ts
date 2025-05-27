@@ -1,32 +1,43 @@
-import { supabase } from "@/shared/services/api";
+import { type FetchWordsNextPageToken, supabase } from "@/shared/services/api";
 
-import {
-    type FetchWordsRequestParams,
-    type FetchWordsResponse,
-    type UpdateWordStatusParams,
+import type {
+    AddWordTranslationsRequest,
+    CreateWordRequest,
+    DeleteWordTranslationsRequest,
+    DeleteWordsRequest,
+    FetchWordsRequest,
+    FetchWordsResponse,
+    UpdateWordStatusRequest,
 } from "./types";
 
-export const fetchWords = async (
-    props: FetchWordsRequestParams,
-): Promise<FetchWordsResponse> => {
+export const fetchWords = async (props: FetchWordsRequest): Promise<FetchWordsResponse> => {
     const itemsRequest = supabase
         .from("words")
-        .select("*")
+        .select("*, translations (id, text, language)")
         .filter("language", "eq", props.language)
-        .order("created_at", { ascending: false })
+        .order("sort_id", { ascending: false })
         .limit(props.pageSize + 1)
         .throwOnError();
 
     if (props.pageToken) {
-        itemsRequest.filter("id", "gt", props.pageToken);
+        itemsRequest.filter("sort_id", "lt", props.pageToken);
+    }
+
+    if (props.filter) {
+        if (props.filter.text) {
+            itemsRequest.filter("text", "like", `%${props.filter.text}%`);
+        }
+        if (props.filter.status) {
+            itemsRequest.filter("status", "eq", props.filter.status);
+        }
     }
 
     const itemsResponse = await itemsRequest;
 
-    const nextPageToken =
-        itemsResponse.data?.length === props.pageSize + 1
-            ? (itemsResponse.data?.at(-2)?.id ?? null)
-            : null;
+    const lastItem = itemsResponse.data?.at(-2);
+
+    const nextPageToken: FetchWordsNextPageToken | null =
+        lastItem && itemsResponse.data?.length === props.pageSize + 1 ? lastItem.sort_id : null;
 
     return {
         words: itemsResponse.data?.slice(0, props.pageSize) ?? [],
@@ -34,10 +45,52 @@ export const fetchWords = async (
     };
 };
 
-export const updateWordStatus = async (props: UpdateWordStatusParams) => {
+export const updateWordStatus = async (props: UpdateWordStatusRequest) => {
     await supabase
         .from("words")
         .update({ status: props.status })
         .eq("id", props.wordId)
         .throwOnError();
+};
+
+export const addWordTranslations = async (props: AddWordTranslationsRequest) => {
+    return await supabase
+        .from("translations")
+        .insert(
+            props.translations.map((translation) => ({
+                word_id: props.wordId,
+                ...translation,
+            })),
+        )
+        .throwOnError();
+};
+
+export const deleteWordTranslations = async (props: DeleteWordTranslationsRequest) => {
+    return await supabase
+        .from("translations")
+        .delete()
+        .in("id", props.translationsIds)
+        .throwOnError();
+};
+
+export const createWord = async (props: CreateWordRequest) => {
+    const word = await supabase.from("words").insert(props.word).select().single().throwOnError();
+
+    if (!word.data) {
+        return undefined;
+    }
+
+    await addWordTranslations({
+        wordId: word.data.id,
+        translations: props.translations,
+    });
+
+    return await supabase
+        .from("words")
+        .select("*, translations (text, language)")
+        .filter("id", "eq", word.data.id)
+        .throwOnError();
+};
+export const deleteWords = async (props: DeleteWordsRequest) => {
+    return await supabase.from("words").delete().in("id", props.wordIds).throwOnError();
 };

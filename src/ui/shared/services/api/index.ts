@@ -11,9 +11,6 @@ export type {
 
 export { Constants as ApiConstants } from "./database.types";
 export { sdk } from "./sdk";
-export type {
-    ApiError,
-    PaginatedResponse,
-    PaginatedRequestParams,
-} from "./types";
+export type * from "./sdk";
+export type { ApiError, PaginatedResponse, PaginatedRequestParams } from "./types";
 export { getErrorMessage } from "./utils/getErrorMessage";

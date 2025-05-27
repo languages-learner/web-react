@@ -16,10 +16,7 @@ interface CustomAction extends ErrorAction {
     text?: string;
 }
 
-export type ErrorContainerProps = Omit<
-    Partial<PlaceholderContainerProps>,
-    "action"
-> &
+export type ErrorContainerProps = Omit<Partial<PlaceholderContainerProps>, "action"> &
     Omit<ErrorViewProps<ApiError>, "action"> & {
         action?: CustomAction;
     };

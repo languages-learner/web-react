@@ -14,23 +14,9 @@ export const makeInfiniteQuery = <
     TErrorResponse = unknown,
 >(
     config: Omit<
-        InfiniteQueryDataSource<
-            TParams,
-            TRequest,
-            TResponse,
-            TData,
-            TError,
-            TErrorResponse
-        >,
+        InfiniteQueryDataSource<TParams, TRequest, TResponse, TData, TError, TErrorResponse>,
         "type"
     >,
-): InfiniteQueryDataSource<
-    TParams,
-    TRequest,
-    TResponse,
-    TData,
-    TError,
-    TErrorResponse
-> => {
+): InfiniteQueryDataSource<TParams, TRequest, TResponse, TData, TError, TErrorResponse> => {
     return makeInfiniteQueryDataSourceBase(config);
 };

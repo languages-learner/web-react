@@ -1,4 +1,1 @@
-export {
-    useAuth,
-    SupabaseAuthProvider,
-} from "./supabase/stores/SupabaseAuthProvider";
+export { useAuth, SupabaseAuthProvider } from "./supabase/stores/SupabaseAuthProvider";

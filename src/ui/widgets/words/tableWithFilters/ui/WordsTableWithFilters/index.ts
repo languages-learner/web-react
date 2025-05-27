@@ -1,0 +1,1 @@
+export { WordsTableWithFilters } from "./WordsTableWithFilters";

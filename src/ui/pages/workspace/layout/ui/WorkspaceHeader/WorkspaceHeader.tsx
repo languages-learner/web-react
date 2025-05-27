@@ -15,11 +15,7 @@ export const WorkspaceHeader: React.FC = () => {
 
     return (
         <div className={styles.workspaceHeader}>
-            <Row
-                space={{ s: 1 }}
-                spaceRow={2}
-                className={styles.workspaceHeaderContent}
-            >
+            <Row space={{ s: 1 }} spaceRow={2} className={styles.workspaceHeaderContent}>
                 <Col s={3}>
                     <Flex justifyContent={"center"}>
                         <Link to={landingRoutes.root}>
@@ -37,11 +33,7 @@ export const WorkspaceHeader: React.FC = () => {
                     </Link>
                 </Col>
                 <Col s={3}>
-                    <Flex
-                        justifyContent={"flex-end"}
-                        alignItems={"center"}
-                        gap={3}
-                    >
+                    <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3}>
                         <LearningLanguageSelector />
                         <DropdownMenu
                             size={"l"}

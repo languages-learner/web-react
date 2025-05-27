@@ -6,11 +6,7 @@ import type { DataLoaderProps as DataLoaderPropsBase } from "@gravity-ui/data-so
 
 export interface DataLoaderProps
     extends Omit<
-        DataLoaderPropsBase<
-            ApiError,
-            LoaderContainerProps,
-            ErrorContainerProps
-        >,
+        DataLoaderPropsBase<ApiError, LoaderContainerProps, ErrorContainerProps>,
         "LoadingView" | "ErrorView"
     > {
     LoadingView?: React.ComponentType<LoaderContainerProps>;

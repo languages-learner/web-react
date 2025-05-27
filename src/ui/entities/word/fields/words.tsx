@@ -1,43 +1,86 @@
 import { Pencil, TrashBin } from "@gravity-ui/icons";
 import { selectionColumn } from "@gravity-ui/table";
 import { type ColumnDef } from "@gravity-ui/table/tanstack";
-import { Button, Flex, Icon, Text } from "@gravity-ui/uikit";
+import { Button, Flex, Icon, Popover, Text, spacing } from "@gravity-ui/uikit";
 
 import { WordStatusSelector } from "@/entities/word";
-import { type ApiDatabase, type ApiTables } from "@/shared/services/api";
+import {
+    type AddWordTranslationFormType,
+    AddWordTranslationsForm,
+} from "@/features/words/addWordTranslationsForm";
+import { InlineWordTranslationsList } from "@/features/words/inlineWordTranslationsList";
+import { type ApiDatabase, type WordWithTranslations } from "@/shared/services/api";
 import { type ColumnsDef } from "@/shared/ui/Table";
 
-type Word = ApiTables<"words">;
+// type Word = ApiTables<"words">;
 
 type BaseColumnCallbackPayload = {
-    item: Word;
+    item: WordWithTranslations;
 };
 
 export const wordColumns = {
-    selection: selectionColumn as ColumnDef<Word>,
+    selection: selectionColumn as ColumnDef<WordWithTranslations>,
     textAndTranslationWithEdit: (columnProps: {
-        editView: (item: Word) => boolean;
+        editView: (item: WordWithTranslations) => boolean;
+        onAddWord: (
+            payload: BaseColumnCallbackPayload & {
+                translation: AddWordTranslationFormType;
+            },
+        ) => Promise<unknown>;
+        baseTranslationLanguage: string;
+        onDeleteTranslation: (
+            payload: BaseColumnCallbackPayload & { translationId: string },
+        ) => Promise<unknown>;
     }) => ({
         id: "text-with-translations",
-        cell: (props) => (
-            <Flex direction={"column"} gap={3}>
-                <Text color={"positive"}>{props.row.original.text}</Text>
-                <Text>{props.row.original.translations.join(", ")}</Text>
-                {columnProps.editView(props.row.original) ? "+" : "-"}
-            </Flex>
-        ),
+        cell: (props) => {
+            return (
+                <Flex direction={"column"} gap={3}>
+                    <Text color={"positive"}>{props.row.original.text}</Text>
+
+                    {columnProps.editView(props.row.original) ? (
+                        <Flex gap={2} wrap={"wrap"}>
+                            <InlineWordTranslationsList
+                                translations={props.row.original.translations}
+                                onDeleteTranslation={(translation) =>
+                                    columnProps.onDeleteTranslation({
+                                        item: props.row.original,
+                                        translationId: translation.id,
+                                    })
+                                }
+                            />
+                            <AddWordTranslationsForm
+                                onSubmit={async (translation) => {
+                                    await columnProps.onAddWord({
+                                        item: props.row.original,
+                                        translation,
+                                    });
+                                }}
+                                baseTranslationLanguage={columnProps.baseTranslationLanguage}
+                            />
+                        </Flex>
+                    ) : (
+                        <Text>
+                            {props.row.original.translations
+                                .map((translation) => translation.text)
+                                .join(", ")}
+                        </Text>
+                    )}
+                </Flex>
+            );
+        },
         size: 600,
+        maxSize: 600,
     }),
     edit: (columnProps: {
+        editView: (item: WordWithTranslations) => boolean;
         onEditClick: (payload: BaseColumnCallbackPayload) => unknown;
     }) => ({
         id: "edit",
         cell: (props) => (
             <Button
-                view={"flat"}
-                onClick={() =>
-                    columnProps.onEditClick({ item: props.row.original })
-                }
+                view={columnProps.editView(props.row.original) ? "flat-success" : "flat"}
+                onClick={() => columnProps.onEditClick({ item: props.row.original })}
             >
                 <Button.Icon>
                     <Icon data={Pencil} />
@@ -65,24 +108,37 @@ export const wordColumns = {
                 status={props.row.original.status}
             />
         ),
-        size: 150,
+        size: 110,
+        minSize: 110,
     }),
     delete: (columnProps: {
-        onDelete: (payload: BaseColumnCallbackPayload) => unknown;
+        onDelete: (payload: BaseColumnCallbackPayload) => Promise<unknown>;
     }) => ({
         id: "delete",
         cell: (props) => (
-            <Button
-                view={"flat"}
-                onClick={() =>
-                    columnProps.onDelete({ item: props.row.original })
+            <Popover
+                content={
+                    <Flex className={spacing({ p: 2 })} gap={3} alignItems="center">
+                        <Text>Delete word?</Text>
+                        <div>
+                            <Button
+                                view={"outlined-danger"}
+                                color={"danger"}
+                                onClick={() => columnProps.onDelete({ item: props.row.original })}
+                            >
+                                Delete
+                            </Button>
+                        </div>
+                    </Flex>
                 }
             >
-                <Button.Icon>
-                    <Icon data={TrashBin} />
-                </Button.Icon>
-            </Button>
+                <Button view={"flat"}>
+                    <Button.Icon>
+                        <Icon data={TrashBin} />
+                    </Button.Icon>
+                </Button>
+            </Popover>
         ),
         size: 50,
     }),
-} satisfies ColumnsDef<Word>;
+} satisfies ColumnsDef<WordWithTranslations>;

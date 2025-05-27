@@ -13,14 +13,12 @@ export interface FormRowProps extends React.PropsWithChildren {
     className?: string;
 }
 
-export const FormRow: React.FC<FormRowProps> = ({
-    title,
-    className,
-    children,
-}) => {
+export const FormRow: React.FC<FormRowProps> = ({ title, className, children }) => {
     return (
         <Flex className={classNames(b(), className)} gap={3}>
-            <div className={b("left")}>{title}</div>
+            <Flex className={b("left")} alignItems={"center"}>
+                {title}
+            </Flex>
             <div className={b("right")}>{children}</div>
         </Flex>
     );

@@ -1,12 +1,12 @@
 import { type PostgrestError } from "@supabase/supabase-js";
 
-export interface PaginatedRequestParams {
+export interface PaginatedRequestParams<T = string> {
     pageSize: number;
-    pageToken?: string;
+    pageToken?: T;
 }
 
-export interface PaginatedResponse {
-    nextPageToken: string | null;
+export interface PaginatedResponse<T = string> {
+    nextPageToken: T | null;
 }
 
 export type ApiError = PostgrestError;

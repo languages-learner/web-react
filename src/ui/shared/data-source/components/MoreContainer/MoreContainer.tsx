@@ -33,18 +33,12 @@ export const MoreContainer: React.FC<MoreContainerProps> = ({
         </Button>
     );
 
-    return (
-        <div className={classNames(styles.MoreContainer, className)}>
-            {button}
-        </div>
-    );
+    return <div className={classNames(styles.MoreContainer, className)}>{button}</div>;
 };
 
 export const EmptyMoreContainer: React.FC<MoreContainerProps> = () => null;
 
-export const MoreContainerWithArrow: React.FC<
-    Omit<MoreContainerProps, "children">
-> = (props) => {
+export const MoreContainerWithArrow: React.FC<Omit<MoreContainerProps, "children">> = (props) => {
     return (
         <MoreContainer {...props}>
             <Icon data={ArrowDown} /> {"Show more"}

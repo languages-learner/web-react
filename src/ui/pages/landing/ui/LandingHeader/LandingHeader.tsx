@@ -7,8 +7,7 @@ import { useAuthenticationDialog } from "@/widgets/auth/auth-dialog";
 
 export const LandingHeader = () => {
     const { isLoggedIn } = useAuth();
-    const { showAuthenticationDialog, AuthenticationDialog } =
-        useAuthenticationDialog();
+    const { showAuthenticationDialog, AuthenticationDialog } = useAuthenticationDialog();
     const navigate = useNavigate();
 
     return (
@@ -19,11 +18,7 @@ export const LandingHeader = () => {
                 </Button>
             ) : (
                 <Flex gap={3}>
-                    <Button
-                        view={"action"}
-                        onClick={showAuthenticationDialog}
-                        size={"l"}
-                    >
+                    <Button view={"action"} onClick={showAuthenticationDialog} size={"l"}>
                         sign_in
                     </Button>
                     <Button view={"action"} size={"l"}>

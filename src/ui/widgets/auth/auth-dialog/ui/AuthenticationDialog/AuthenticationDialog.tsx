@@ -8,9 +8,7 @@ import { useAuth } from "@/shared/services/auth";
 
 export type AuthenticationDialogProps = Omit<DialogProps, "children">;
 
-export const AuthenticationDialog: React.FC<AuthenticationDialogProps> = ({
-    ...dialogProps
-}) => {
+export const AuthenticationDialog: React.FC<AuthenticationDialogProps> = ({ ...dialogProps }) => {
     const { supabase } = useAuth();
 
     return (

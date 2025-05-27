@@ -8,10 +8,7 @@ export interface WithToastsOptions {
     error?: string | Omit<CustomToastProps, "name" | "content">;
 }
 
-export async function withToasts<T>(
-    promise: Promise<T>,
-    opts: WithToastsOptions,
-): Promise<T> {
+export async function withToasts<T>(promise: Promise<T>, opts: WithToastsOptions): Promise<T> {
     const { name, success, error } = opts;
 
     try {

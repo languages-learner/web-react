@@ -1,2 +1,2 @@
-export { Language } from "./types";
-export { LANGUAGE_NAME } from "./constants";
+// export { Language } from "./types";
+export { LANGUAGE_NAME, type Language } from "./constants";

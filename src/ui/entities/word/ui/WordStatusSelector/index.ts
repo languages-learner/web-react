@@ -1,4 +1,1 @@
-export {
-    WordStatusSelector,
-    type WordStatusSelectorProps,
-} from "./WordStatusSelector";
+export { WordStatusSelector, type WordStatusSelectorProps } from "./WordStatusSelector";
