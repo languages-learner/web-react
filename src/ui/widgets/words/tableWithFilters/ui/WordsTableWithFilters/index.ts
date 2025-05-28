@@ -1,1 +1,1 @@
-export { WordsTableWithFilters } from "./WordsTableWithFilters";
+export { WordsTableWithFilters, type WordsTableWithFiltersProps } from "./WordsTableWithFilters";

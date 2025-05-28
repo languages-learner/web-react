@@ -1,4 +1,16 @@
 .WorkspaceDictionaryPage {
-  width: 900px;
-  margin: 0 auto;
+    --page-content-width: 900px;
+
+    width: var(--page-content-width);
+    margin: 0 auto;
+
+    &_withActionsPanel {
+        padding-bottom: var(--g-actions-panel-height);
+    }
+
+    &__actionsPanel {
+        position: fixed;
+        bottom: 20px;
+        width: var(--page-content-width);
+    }
 }

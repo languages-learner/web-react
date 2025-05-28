@@ -2,7 +2,11 @@ import React from "react";
 
 import { useQueryData } from "@gravity-ui/data-source";
 import { Table, useTable } from "@gravity-ui/table";
-import { type RowSelectionState, getCoreRowModel } from "@gravity-ui/table/tanstack";
+import {
+    type RowSelectionState,
+    type Table as TableA,
+    getCoreRowModel,
+} from "@gravity-ui/table/tanstack";
 import { Flex } from "@gravity-ui/uikit";
 
 import { useUserSafe } from "@/entities/user";
@@ -20,11 +24,47 @@ import { type FetchWordsRequest } from "@/shared/services/api";
 import {
     PlaceholderContainer,
     PlaceholderContainerStatus,
-    useTableAllRowsSelection,
+    // useTableAllRowsSelection,
 } from "@/shared/ui";
-import { WordsTableActionsPanel } from "@/widgets/words/tableWithFilters/ui/WordsTableWithFilters/WordsTableActionsPanel";
 
-export const WordsTableWithFilters = () => {
+import { WordsTableActionsPanel } from "./WordsTableActionsPanel";
+
+export interface UseTableSelectionProps {
+    // isAllRowsSelected?: boolean;
+    // eslint-disable-next-line
+    tableData: any[];
+    // eslint-disable-next-line
+    table: TableA<any>;
+}
+export const useTableRowsSelection = () =>
+    // {
+    //     // // isAllRowsSelected,
+    //     // table,
+    //     // tableData,
+    // }: UseTableSelectionProps,
+    {
+        // React.useEffect(() => {
+        //     if (isAllRowsSelected) {
+        //         table.toggleAllRowsSelected(true);
+        //     }
+        // }, [tableData]);
+        // console.log(table.getIsAllRowsSelected);
+        // React.useEffect(() => {
+        //     if (!isAllRowsSelected) {
+        //         table.toggleAllRowsSelected(false);
+        //     }
+        // }, [isAllRowsSelected]);
+    };
+
+export interface WordsTableWithFiltersProps {
+    renderWordsTableActionsPanel: (
+        render: ({ className }: { className: string }) => React.ReactNode,
+    ) => unknown;
+}
+
+export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
+    renderWordsTableActionsPanel,
+}) => {
     const { user } = useUserSafe();
     const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
     const [filters, setFilters, debouncedFilters] = useDebounceState<WordsTableFiltersType>(
@@ -66,11 +106,34 @@ export const WordsTableWithFilters = () => {
         },
     });
 
-    useTableAllRowsSelection({
-        isAllRowsSelected: filters.allSelected,
-        tableData: wordsQuery.data,
-        table,
-    });
+    const selectedWords = React.useMemo(
+        () => table.getSelectedRowModel().rows.map((row) => row.original),
+        [rowSelection],
+    );
+
+    React.useEffect(() => {
+        renderWordsTableActionsPanel((props) =>
+            selectedWords.length > 0 ? (
+                <WordsTableActionsPanel
+                    selectedWords={selectedWords}
+                    onClose={() => {
+                        table.toggleAllRowsSelected(false);
+                    }}
+                    {...props}
+                />
+            ) : null,
+        );
+    }, [selectedWords]);
+
+    // useTableAllRowsSelection({
+    //     isAllRowsSelected: filters.allSelected,
+    //     tableData: wordsQuery.data,
+    //     table,
+    // });
+
+    // useWordsTableActionsPanel({
+    //     selectedWords,
+    // });
 
     const tableContent = () => {
         if (!hasWordsOrUseFilter) {
@@ -149,10 +212,6 @@ export const WordsTableWithFilters = () => {
             >
                 {tableContent()}
             </DataInfiniteLoader>
-
-            <WordsTableActionsPanel
-                selectedWords={table.getSelectedRowModel().rows.map((row) => row.original)}
-            />
         </Flex>
     );
 };
