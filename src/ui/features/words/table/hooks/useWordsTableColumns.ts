@@ -1,11 +1,6 @@
 import React from "react";
 
-import { Table, useTable } from "@gravity-ui/table";
-import {
-    type ColumnDef,
-    type RowSelectionState,
-    getCoreRowModel,
-} from "@gravity-ui/table/tanstack";
+import { type ColumnDef } from "@gravity-ui/table/tanstack";
 
 import { useUserSafe } from "@/entities/user";
 import { useWordMutations, wordColumns } from "@/entities/word";
@@ -13,18 +8,14 @@ import { withToasts } from "@/shared/ui";
 
 import type { WordWithTranslations } from "@/shared/services/api";
 
-export interface WordsTableProps {
-    words: WordWithTranslations[];
-}
-
-export const WordsTable: React.FC<WordsTableProps> = ({ words }) => {
+export const useWordsTableColumns = () => {
     const [editingWords, setEditingWords] = React.useState(new Set<string>());
 
     const { user } = useUserSafe();
-    const { updateWordStatus, addWordTranslations, deleteWordTranslations, deleteWords } =
+    const { updateWordsStatus, addWordTranslations, deleteWordTranslations, deleteWords } =
         useWordMutations();
 
-    const columns = React.useMemo<ColumnDef<WordWithTranslations>[]>(() => {
+    const wordsTableColumns = React.useMemo<ColumnDef<WordWithTranslations>[]>(() => {
         return [
             wordColumns.selection,
             wordColumns.textAndTranslationWithEdit({
@@ -58,8 +49,8 @@ export const WordsTable: React.FC<WordsTableProps> = ({ words }) => {
             wordColumns.status({
                 onUpdate: ({ item, status }) =>
                     withToasts(
-                        updateWordStatus.mutateAsync({
-                            wordId: item.id,
+                        updateWordsStatus.mutateAsync({
+                            wordsIds: [item.id],
                             status,
                         }),
                         {
@@ -99,23 +90,11 @@ export const WordsTable: React.FC<WordsTableProps> = ({ words }) => {
         deleteWordTranslations,
         deleteWords,
         editingWords,
-        updateWordStatus,
+        updateWordsStatus,
         user.nativeLanguage,
     ]);
 
-    const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
-
-    const table = useTable({
-        columns,
-        data: words,
-        getCoreRowModel: getCoreRowModel(),
-        enableRowSelection: true,
-        enableMultiRowSelection: true,
-        onRowSelectionChange: setRowSelection,
-        state: {
-            rowSelection,
-        },
-    });
-
-    return <Table table={table} withHeader={false} />;
+    return {
+        wordsTableColumns,
+    };
 };

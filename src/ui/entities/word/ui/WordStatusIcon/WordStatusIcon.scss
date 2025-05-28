@@ -1,0 +1,13 @@
+.WordStatusIcon {
+  &_New {
+    color: var(--g-color-text-hint);
+  }
+
+  &_Learn {
+    color: var(--g-color-text-warning);
+  }
+
+  &_Learned {
+    color: var(--g-color-text-positive);
+  }
+}

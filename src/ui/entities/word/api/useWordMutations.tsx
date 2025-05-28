@@ -7,8 +7,8 @@ import { sdk } from "@/shared/services/api";
 export const useWordMutations = () => {
     const dataManager = useDataManager();
 
-    const updateWordStatus = useMutation({
-        mutationFn: sdk.words.updateWordStatus,
+    const updateWordsStatus = useMutation({
+        mutationFn: sdk.words.updateWordsStatus,
         onSuccess: () => {
             dataManager.invalidateSource(wordsDataSource);
         },
@@ -43,7 +43,7 @@ export const useWordMutations = () => {
     });
 
     return {
-        updateWordStatus,
+        updateWordsStatus,
         createWord,
         deleteWords,
         addWordTranslations,

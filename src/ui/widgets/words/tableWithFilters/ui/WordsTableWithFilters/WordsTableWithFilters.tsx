@@ -1,24 +1,32 @@
 import React from "react";
 
 import { useQueryData } from "@gravity-ui/data-source";
+import { Table, useTable } from "@gravity-ui/table";
+import { type RowSelectionState, getCoreRowModel } from "@gravity-ui/table/tanstack";
 import { Flex } from "@gravity-ui/uikit";
 
 import { useUserSafe } from "@/entities/user";
 import { wordsDataSource } from "@/entities/word";
 import { CreateWordCard } from "@/features/words/createWordCard";
 import {
-    WordsTable,
     WordsTableFilters,
     type WordsTableFiltersType,
     initialFilters,
+    useWordsTableColumns,
 } from "@/features/words/table";
 import { DataInfiniteLoader } from "@/shared/data-source";
 import { useDebounceState } from "@/shared/react-utils";
 import { type FetchWordsRequest } from "@/shared/services/api";
-import { PlaceholderContainer, PlaceholderContainerStatus } from "@/shared/ui";
+import {
+    PlaceholderContainer,
+    PlaceholderContainerStatus,
+    useTableAllRowsSelection,
+} from "@/shared/ui";
+import { WordsTableActionsPanel } from "@/widgets/words/tableWithFilters/ui/WordsTableWithFilters/WordsTableActionsPanel";
 
 export const WordsTableWithFilters = () => {
     const { user } = useUserSafe();
+    const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({});
     const [filters, setFilters, debouncedFilters] = useDebounceState<WordsTableFiltersType>(
         initialFilters,
         300,
@@ -44,6 +52,25 @@ export const WordsTableWithFilters = () => {
 
     const hasWordsOrUseFilter = wordsQuery.data.length > 0 || requestFilter;
     const showPlaceholders = !showAddWordCard;
+
+    const { wordsTableColumns } = useWordsTableColumns();
+    const table = useTable({
+        columns: wordsTableColumns,
+        data: wordsQuery.data,
+        getCoreRowModel: getCoreRowModel(),
+        enableRowSelection: true,
+        enableMultiRowSelection: true,
+        onRowSelectionChange: setRowSelection,
+        state: {
+            rowSelection,
+        },
+    });
+
+    useTableAllRowsSelection({
+        isAllRowsSelected: filters.allSelected,
+        tableData: wordsQuery.data,
+        table,
+    });
 
     const tableContent = () => {
         if (!hasWordsOrUseFilter) {
@@ -71,7 +98,7 @@ export const WordsTableWithFilters = () => {
 
         return (
             <React.Fragment>
-                <WordsTable words={wordsQuery.data} />
+                <Table table={table} withHeader={false} />
                 {showPlaceholders && wordsQuery.data.length === 0 ? (
                     <PlaceholderContainer
                         status={PlaceholderContainerStatus.NoSearchResults}
@@ -100,6 +127,7 @@ export const WordsTableWithFilters = () => {
                     onUpdate={(value) => setFilters(value)}
                     onAddWordClick={() => setShowAddWordCard(true)}
                     showAddWordButton={!showAddWordCard}
+                    onAllSelectedClick={() => table.toggleAllRowsSelected()}
                 />
             ) : null}
             {showAddWordCard ? (
@@ -121,6 +149,10 @@ export const WordsTableWithFilters = () => {
             >
                 {tableContent()}
             </DataInfiniteLoader>
+
+            <WordsTableActionsPanel
+                selectedWords={table.getSelectedRowModel().rows.map((row) => row.original)}
+            />
         </Flex>
     );
 };

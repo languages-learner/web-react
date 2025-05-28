@@ -87,7 +87,9 @@ export const wordColumns = {
                 </Button.Icon>
             </Button>
         ),
-        size: 50,
+        size: 40,
+        minSize: 40,
+        maxSize: 40,
     }),
     status: (columnProps: {
         onUpdate: (
@@ -108,8 +110,9 @@ export const wordColumns = {
                 status={props.row.original.status}
             />
         ),
-        size: 110,
-        minSize: 110,
+        size: 40,
+        minSize: 40,
+        maxSize: 40,
     }),
     delete: (columnProps: {
         onDelete: (payload: BaseColumnCallbackPayload) => Promise<unknown>;
@@ -139,6 +142,8 @@ export const wordColumns = {
                 </Button>
             </Popover>
         ),
-        size: 50,
+        size: 40,
+        minSize: 40,
+        maxSize: 40,
     }),
 } satisfies ColumnsDef<WordWithTranslations>;

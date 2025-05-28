@@ -19,8 +19,8 @@ export type WordWithTranslations = ApiDatabase["public"]["Tables"]["words"]["Row
     translations: Pick<ApiTables<"translations">, "text" | "language" | "id">[];
 };
 
-export interface UpdateWordStatusRequest {
-    wordId: string;
+export interface UpdateWordsStatusRequest {
+    wordsIds: string[];
     status: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"];
 }
 

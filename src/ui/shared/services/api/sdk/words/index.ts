@@ -4,12 +4,12 @@ import {
     deleteWordTranslations,
     deleteWords,
     fetchWords,
-    updateWordStatus,
+    updateWordsStatus,
 } from "./words";
 
 export const words = {
     fetchWords,
-    updateWordStatus,
+    updateWordsStatus,
     addWordTranslations,
     createWord,
     deleteWordTranslations,

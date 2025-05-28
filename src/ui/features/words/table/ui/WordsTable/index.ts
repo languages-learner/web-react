@@ -1,1 +1,0 @@
-export { WordsTable } from "./WordsTable";

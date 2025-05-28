@@ -1,2 +1,2 @@
-export * from "./ui/WordsTable";
 export * from "./ui/WordsTableFilters";
+export { useWordsTableColumns } from "./hooks/useWordsTableColumns";

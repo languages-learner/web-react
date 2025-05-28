@@ -1,0 +1,6 @@
+.WorkspaceLayout {
+ min-height: 100vh;
+  &__Content {
+    min-height: calc(100vh - 64px);
+  }
+}

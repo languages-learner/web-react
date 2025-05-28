@@ -7,7 +7,7 @@ import type {
     DeleteWordsRequest,
     FetchWordsRequest,
     FetchWordsResponse,
-    UpdateWordStatusRequest,
+    UpdateWordsStatusRequest,
 } from "./types";
 
 export const fetchWords = async (props: FetchWordsRequest): Promise<FetchWordsResponse> => {
@@ -45,11 +45,11 @@ export const fetchWords = async (props: FetchWordsRequest): Promise<FetchWordsRe
     };
 };
 
-export const updateWordStatus = async (props: UpdateWordStatusRequest) => {
+export const updateWordsStatus = async (props: UpdateWordsStatusRequest) => {
     await supabase
         .from("words")
         .update({ status: props.status })
-        .eq("id", props.wordId)
+        .in("id", props.wordsIds)
         .throwOnError();
 };
 
