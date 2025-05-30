@@ -3,6 +3,7 @@ import React from "react";
 import { useUserSafe } from "@/entities/user";
 import { useWordMutations } from "@/entities/word";
 import { CreateWordForm, type WordFormType } from "@/features/words/createWordForm";
+import { intl } from "@/shared/i18n";
 import { CardContent, withToasts } from "@/shared/ui";
 
 export interface CreateWordCardProps {
@@ -34,8 +35,14 @@ export const CreateWordCard: React.FC<CreateWordCardProps> = ({
             }),
             {
                 name: "create-word",
-                success: "Word successfully added!",
-                error: "Error",
+                success: intl.formatMessage({
+                    defaultMessage: "Word successfully added!",
+                    id: "OEgSz2",
+                }),
+                error: intl.formatMessage({
+                    defaultMessage: "Error",
+                    id: "KN7zKn",
+                }),
             },
         );
 
@@ -64,7 +71,15 @@ export const CreateWordCard: React.FC<CreateWordCardProps> = ({
     );
 
     return (
-        <CardContent title={"Add new word"} closable onClose={onClose} className={className}>
+        <CardContent
+            title={intl.formatMessage({
+                defaultMessage: "Add new word",
+                id: "fXelj0",
+            })}
+            closable
+            onClose={onClose}
+            className={className}
+        >
             <CreateWordForm
                 onSubmit={async (values, form) => {
                     await handleCreateWord(values);

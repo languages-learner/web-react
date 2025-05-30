@@ -9,6 +9,7 @@ import importNewLinesPlugin from "eslint-plugin-import-newlines";
 import baseConfig from "@gravity-ui/eslint-config";
 import clientConfig from "@gravity-ui/eslint-config/client";
 import prettierConfig from "@gravity-ui/eslint-config/prettier";
+import formatjs from "eslint-plugin-formatjs";
 
 export default tseslint.config(
     ...baseConfig,
@@ -27,11 +28,24 @@ export default tseslint.config(
             react,
             import: importPlugin,
             "import-newlines": importNewLinesPlugin,
+            formatjs,
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
             ...react.configs.recommended.rules,
 
+            "no-restricted-imports": [
+                "error",
+                {
+                    paths: [
+                        {
+                            name: "react-router",
+                            importNames: ["useNavigate"],
+                            message: "Please import 'useNavigate' from '@/shared/react-router'",
+                        },
+                    ],
+                },
+            ],
             "import/no-named-as-default": "off",
             "import/first": "error",
             "import/newline-after-import": "error",
@@ -108,6 +122,15 @@ export default tseslint.config(
             ],
             "comma-dangle": ["error", "always-multiline"],
             "react/prop-types": "off",
+            "linebreak-style": ["error", "unix"],
+
+            // Formatjs
+            "formatjs/enforce-id": [
+                "error",
+                {
+                    idInterpolationPattern: "[sha512:contenthash:base64:6]",
+                },
+            ],
         },
         settings: {
             react: { version: "detect" },

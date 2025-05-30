@@ -1,0 +1,9 @@
+{
+  "extends": ["../../tsconfig.ui.base.json"],
+  "include": ["**/*.json"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "../../node_modules/.tmp/tsconfig.locales.tsbuildinfo",
+    "baseUrl": ".",
+    "resolveJsonModule": true
+  }
+}

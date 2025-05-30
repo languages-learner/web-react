@@ -3,6 +3,7 @@ import React from "react";
 import { Button, Checkbox, Flex, SegmentedRadioGroup, TextInput } from "@gravity-ui/uikit";
 
 import { WORD_STATUS_NAME } from "@/entities/word";
+import { intl } from "@/shared/i18n";
 
 import { type WordsTableFiltersType } from "./lib";
 
@@ -30,7 +31,10 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
             <Flex gap={3} alignItems={"center"} className={styles.WordsTableFilters}>
                 <Checkbox checked={isAllSelected} onUpdate={onUpdateAllSelection} />
                 <TextInput
-                    placeholder="Search"
+                    placeholder={intl.formatMessage({
+                        defaultMessage: "Search",
+                        id: "xmcVZ0",
+                    })}
                     size="l"
                     value={filters.text}
                     onUpdate={(value) =>
@@ -43,7 +47,10 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                 />
                 {showAddWordButton ? (
                     <Button view="outlined-action" size="l" onClick={onAddWordClick}>
-                        Add word
+                        {intl.formatMessage({
+                            defaultMessage: "Add word",
+                            id: "iTJyw/",
+                        })}
                     </Button>
                 ) : null}
             </Flex>
@@ -58,7 +65,13 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                         })
                     }
                     options={[
-                        { value: "All", content: "All" },
+                        {
+                            value: "All",
+                            content: intl.formatMessage({
+                                defaultMessage: "All",
+                                id: "zQvVDJ",
+                            }),
+                        },
                         { value: "New", content: WORD_STATUS_NAME["New"] },
                         { value: "Learn", content: WORD_STATUS_NAME["Learn"] },
                         { value: "Learned", content: WORD_STATUS_NAME["Learned"] },

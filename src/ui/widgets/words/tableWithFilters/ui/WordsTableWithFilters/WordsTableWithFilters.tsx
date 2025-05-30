@@ -19,6 +19,7 @@ import {
     useWordsTableColumns,
 } from "@/features/words/table";
 import { DataInfiniteLoader } from "@/shared/data-source";
+import { intl } from "@/shared/i18n";
 import { useDebounceState } from "@/shared/react-utils";
 import { type FetchWordsRequest } from "@/shared/services/api";
 import {
@@ -164,11 +165,20 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
             return (
                 <PlaceholderContainer
                     status={PlaceholderContainerStatus.Empty}
-                    title={"No words"}
-                    description={"You can add new words"}
+                    title={intl.formatMessage({
+                        defaultMessage: "No words",
+                        id: "cD/L1D",
+                    })}
+                    description={intl.formatMessage({
+                        defaultMessage: "You can add new words",
+                        id: "TEMpMH",
+                    })}
                     actions={[
                         {
-                            text: "Add your first word",
+                            text: intl.formatMessage({
+                                defaultMessage: "Add your first word",
+                                id: "mNsvXG",
+                            }),
                             onClick: () => {
                                 setShowAddWordCard(true);
                             },
@@ -185,11 +195,20 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                 {showPlaceholders && wordsQuery.data.length === 0 ? (
                     <PlaceholderContainer
                         status={PlaceholderContainerStatus.NoSearchResults}
-                        title={"No found words"}
-                        description={"Try to change filter values or add new words"}
+                        title={intl.formatMessage({
+                            defaultMessage: "No found words",
+                            id: "to6vVZ",
+                        })}
+                        description={intl.formatMessage({
+                            defaultMessage: "Try to change filter values or add new words",
+                            id: "qqcgIL",
+                        })}
                         actions={[
                             {
-                                text: "Clear filters",
+                                text: intl.formatMessage({
+                                    defaultMessage: "Clear filters",
+                                    id: "F4gyn3",
+                                }),
                                 onClick: () => {
                                     setFilters(initialFilters);
                                 },

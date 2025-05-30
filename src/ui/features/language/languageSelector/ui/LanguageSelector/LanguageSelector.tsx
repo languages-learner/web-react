@@ -8,6 +8,7 @@ export type LanguageSelectorProps = Omit<SelectProps, "options">;
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ ...selectProps }) => {
     return (
+        // TODO
         <Select<Language> value={["ru"]} {...selectProps}>
             {Object.keys(LANGUAGE_NAME).map((language) => {
                 return (

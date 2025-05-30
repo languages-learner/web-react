@@ -8,8 +8,11 @@
     "build": "tsc -b && vite build",
     "typecheck": "tsc -b",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "i18n:extract": "formatjs extract \"src/**/*.{ts,tsx}\" --ignore=\"**/*.d.ts\" --out-file src/locales/extracted.json --id-interpolation-pattern [sha512:contenthash:base64:6]",
+    "i18n:manage": "node scripts/manage-translations.js"
   },
   "dependencies": {
     "@bem-react/classname": "^1.6.0",
@@ -28,15 +31,17 @@
     "final-form": "^4.20.10",
     "final-form-arrays": "^3.1.0",
     "lodash": "^4.17.21",
-    "react": "^19.0.0",
+    "react": "^19.1.0",
     "react-dom": "^19.0.0",
     "react-final-form": "^6.5.9",
     "react-final-form-arrays": "^3.1.4",
+    "react-intl": "^7.1.11",
     "react-router": "^7.5.3",
     "zod": "^3.25.23"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@formatjs/cli": "^6.7.1",
     "@gravity-ui/eslint-config": "^4.0.1",
     "@gravity-ui/uikit": "^7.10.0",
     "@types/lodash": "^4.17.17",
@@ -45,8 +50,10 @@
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "babel-plugin-formatjs": "^10.5.38",
     "eslint": "^9.26.0",
     "eslint-config-prettier": "^10.1.2",
+    "eslint-plugin-formatjs": "^5.3.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-import-newlines": "^1.4.0",
     "eslint-plugin-prettier": "^5.3.1",

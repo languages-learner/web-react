@@ -4,6 +4,7 @@ import { Button, Col, DropdownMenu, Flex, Row, Text } from "@gravity-ui/uikit";
 
 import { LearningLanguageSelector } from "@/entities/learning-language";
 import { UserAvatar } from "@/entities/user";
+import { intl } from "@/shared/i18n";
 import { landingRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
 import { Link } from "@/shared/ui";
@@ -20,7 +21,10 @@ export const WorkspaceHeader: React.FC = () => {
                     <Flex justifyContent={"center"}>
                         <Link to={landingRoutes.root}>
                             <Text variant={"header-1"} color={"positive"}>
-                                Languages Learner
+                                {intl.formatMessage({
+                                    defaultMessage: "Languages Learner",
+                                    id: "AGH8O0",
+                                })}
                             </Text>
                         </Link>
                     </Flex>
@@ -28,7 +32,10 @@ export const WorkspaceHeader: React.FC = () => {
                 <Col s={6}>
                     <Link to={workspaceRoutes.dictionary}>
                         <Button size={"l"} view={"flat"}>
-                            Dictionary
+                            {intl.formatMessage({
+                                defaultMessage: "Dictionary",
+                                id: "O19okS",
+                            })}
                         </Button>
                     </Link>
                 </Col>
@@ -55,16 +62,25 @@ export const WorkspaceHeader: React.FC = () => {
                                 {
                                     // eslint-disable-next-line no-console
                                     action: () => console.log("Rename"),
-                                    text: "Profile",
+                                    text: intl.formatMessage({
+                                        defaultMessage: "Profile",
+                                        id: "itPgxd",
+                                    }),
                                 },
                                 {
                                     // eslint-disable-next-line no-console
                                     action: () => console.log("Rename"),
-                                    text: "Settings",
+                                    text: intl.formatMessage({
+                                        defaultMessage: "Settings",
+                                        id: "D3idYv",
+                                    }),
                                 },
                                 {
                                     action: () => supabase.auth.signOut(),
-                                    text: "Sign out",
+                                    text: intl.formatMessage({
+                                        defaultMessage: "Sign out",
+                                        id: "xXbJso",
+                                    }),
                                     theme: "danger",
                                 },
                             ]}

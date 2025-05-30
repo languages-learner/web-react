@@ -37,3 +37,6 @@ firebase.config.json
 # Ignore local files
 .env
 *.local
+
+# Build
+src/locales/compiled

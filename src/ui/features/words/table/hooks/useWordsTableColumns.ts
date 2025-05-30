@@ -4,6 +4,7 @@ import { type ColumnDef } from "@gravity-ui/table/tanstack";
 
 import { useUserSafe } from "@/entities/user";
 import { useWordMutations, wordColumns } from "@/entities/word";
+import { intl } from "@/shared/i18n";
 import { withToasts } from "@/shared/ui";
 
 import type { WordWithTranslations } from "@/shared/services/api";
@@ -28,8 +29,14 @@ export const useWordsTableColumns = () => {
                         }),
                         {
                             name: "wordsTableAddWord",
-                            success: "Word successfully added!",
-                            error: "Error adding word",
+                            success: intl.formatMessage({
+                                defaultMessage: "Word successfully added!",
+                                id: "OEgSz2",
+                            }),
+                            error: intl.formatMessage({
+                                defaultMessage: "Error adding word",
+                                id: "yn0wCl",
+                            }),
                         },
                     ),
                 baseTranslationLanguage: user.nativeLanguage,
@@ -41,8 +48,14 @@ export const useWordsTableColumns = () => {
                         }),
                         {
                             name: "wordsTableDeleteWordTranslations",
-                            success: "Word translation successfully deleted!",
-                            error: "Error deleting word translation",
+                            success: intl.formatMessage({
+                                defaultMessage: "Word translation successfully deleted!",
+                                id: "Sq5NhR",
+                            }),
+                            error: intl.formatMessage({
+                                defaultMessage: "Error deleting word translation",
+                                id: "H9zLLp",
+                            }),
                         },
                     ),
             }),
@@ -55,8 +68,14 @@ export const useWordsTableColumns = () => {
                         }),
                         {
                             name: "words-table-update-word-status",
-                            success: "Status successfully updated!",
-                            error: "Error updating status",
+                            success: intl.formatMessage({
+                                defaultMessage: "Status successfully updated!",
+                                id: "WnQWEt",
+                            }),
+                            error: intl.formatMessage({
+                                defaultMessage: "Error updating status",
+                                id: "j58r0o",
+                            }),
                         },
                     ),
             }),
@@ -79,8 +98,14 @@ export const useWordsTableColumns = () => {
                 onDelete: ({ item }) => {
                     return withToasts(deleteWords.mutateAsync({ wordIds: [item.id] }), {
                         name: "wordsTableDeleteWord",
-                        success: "Word successfully deleted!",
-                        error: "Error deleting word",
+                        success: intl.formatMessage({
+                            defaultMessage: "Word successfully deleted!",
+                            id: "u/yYaU",
+                        }),
+                        error: intl.formatMessage({
+                            defaultMessage: "Error deleting word",
+                            id: "u8Bo1E",
+                        }),
                     });
                 },
             }),

@@ -6,6 +6,7 @@ import { Field, Form, type FormProps } from "react-final-form";
 import { LanguageSelector } from "@/features/language/languageSelector";
 import { block } from "@/shared/classNames";
 import { FormTextInput } from "@/shared/form-components";
+import { intl } from "@/shared/i18n";
 
 import { type AddWordTranslationFormType, validateTranslation } from "./lib";
 
@@ -38,7 +39,10 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
                         {(props) => (
                             <FormTextInput
                                 fieldProps={props}
-                                placeholder={"Translation"}
+                                placeholder={intl.formatMessage({
+                                    defaultMessage: "Translation",
+                                    id: "/vCXIP",
+                                })}
                                 className={b("TextInput")}
                                 onKeyDown={(data) => {
                                     if (valid && data.code === "Enter") {
@@ -49,7 +53,7 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
                         )}
                     </Field>
 
-                    <Field name={"language"}>
+                    <Field name="language">
                         {(props) => (
                             <LanguageSelector
                                 value={[props.input.value]}
@@ -66,7 +70,10 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
                         onClick={handleSubmit}
                         loading={submitting}
                     >
-                        Add
+                        {intl.formatMessage({
+                            defaultMessage: "Add",
+                            id: "2/2yg+",
+                        })}
                     </Button>
                 </Flex>
             )}

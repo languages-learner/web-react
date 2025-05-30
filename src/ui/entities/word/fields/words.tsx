@@ -9,6 +9,7 @@ import {
     AddWordTranslationsForm,
 } from "@/features/words/addWordTranslationsForm";
 import { InlineWordTranslationsList } from "@/features/words/inlineWordTranslationsList";
+import { intl } from "@/shared/i18n";
 import { type ApiDatabase, type WordWithTranslations } from "@/shared/services/api";
 import { type ColumnsDef } from "@/shared/ui/Table";
 
@@ -129,7 +130,10 @@ export const wordColumns = {
                                 color={"danger"}
                                 onClick={() => columnProps.onDelete({ item: props.row.original })}
                             >
-                                Delete
+                                {intl.formatMessage({
+                                    defaultMessage: "Delete",
+                                    id: "K3r6DQ",
+                                })}
                             </Button>
                         </div>
                     </Flex>

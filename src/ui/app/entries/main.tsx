@@ -22,7 +22,7 @@ const bootstrap = () => {
             id: "main",
             path: "/",
             element: <Outlet />,
-            errorElement: <div>TODO: ERROR</div>,
+            // errorElement: <div>TODO: ERROR</div>,
             children: routes,
         },
     ]);
