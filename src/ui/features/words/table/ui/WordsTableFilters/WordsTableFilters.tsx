@@ -13,7 +13,8 @@ export interface WordsTableFiltersProps {
     onUpdate: (filters: WordsTableFiltersType) => unknown;
     onAddWordClick: () => unknown;
     showAddWordButton?: boolean;
-    onAllSelectedClick: () => unknown;
+    isAllSelected: boolean;
+    onUpdateAllSelection: (value: boolean) => unknown;
 }
 
 export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
@@ -21,21 +22,13 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
     onUpdate,
     onAddWordClick,
     showAddWordButton,
-    onAllSelectedClick,
+    isAllSelected,
+    onUpdateAllSelection,
 }) => {
     return (
         <Flex gap={3} justifyContent={"space-between"}>
             <Flex gap={3} alignItems={"center"} className={styles.WordsTableFilters}>
-                <Checkbox
-                    checked={filters.allSelected}
-                    onUpdate={(value) => {
-                        onAllSelectedClick();
-                        onUpdate({
-                            ...filters,
-                            allSelected: value,
-                        });
-                    }}
-                />
+                <Checkbox checked={isAllSelected} onUpdate={onUpdateAllSelection} />
                 <TextInput
                     placeholder="Search"
                     size="l"

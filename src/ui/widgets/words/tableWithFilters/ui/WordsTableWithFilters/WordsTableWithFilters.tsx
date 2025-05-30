@@ -30,31 +30,57 @@ import {
 import { WordsTableActionsPanel } from "./WordsTableActionsPanel";
 
 export interface UseTableSelectionProps {
-    // isAllRowsSelected?: boolean;
-    // eslint-disable-next-line
-    tableData: any[];
     // eslint-disable-next-line
     table: TableA<any>;
 }
-export const useTableRowsSelection = () =>
-    // {
-    //     // // isAllRowsSelected,
-    //     // table,
-    //     // tableData,
-    // }: UseTableSelectionProps,
-    {
-        // React.useEffect(() => {
-        //     if (isAllRowsSelected) {
-        //         table.toggleAllRowsSelected(true);
-        //     }
-        // }, [tableData]);
-        // console.log(table.getIsAllRowsSelected);
-        // React.useEffect(() => {
-        //     if (!isAllRowsSelected) {
-        //         table.toggleAllRowsSelected(false);
-        //     }
-        // }, [isAllRowsSelected]);
+export const useTableRowsSelection = ({ table }: UseTableSelectionProps) => {
+    // Force to select all rows
+    const [forceSelectAllRows, setForceSelectAllRows] = React.useState(false);
+    const isAllRowsSelected = table.getIsAllRowsSelected();
+    // Hack to fix bug of table:
+    // When use "table.toggleAllRowsSelected(true)" and after
+    // try to get selections state by "table.getIsAllRowsSelected()" you get false
+    let wasAllRowsSelectedInCurrentRender = false;
+
+    const selectedItems = React.useMemo(
+        () => table.getSelectedRowModel().rows.map((row) => row.original),
+        [table.getState().rowSelection],
+    );
+
+    const toggleForceSelectAllRows = (value: boolean) => {
+        if (!value) {
+            table.toggleAllRowsSelected(false);
+            setForceSelectAllRows(false);
+
+            return;
+        }
+
+        setForceSelectAllRows(true);
     };
+
+    // Select new rows
+    React.useEffect(() => {
+        if (forceSelectAllRows) {
+            table.toggleAllRowsSelected(true);
+            wasAllRowsSelectedInCurrentRender = true;
+        }
+    }, [table.getRowModel().rows, forceSelectAllRows]);
+
+    // Disable forceSelectAllRows if some row was unselected
+    React.useEffect(() => {
+        if (!isAllRowsSelected && forceSelectAllRows && !wasAllRowsSelectedInCurrentRender) {
+            setForceSelectAllRows(false);
+        }
+    }, [isAllRowsSelected]);
+
+    return {
+        isAllRowsSelected,
+        selectedItems,
+        toggleAllRowsSelected: table.toggleAllRowsSelected,
+        forceSelectAllRows,
+        toggleForceSelectAllRows,
+    };
+};
 
 export interface WordsTableWithFiltersProps {
     renderWordsTableActionsPanel: (
@@ -106,10 +132,14 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
         },
     });
 
-    const selectedWords = React.useMemo(
-        () => table.getSelectedRowModel().rows.map((row) => row.original),
-        [rowSelection],
-    );
+    const {
+        selectedItems: selectedWords,
+        toggleAllRowsSelected,
+        forceSelectAllRows,
+        toggleForceSelectAllRows,
+    } = useTableRowsSelection({
+        table,
+    });
 
     React.useEffect(() => {
         renderWordsTableActionsPanel((props) =>
@@ -117,23 +147,13 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                 <WordsTableActionsPanel
                     selectedWords={selectedWords}
                     onClose={() => {
-                        table.toggleAllRowsSelected(false);
+                        toggleAllRowsSelected(false);
                     }}
                     {...props}
                 />
             ) : null,
         );
     }, [selectedWords]);
-
-    // useTableAllRowsSelection({
-    //     isAllRowsSelected: filters.allSelected,
-    //     tableData: wordsQuery.data,
-    //     table,
-    // });
-
-    // useWordsTableActionsPanel({
-    //     selectedWords,
-    // });
 
     const tableContent = () => {
         if (!hasWordsOrUseFilter) {
@@ -187,10 +207,14 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
             {hasWordsOrUseFilter ? (
                 <WordsTableFilters
                     filters={filters}
-                    onUpdate={(value) => setFilters(value)}
+                    onUpdate={(value) => {
+                        toggleAllRowsSelected(false);
+                        setFilters(value);
+                    }}
                     onAddWordClick={() => setShowAddWordCard(true)}
                     showAddWordButton={!showAddWordCard}
-                    onAllSelectedClick={() => table.toggleAllRowsSelected()}
+                    isAllSelected={forceSelectAllRows}
+                    onUpdateAllSelection={toggleForceSelectAllRows}
                 />
             ) : null}
             {showAddWordCard ? (

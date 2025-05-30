@@ -5,6 +5,7 @@ import { ActionsPanel, type ButtonButtonProps, Icon, Menu, Popup } from "@gravit
 
 import { WORD_STATUS_NAME, useWordMutations } from "@/entities/word";
 import { ApiConstants, type WordWithTranslations } from "@/shared/services/api";
+import { withToasts } from "@/shared/ui";
 
 export interface WordsTableActionsPanelProps {
     selectedWords: WordWithTranslations["translations"];
@@ -29,7 +30,7 @@ export const WordsTableActionsPanel: React.FC<WordsTableActionsPanelProps> = ({
                 className={className}
                 actions={[
                     {
-                        id: "action_1",
+                        id: "action_2",
                         button: {
                             props: {
                                 children: [
@@ -63,10 +64,17 @@ export const WordsTableActionsPanel: React.FC<WordsTableActionsPanelProps> = ({
                         <Menu.Item
                             key={wordStatus}
                             onClick={() => {
-                                updateWordsStatus.mutateAsync({
-                                    wordsIds: selectedWords.map((word) => word.id),
-                                    status: wordStatus,
-                                });
+                                withToasts(
+                                    updateWordsStatus.mutateAsync({
+                                        wordsIds: selectedWords.map((word) => word.id),
+                                        status: wordStatus,
+                                    }),
+                                    {
+                                        name: "wordsTableUpdateStatuses",
+                                        success: "Words statuses successfully updated!",
+                                        error: "Words statuses update error",
+                                    },
+                                );
                                 setOpen(false);
                             }}
                         >
