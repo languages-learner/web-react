@@ -41,6 +41,7 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
                                 fieldProps={props}
                                 placeholder={intl.formatMessage({
                                     defaultMessage: "Translation",
+                                    id: "/vCXIP",
                                 })}
                                 className={b("TextInput")}
                                 onKeyDown={(data) => {
@@ -71,6 +72,7 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
                     >
                         {intl.formatMessage({
                             defaultMessage: "Add",
+                            id: "2/2yg+",
                         })}
                     </Button>
                 </Flex>

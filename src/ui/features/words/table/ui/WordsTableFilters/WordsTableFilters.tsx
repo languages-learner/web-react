@@ -40,6 +40,7 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                 <TextInput
                     placeholder={intl.formatMessage({
                         defaultMessage: "Search",
+                        id: "xmcVZ0",
                     })}
                     size="l"
                     value={filters.text}
@@ -55,6 +56,7 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                     <Button view="outlined-action" size="l" onClick={onAddWordClick}>
                         {intl.formatMessage({
                             defaultMessage: "Add word",
+                            id: "iTJyw/",
                         })}
                     </Button>
                 ) : null}
@@ -74,6 +76,7 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                             value: "All",
                             content: intl.formatMessage({
                                 defaultMessage: "All",
+                                id: "zQvVDJ",
                             }),
                         },
                         { value: "New", content: WORD_STATUS_NAME["New"] },

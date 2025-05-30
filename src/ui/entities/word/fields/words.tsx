@@ -132,6 +132,7 @@ export const wordColumns = {
                             >
                                 {intl.formatMessage({
                                     defaultMessage: "Delete",
+                                    id: "K3r6DQ",
                                 })}
                             </Button>
                         </div>

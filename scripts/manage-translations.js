@@ -6,7 +6,7 @@ import { execSync } from "child_process";
 import process from "process";
 
 // Configuration
-const LOCALES_DIR = path.resolve("src/locales");
+const LOCALES_DIR = path.relative(process.cwd(), path.resolve("src/locales"));
 const EXTRACTED_FILE = path.join(LOCALES_DIR, "extracted.json");
 const COMPILED_DIR = path.join(LOCALES_DIR, "compiled");
 const LANGUAGES = ["en", "ru"];
@@ -91,9 +91,12 @@ for (const lang of LANGUAGES) {
     // Compile the translations
     const compiledFile = path.join(COMPILED_DIR, `${lang}.json`);
     try {
-        execSync(`npx formatjs compile ${langFile} --out-file ${compiledFile}`, {
-            stdio: "inherit",
-        });
+        execSync(
+            `npx formatjs compile ${langFile.replace(/\\/g, "/")} --out-file ${compiledFile.replace(/\\/g, "/")}`,
+            {
+                stdio: "inherit",
+            },
+        );
         console.info(`✅ Compiled ${lang} translations`);
     } catch (error) {
         console.error(`❌ Failed to compile ${lang} translations:`, error.message);

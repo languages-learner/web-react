@@ -48,6 +48,7 @@ export const LearningLanguageSelector: React.FC = () => {
             title="Sample select"
             label={intl.formatMessage({
                 defaultMessage: "Learn",
+                id: "IbrSk1",
             })}
             onUpdate={(values) => updateActiveLearningLanguage(values[0])}
             value={[user.activeLearningLanguage as Language]}

@@ -1,14 +1,11 @@
 import type React from "react";
 
-import { Navigate, Outlet, useLocation, useMatches } from "react-router";
+import { Navigate, Outlet, useLocation } from "react-router";
 
 import { useUser } from "@/entities/user";
-import {
-    type InterfaceLocale,
-    createHrefTyped,
-    getLocaleFromPath,
-    landingRoutes,
-} from "@/shared/routes";
+import { type InterfaceLocale } from "@/shared/project-config";
+import { createHrefTyped, getLocaleFromPath } from "@/shared/react-router";
+import { landingRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
 
 export const RequireLocaleMiddleware: React.FC = () => {
@@ -29,7 +26,7 @@ export const RequireLocaleMiddleware: React.FC = () => {
     if (currentLocale !== neededLocale) {
         const path = currentLocale
             ? location.pathname.replace(`/${currentLocale}`, `/${neededLocale}`)
-            : createHrefTyped(landingRoutes.root, { locale: neededLocale }); //createHrefTyped(landingRoutes.root, { locale: neededLocale });
+            : createHrefTyped(landingRoutes.root, { locale: neededLocale });
 
         window.location.pathname = path;
 

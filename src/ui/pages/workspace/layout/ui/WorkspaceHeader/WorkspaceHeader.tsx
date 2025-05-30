@@ -4,10 +4,10 @@ import { Button, Col, DropdownMenu, Flex, Row, Text } from "@gravity-ui/uikit";
 
 import { LearningLanguageSelector } from "@/entities/learning-language";
 import { UserAvatar } from "@/entities/user";
-import { AppLink } from "@/shared/app-uikit";
 import { intl } from "@/shared/i18n";
 import { landingRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
+import { Link } from "@/shared/ui";
 
 import styles from "./WorkspaceHeader.module.scss";
 
@@ -19,23 +19,25 @@ export const WorkspaceHeader: React.FC = () => {
             <Row space={{ s: 1 }} spaceRow={2} className={styles.workspaceHeaderContent}>
                 <Col s={3}>
                     <Flex justifyContent={"center"}>
-                        <AppLink to={landingRoutes.root}>
+                        <Link to={landingRoutes.root}>
                             <Text variant={"header-1"} color={"positive"}>
                                 {intl.formatMessage({
                                     defaultMessage: "Languages Learner",
+                                    id: "AGH8O0",
                                 })}
                             </Text>
-                        </AppLink>
+                        </Link>
                     </Flex>
                 </Col>
                 <Col s={6}>
-                    <AppLink to={workspaceRoutes.dictionary}>
+                    <Link to={workspaceRoutes.dictionary}>
                         <Button size={"l"} view={"flat"}>
                             {intl.formatMessage({
                                 defaultMessage: "Dictionary",
+                                id: "O19okS",
                             })}
                         </Button>
-                    </AppLink>
+                    </Link>
                 </Col>
                 <Col s={3}>
                     <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3}>
@@ -62,6 +64,7 @@ export const WorkspaceHeader: React.FC = () => {
                                     action: () => console.log("Rename"),
                                     text: intl.formatMessage({
                                         defaultMessage: "Profile",
+                                        id: "itPgxd",
                                     }),
                                 },
                                 {
@@ -69,12 +72,14 @@ export const WorkspaceHeader: React.FC = () => {
                                     action: () => console.log("Rename"),
                                     text: intl.formatMessage({
                                         defaultMessage: "Settings",
+                                        id: "D3idYv",
                                     }),
                                 },
                                 {
                                     action: () => supabase.auth.signOut(),
                                     text: intl.formatMessage({
                                         defaultMessage: "Sign out",
+                                        id: "xXbJso",
                                     }),
                                     theme: "danger",
                                 },

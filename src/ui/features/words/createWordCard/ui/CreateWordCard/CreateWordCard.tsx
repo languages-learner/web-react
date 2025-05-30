@@ -37,9 +37,11 @@ export const CreateWordCard: React.FC<CreateWordCardProps> = ({
                 name: "create-word",
                 success: intl.formatMessage({
                     defaultMessage: "Word successfully added!",
+                    id: "OEgSz2",
                 }),
                 error: intl.formatMessage({
                     defaultMessage: "Error",
+                    id: "KN7zKn",
                 }),
             },
         );
@@ -72,6 +74,7 @@ export const CreateWordCard: React.FC<CreateWordCardProps> = ({
         <CardContent
             title={intl.formatMessage({
                 defaultMessage: "Add new word",
+                id: "fXelj0",
             })}
             closable
             onClose={onClose}

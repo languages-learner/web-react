@@ -1,6 +1,7 @@
 import { type ResolvedIntlConfig, createIntl, createIntlCache } from "react-intl";
 
-import { type InterfaceLocale, getLocaleFromPath } from "../routes";
+import { type InterfaceLocale } from "@/shared/project-config";
+import { getLocaleFromPath } from "@/shared/react-router";
 
 import en from "locales/compiled/en.json";
 import ru from "locales/compiled/ru.json";

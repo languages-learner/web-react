@@ -37,6 +37,7 @@ export const WordsTableActionsPanel: React.FC<WordsTableActionsPanelProps> = ({
                                     <Icon key="icon" data={PencilToSquare} />,
                                     intl.formatMessage({
                                         defaultMessage: "Update status",
+                                        id: "zCAHPc",
                                     }),
                                 ],
                                 onClick: () => setOpen((prev) => !prev),
@@ -50,6 +51,7 @@ export const WordsTableActionsPanel: React.FC<WordsTableActionsPanelProps> = ({
                                 action: () => console.log("click dropdown action 1"),
                                 text: intl.formatMessage({
                                     defaultMessage: "Action 1",
+                                    id: "0TPWS1",
                                 }),
                             },
                         },
@@ -59,6 +61,7 @@ export const WordsTableActionsPanel: React.FC<WordsTableActionsPanelProps> = ({
                     intl.formatMessage(
                         {
                             defaultMessage: "{count} words",
+                            id: "2E0SZe",
                         },
                         { count: selectedWords.length },
                     )

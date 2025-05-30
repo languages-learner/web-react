@@ -9,6 +9,7 @@ export const LandingPage = () => {
             <Flex justifyContent={"center"}>
                 {intl.formatMessage({
                     defaultMessage: "Landing page",
+                    id: "3vvIQA",
                 })}
             </Flex>
         </LandingLayout>

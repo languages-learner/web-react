@@ -6,6 +6,7 @@
     "skipLibCheck": true,
 
     "rootDir": ".",
+    "outDir": "./dist",
 
     /* Bundler mode */
     "moduleResolution": "bundler",

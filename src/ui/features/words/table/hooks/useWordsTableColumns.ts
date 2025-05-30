@@ -31,9 +31,11 @@ export const useWordsTableColumns = () => {
                             name: "wordsTableAddWord",
                             success: intl.formatMessage({
                                 defaultMessage: "Word successfully added!",
+                                id: "OEgSz2",
                             }),
                             error: intl.formatMessage({
                                 defaultMessage: "Error adding word",
+                                id: "yn0wCl",
                             }),
                         },
                     ),
@@ -48,9 +50,11 @@ export const useWordsTableColumns = () => {
                             name: "wordsTableDeleteWordTranslations",
                             success: intl.formatMessage({
                                 defaultMessage: "Word translation successfully deleted!",
+                                id: "Sq5NhR",
                             }),
                             error: intl.formatMessage({
                                 defaultMessage: "Error deleting word translation",
+                                id: "H9zLLp",
                             }),
                         },
                     ),
@@ -66,9 +70,11 @@ export const useWordsTableColumns = () => {
                             name: "words-table-update-word-status",
                             success: intl.formatMessage({
                                 defaultMessage: "Status successfully updated!",
+                                id: "WnQWEt",
                             }),
                             error: intl.formatMessage({
                                 defaultMessage: "Error updating status",
+                                id: "j58r0o",
                             }),
                         },
                     ),
@@ -94,9 +100,11 @@ export const useWordsTableColumns = () => {
                         name: "wordsTableDeleteWord",
                         success: intl.formatMessage({
                             defaultMessage: "Word successfully deleted!",
+                            id: "u/yYaU",
                         }),
                         error: intl.formatMessage({
                             defaultMessage: "Error deleting word",
+                            id: "u8Bo1E",
                         }),
                     });
                 },

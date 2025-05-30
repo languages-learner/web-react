@@ -48,6 +48,7 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                         <FormRow
                             title={intl.formatMessage({
                                 defaultMessage: "Source word",
+                                id: "R1QL2E",
                             })}
                         >
                             <Flex gap={3}>
@@ -73,6 +74,7 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                                 <FormRow
                                     title={intl.formatMessage({
                                         defaultMessage: "Translations",
+                                        id: "aFyu8N",
                                     })}
                                 >
                                     <Flex gap={2} alignItems={"center"} wrap={"wrap"}>
@@ -104,6 +106,7 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                         >
                             {intl.formatMessage({
                                 defaultMessage: "Add word",
+                                id: "iTJyw/",
                             })}
                         </Button>
                     </div>
