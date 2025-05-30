@@ -2,7 +2,9 @@ import { Navigate, type RouteObject } from "react-router";
 
 import { LandingPage } from "@/pages/landing/landingPage";
 import { WorkspaceDictionaryPage } from "@/pages/workspace/dictionary";
-import { landingRoutes, workspaceRoutes } from "@/shared/routes";
+import { OfficeProfilePage } from "@/pages/workspace/office/profile";
+import { OfficeSettingsPage } from "@/pages/workspace/office/settings";
+import { landingRoutes, officeRoutes, workspaceRoutes } from "@/shared/routes";
 
 import { RequireAuthMiddleware } from "./guards/RequireAuthMiddleware";
 import { RequireLocaleMiddleware } from "./guards/RequireLocaleMiddleware";
@@ -27,6 +29,23 @@ export const routes: RouteObject[] = [
                         id: "workspace-dictionary",
                         path: workspaceRoutes.dictionary,
                         element: <WorkspaceDictionaryPage />,
+                    },
+                ],
+            },
+            {
+                id: "office",
+                path: officeRoutes.root,
+                element: <RequireAuthMiddleware />,
+                children: [
+                    {
+                        id: "office-settings",
+                        path: officeRoutes.settings,
+                        element: <OfficeSettingsPage />,
+                    },
+                    {
+                        id: "office-profile",
+                        path: officeRoutes.profile,
+                        element: <OfficeProfilePage />,
                     },
                 ],
             },

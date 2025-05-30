@@ -3,10 +3,12 @@ import React from "react";
 import { Button, Flex } from "@gravity-ui/uikit";
 import { Field, Form, type FormProps } from "react-final-form";
 
+import { useUserSafe } from "@/entities/user";
 import { LanguageSelector } from "@/features/language/languageSelector";
 import { block } from "@/shared/classNames";
 import { FormTextInput } from "@/shared/form-components";
 import { intl } from "@/shared/i18n";
+import { getShortLanguageName } from "@/shared/languages";
 
 import { type AddWordTranslationFormType, validateTranslation } from "./lib";
 
@@ -23,6 +25,8 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
     baseTranslationLanguage,
     ...formProps
 }) => {
+    const { user } = useUserSafe();
+
     return (
         <Form<AddWordTranslationFormType>
             {...formProps}
@@ -60,6 +64,19 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
                                 onUpdate={(values) => props.input.onChange(values[0])}
                                 filterable
                                 className={b("FormSelector")}
+                                overrideLanguageName={(language) => {
+                                    return language === user.nativeLanguage
+                                        ? intl.formatMessage(
+                                              {
+                                                  defaultMessage: "{lang} (Native)",
+                                                  id: "tpGxc3",
+                                              },
+                                              {
+                                                  lang: getShortLanguageName(language),
+                                              },
+                                          )
+                                        : null;
+                                }}
                             />
                         )}
                     </Field>

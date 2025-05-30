@@ -740,3 +740,11 @@ export const LANGUAGE_NAME = {
 } as const;
 
 export type Language = keyof typeof LANGUAGE_NAME;
+
+export const getFullLanguageName = (language: Language) => {
+    return LANGUAGE_NAME[language];
+};
+
+export const getShortLanguageName = (language: Language) => {
+    return language.toUpperCase();
+};

@@ -42,6 +42,7 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                     <Flex
                         direction={"column"}
                         gap={3}
+                        // TODO Move to scss
                         style={{ maxWidth: 500 }}
                         className={contentClassName}
                     >

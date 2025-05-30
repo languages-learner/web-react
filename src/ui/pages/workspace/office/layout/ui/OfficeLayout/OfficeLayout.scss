@@ -1,0 +1,27 @@
+.OfficeLayout {
+  display: grid;
+  grid-gap: var(--g-spacing-5);
+  grid-template-columns: 200px 1fr;
+  max-width: 800px;
+  margin: 0 auto;
+
+  &__menu {
+    * + * {
+      margin-top: var(--g-spacing-3);
+    }
+  }
+
+  &__menu-container {
+    background-color: unset;
+  }
+
+  &__menu-item {
+    height: 52px;
+  }
+
+  &__content {
+    width: 100%;
+    max-width: max(100%, 860px);
+    margin: 0 auto;
+  }
+}

@@ -1,6 +1,10 @@
 import { type To } from "react-router";
 
-import { INTERFACE_LOCALES, type InterfaceLocale } from "@/shared/project-config";
+import {
+    BASE_INTERFACE_LOCALE,
+    INTERFACE_LOCALES,
+    type InterfaceLocale,
+} from "@/shared/project-config";
 import { createHrefTyped } from "@/shared/react-router/createHrefTyped";
 
 export const getLocaleFromPath = (): InterfaceLocale | undefined => {
@@ -21,4 +25,10 @@ export const patchToWithLocale = (to: To, locale: string): To => {
         ...to,
         pathname: to.pathname ? createHrefTyped(to.pathname, { locale }) : to.pathname,
     };
+};
+
+export const getPathWithCurrentLocale = (path: string): string => {
+    const locale = getLocaleFromPath();
+
+    return patchToWithLocale(path, locale ?? BASE_INTERFACE_LOCALE) as string;
 };

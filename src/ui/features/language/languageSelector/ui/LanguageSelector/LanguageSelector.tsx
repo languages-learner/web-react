@@ -2,21 +2,41 @@ import React from "react";
 
 import { Select, type SelectProps } from "@gravity-ui/uikit";
 
-import { LANGUAGE_NAME, type Language } from "@/shared/languages";
+import {
+    LANGUAGE_NAME,
+    type Language,
+    getFullLanguageName,
+    getShortLanguageName,
+} from "@/shared/languages";
 
-export type LanguageSelectorProps = Omit<SelectProps, "options">;
+export interface LanguageSelectorProps extends Omit<SelectProps, "options"> {
+    fullName?: boolean;
+    languages?: ReadonlyArray<string>;
+    overrideLanguageName?: (language: Language) => string | null;
+}
 
-export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ ...selectProps }) => {
+export const LanguageSelector: React.FC<LanguageSelectorProps> = ({
+    fullName,
+    languages = Object.keys(LANGUAGE_NAME),
+    overrideLanguageName,
+    ...selectProps
+}) => {
+    const getLanguageName = (language: Language) => {
+        const overriddenName = overrideLanguageName?.(language);
+        if (overriddenName) {
+            return overriddenName;
+        }
+
+        return fullName ? getFullLanguageName(language) : getShortLanguageName(language);
+    };
+
     return (
-        // TODO
-        <Select<Language> value={["ru"]} {...selectProps}>
-            {Object.keys(LANGUAGE_NAME).map((language) => {
-                return (
-                    <Select.Option key={language} value={language}>
-                        {language.toUpperCase()}
-                    </Select.Option>
-                );
-            })}
+        <Select<Language> {...selectProps}>
+            {languages.map((language) => (
+                <Select.Option key={language} value={language}>
+                    {getLanguageName(language as Language)}
+                </Select.Option>
+            ))}
         </Select>
     );
 };

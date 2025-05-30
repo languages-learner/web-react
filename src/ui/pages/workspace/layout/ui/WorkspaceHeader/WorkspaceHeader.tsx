@@ -2,16 +2,18 @@ import React from "react";
 
 import { Button, Col, DropdownMenu, Flex, Row, Text } from "@gravity-ui/uikit";
 
-import { LearningLanguageSelector } from "@/entities/learning-language";
 import { UserAvatar } from "@/entities/user";
+import { LearningLanguageSelector } from "@/features/learning-language/learningLanguageSelector";
 import { intl } from "@/shared/i18n";
-import { landingRoutes, workspaceRoutes } from "@/shared/routes";
+import { useNavigate } from "@/shared/react-router";
+import { landingRoutes, officeRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
 import { Link } from "@/shared/ui";
 
 import styles from "./WorkspaceHeader.module.scss";
 
 export const WorkspaceHeader: React.FC = () => {
+    const navigate = useNavigate();
     const { supabase } = useAuth();
 
     return (
@@ -41,7 +43,15 @@ export const WorkspaceHeader: React.FC = () => {
                 </Col>
                 <Col s={3}>
                     <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3}>
-                        <LearningLanguageSelector />
+                        <LearningLanguageSelector
+                            label={intl.formatMessage({
+                                defaultMessage: "Learn",
+                                id: "IbrSk1",
+                            })}
+                            size={"l"}
+                            filterable
+                            fullName
+                        />
                         <DropdownMenu
                             size={"l"}
                             renderSwitcher={({ onKeyDown, onClick }) => {
@@ -60,16 +70,14 @@ export const WorkspaceHeader: React.FC = () => {
                             }}
                             items={[
                                 {
-                                    // eslint-disable-next-line no-console
-                                    action: () => console.log("Rename"),
+                                    action: () => navigate(officeRoutes.profile),
                                     text: intl.formatMessage({
                                         defaultMessage: "Profile",
                                         id: "itPgxd",
                                     }),
                                 },
                                 {
-                                    // eslint-disable-next-line no-console
-                                    action: () => console.log("Rename"),
+                                    action: () => navigate(officeRoutes.settings),
                                     text: intl.formatMessage({
                                         defaultMessage: "Settings",
                                         id: "D3idYv",

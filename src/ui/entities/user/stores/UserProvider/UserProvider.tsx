@@ -37,7 +37,9 @@ export const UserProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
                 user,
             }}
         >
-            {children}
+            {/* TODO Load user data on server*/}
+            {/* TODO App loader*/}
+            {user ? children : null}
         </UserContext.Provider>
     );
 };
