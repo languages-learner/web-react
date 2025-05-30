@@ -2,7 +2,7 @@ import React from "react";
 
 import { Loader } from "@gravity-ui/uikit";
 
-import { classNames } from "@/shared/classNames";
+import { classNames } from "@/shared/class-names";
 
 import type { LoaderContainerProps } from "./types";
 

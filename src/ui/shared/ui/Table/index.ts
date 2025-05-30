@@ -1,2 +1,2 @@
 export type { ColumnsDef, ColumnDefFactory } from "./types";
-export { useTableAllRowsSelection } from "./useTableAllRowsSelection";
+export { useTableRowsSelection } from "./useTableRowsSelection";

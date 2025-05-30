@@ -8,7 +8,7 @@ import { FieldArray } from "react-final-form-arrays";
 import { LanguageSelector } from "@/features/language/languageSelector";
 import { AddWordTranslationsForm } from "@/features/words/addWordTranslationsForm";
 import { InlineWordTranslationsList } from "@/features/words/inlineWordTranslationsList";
-import { block } from "@/shared/classNames";
+import { block } from "@/shared/class-names";
 import { FormRow, FormTextInput } from "@/shared/form-components";
 import { intl } from "@/shared/i18n";
 

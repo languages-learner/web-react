@@ -1,6 +1,6 @@
 import type React from "react";
 
-import { classNames } from "@/shared/classNames";
+import { classNames } from "@/shared/class-names";
 import { type ApiError } from "@/shared/services/api";
 import {
     PlaceholderContainer,

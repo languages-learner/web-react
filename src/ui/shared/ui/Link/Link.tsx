@@ -1,6 +1,6 @@
 import { NavLink, type NavLinkProps } from "react-router";
 
-import { classNames } from "@/shared/classNames";
+import { classNames } from "@/shared/class-names";
 import { BASE_INTERFACE_LOCALE } from "@/shared/project-config";
 import { getLocaleFromPath } from "@/shared/react-router";
 import { patchToWithLocale } from "@/shared/react-router/locale";

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { WorkspaceLayout } from "@/pages/workspace/layout";
-import { block, classNames } from "@/shared/classNames";
+import { block, classNames } from "@/shared/class-names";
 import {
     WordsTableWithFilters,
     type WordsTableWithFiltersProps,

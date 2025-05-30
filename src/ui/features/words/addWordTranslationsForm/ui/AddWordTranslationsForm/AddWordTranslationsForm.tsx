@@ -5,7 +5,7 @@ import { Field, Form, type FormProps } from "react-final-form";
 
 import { useUserSafe } from "@/entities/user";
 import { LanguageSelector } from "@/features/language/languageSelector";
-import { block } from "@/shared/classNames";
+import { block } from "@/shared/class-names";
 import { FormTextInput } from "@/shared/form-components";
 import { intl } from "@/shared/i18n";
 import { getShortLanguageName } from "@/shared/languages";

@@ -2,7 +2,7 @@ import React from "react";
 
 import { spacing } from "@gravity-ui/uikit";
 
-import { block, classNames } from "@/shared/classNames";
+import { block, classNames } from "@/shared/class-names";
 
 import { WorkspaceHeader } from "../WorkspaceHeader";
 

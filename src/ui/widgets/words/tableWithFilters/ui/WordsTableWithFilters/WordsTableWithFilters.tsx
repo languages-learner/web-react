@@ -2,11 +2,7 @@ import React from "react";
 
 import { useQueryData } from "@gravity-ui/data-source";
 import { Table, useTable } from "@gravity-ui/table";
-import {
-    type RowSelectionState,
-    type Table as TableA,
-    getCoreRowModel,
-} from "@gravity-ui/table/tanstack";
+import { type RowSelectionState, getCoreRowModel } from "@gravity-ui/table/tanstack";
 import { Flex } from "@gravity-ui/uikit";
 
 import { useUserSafe } from "@/entities/user";
@@ -25,63 +21,10 @@ import { type FetchWordsRequest } from "@/shared/services/api";
 import {
     PlaceholderContainer,
     PlaceholderContainerStatus,
-    // useTableAllRowsSelection,
+    useTableRowsSelection,
 } from "@/shared/ui";
 
 import { WordsTableActionsPanel } from "./WordsTableActionsPanel";
-
-export interface UseTableSelectionProps {
-    // eslint-disable-next-line
-    table: TableA<any>;
-}
-export const useTableRowsSelection = ({ table }: UseTableSelectionProps) => {
-    // Force to select all rows
-    const [forceSelectAllRows, setForceSelectAllRows] = React.useState(false);
-    const isAllRowsSelected = table.getIsAllRowsSelected();
-    // Hack to fix bug of table:
-    // When use "table.toggleAllRowsSelected(true)" and after
-    // try to get selections state by "table.getIsAllRowsSelected()" you get false
-    let wasAllRowsSelectedInCurrentRender = false;
-
-    const selectedItems = React.useMemo(
-        () => table.getSelectedRowModel().rows.map((row) => row.original),
-        [table.getState().rowSelection],
-    );
-
-    const toggleForceSelectAllRows = (value: boolean) => {
-        if (!value) {
-            table.toggleAllRowsSelected(false);
-            setForceSelectAllRows(false);
-
-            return;
-        }
-
-        setForceSelectAllRows(true);
-    };
-
-    // Select new rows
-    React.useEffect(() => {
-        if (forceSelectAllRows) {
-            table.toggleAllRowsSelected(true);
-            wasAllRowsSelectedInCurrentRender = true;
-        }
-    }, [table.getRowModel().rows, forceSelectAllRows]);
-
-    // Disable forceSelectAllRows if some row was unselected
-    React.useEffect(() => {
-        if (!isAllRowsSelected && forceSelectAllRows && !wasAllRowsSelectedInCurrentRender) {
-            setForceSelectAllRows(false);
-        }
-    }, [isAllRowsSelected]);
-
-    return {
-        isAllRowsSelected,
-        selectedItems,
-        toggleAllRowsSelected: table.toggleAllRowsSelected,
-        forceSelectAllRows,
-        toggleForceSelectAllRows,
-    };
-};
 
 export interface WordsTableWithFiltersProps {
     renderWordsTableActionsPanel: (

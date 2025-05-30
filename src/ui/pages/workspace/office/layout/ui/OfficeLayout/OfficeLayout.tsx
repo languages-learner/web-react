@@ -3,7 +3,7 @@ import React from "react";
 import { Menu, Text, spacing } from "@gravity-ui/uikit";
 
 import { WorkspaceLayout } from "@/pages/workspace/layout";
-import { block } from "@/shared/classNames";
+import { block } from "@/shared/class-names";
 import { intl } from "@/shared/i18n";
 import { getPathWithCurrentLocale, useIsMatched, useNavigate } from "@/shared/react-router";
 import { officeRoutes } from "@/shared/routes";

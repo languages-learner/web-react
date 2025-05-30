@@ -1,6 +1,6 @@
 import React from "react";
 
-import { block, classNames } from "@/shared/classNames";
+import { block, classNames } from "@/shared/class-names";
 
 import { FormRow, type FormRowProps } from "../FormRow";
 

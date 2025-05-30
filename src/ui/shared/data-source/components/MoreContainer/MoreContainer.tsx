@@ -3,7 +3,7 @@ import React from "react";
 import { ArrowDown } from "@gravity-ui/icons";
 import { Button, Icon } from "@gravity-ui/uikit";
 
-import { classNames } from "@/shared/classNames";
+import { classNames } from "@/shared/class-names";
 import { intl } from "@/shared/i18n";
 
 import type { MoreContainerProps } from "./types";

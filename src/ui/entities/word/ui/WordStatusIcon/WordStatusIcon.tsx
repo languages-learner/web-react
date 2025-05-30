@@ -1,7 +1,7 @@
 import { Check } from "@gravity-ui/icons";
 import { Icon, type IconData, type IconProps } from "@gravity-ui/uikit";
 
-import { block, classNames } from "@/shared/classNames";
+import { block, classNames } from "@/shared/class-names";
 
 import type { ApiDatabase } from "@/shared/services/api";
 
