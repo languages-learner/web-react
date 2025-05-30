@@ -9,7 +9,22 @@ export default defineConfig({
         alias: {
             "@@": path.resolve(__dirname, "."),
             "@": path.resolve(__dirname, "./src/ui"),
+            locales: path.resolve(__dirname, "./src/locales"),
         },
     },
-    plugins: [react()],
+    plugins: [
+        react({
+            babel: {
+                plugins: [
+                    [
+                        "formatjs",
+                        {
+                            idInterpolationPattern: "[sha512:contenthash:base64:6]",
+                            ast: true,
+                        },
+                    ],
+                ],
+            },
+        }),
+    ],
 });

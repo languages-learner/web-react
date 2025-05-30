@@ -2,7 +2,7 @@ import React from "react";
 
 import { spacing } from "@gravity-ui/uikit";
 
-import { LandingHeader } from "../LandingHeader";
+import { LandingHeader } from "./LandingHeader";
 
 export type LandingLayoutProps = React.PropsWithChildren;
 

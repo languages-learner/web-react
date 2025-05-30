@@ -4,9 +4,10 @@ import { Button, Col, DropdownMenu, Flex, Row, Text } from "@gravity-ui/uikit";
 
 import { LearningLanguageSelector } from "@/entities/learning-language";
 import { UserAvatar } from "@/entities/user";
+import { AppLink } from "@/shared/app-uikit";
+import { intl } from "@/shared/i18n";
 import { landingRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
-import { Link } from "@/shared/ui";
 
 import styles from "./WorkspaceHeader.module.scss";
 
@@ -18,19 +19,23 @@ export const WorkspaceHeader: React.FC = () => {
             <Row space={{ s: 1 }} spaceRow={2} className={styles.workspaceHeaderContent}>
                 <Col s={3}>
                     <Flex justifyContent={"center"}>
-                        <Link to={landingRoutes.root}>
+                        <AppLink to={landingRoutes.root}>
                             <Text variant={"header-1"} color={"positive"}>
-                                Languages Learner
+                                {intl.formatMessage({
+                                    defaultMessage: "Languages Learner",
+                                })}
                             </Text>
-                        </Link>
+                        </AppLink>
                     </Flex>
                 </Col>
                 <Col s={6}>
-                    <Link to={workspaceRoutes.dictionary}>
+                    <AppLink to={workspaceRoutes.dictionary}>
                         <Button size={"l"} view={"flat"}>
-                            Dictionary
+                            {intl.formatMessage({
+                                defaultMessage: "Dictionary",
+                            })}
                         </Button>
-                    </Link>
+                    </AppLink>
                 </Col>
                 <Col s={3}>
                     <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3}>
@@ -55,16 +60,22 @@ export const WorkspaceHeader: React.FC = () => {
                                 {
                                     // eslint-disable-next-line no-console
                                     action: () => console.log("Rename"),
-                                    text: "Profile",
+                                    text: intl.formatMessage({
+                                        defaultMessage: "Profile",
+                                    }),
                                 },
                                 {
                                     // eslint-disable-next-line no-console
                                     action: () => console.log("Rename"),
-                                    text: "Settings",
+                                    text: intl.formatMessage({
+                                        defaultMessage: "Settings",
+                                    }),
                                 },
                                 {
                                     action: () => supabase.auth.signOut(),
-                                    text: "Sign out",
+                                    text: intl.formatMessage({
+                                        defaultMessage: "Sign out",
+                                    }),
                                     theme: "danger",
                                 },
                             ]}

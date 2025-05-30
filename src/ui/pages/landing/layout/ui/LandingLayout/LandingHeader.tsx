@@ -1,7 +1,8 @@
 import { Button, Flex } from "@gravity-ui/uikit";
-import { useNavigate } from "react-router";
 
-import { workspaceRoutes } from "@/shared/routes";
+import { LanguageSelector } from "@/features/language/languageSelector/ui/LanguageSelector";
+import { intl } from "@/shared/i18n";
+import { useNavigate, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
 import { useAuthenticationDialog } from "@/widgets/auth/auth-dialog";
 
@@ -11,18 +12,25 @@ export const LandingHeader = () => {
     const navigate = useNavigate();
 
     return (
-        <Flex justifyContent={"flex-end"}>
+        <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3}>
+            <LanguageSelector />
             {isLoggedIn ? (
                 <Button onClick={() => navigate(workspaceRoutes.dictionary)}>
-                    Go to workspace
+                    {intl.formatMessage({
+                        defaultMessage: "Go to workspace",
+                    })}
                 </Button>
             ) : (
                 <Flex gap={3}>
                     <Button view={"action"} onClick={showAuthenticationDialog} size={"l"}>
-                        sign_in
+                        {intl.formatMessage({
+                            defaultMessage: "Sign in",
+                        })}
                     </Button>
                     <Button view={"action"} size={"l"}>
-                        sign_up
+                        {intl.formatMessage({
+                            defaultMessage: "Sign up",
+                        })}
                     </Button>
                 </Flex>
             )}

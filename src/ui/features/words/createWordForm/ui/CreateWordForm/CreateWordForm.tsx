@@ -10,6 +10,7 @@ import { AddWordTranslationsForm } from "@/features/words/addWordTranslationsFor
 import { InlineWordTranslationsList } from "@/features/words/inlineWordTranslationsList";
 import { block } from "@/shared/classNames";
 import { FormRow, FormTextInput } from "@/shared/form-components";
+import { intl } from "@/shared/i18n";
 
 import { type WordFormType, validateWord } from "./lib";
 
@@ -44,7 +45,11 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                         style={{ maxWidth: 500 }}
                         className={contentClassName}
                     >
-                        <FormRow title="Source word">
+                        <FormRow
+                            title={intl.formatMessage({
+                                defaultMessage: "Source word",
+                            })}
+                        >
                             <Flex gap={3}>
                                 <Field<string> name={"source.text"}>
                                     {(props) => <FormTextInput fieldProps={props} autoFocus />}
@@ -65,7 +70,11 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
 
                         <FieldArray<WordFormType["translations"][number]> name="translations">
                             {({ fields }) => (
-                                <FormRow title={"Translations"}>
+                                <FormRow
+                                    title={intl.formatMessage({
+                                        defaultMessage: "Translations",
+                                    })}
+                                >
                                     <Flex gap={2} alignItems={"center"} wrap={"wrap"}>
                                         <InlineWordTranslationsList
                                             translations={fields.value}
@@ -93,7 +102,9 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                             onClick={handleSubmit}
                             loading={submitting}
                         >
-                            Add word
+                            {intl.formatMessage({
+                                defaultMessage: "Add word",
+                            })}
                         </Button>
                     </div>
                 </React.Fragment>

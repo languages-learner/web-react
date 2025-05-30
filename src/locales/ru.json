@@ -1,0 +1,674 @@
+{
+  "+oXbh6": {
+    "defaultMessage": "Лингала"
+  },
+  "+ozGrs": {
+    "defaultMessage": "Польский"
+  },
+  "+sPOQ6": {
+    "defaultMessage": "Идиш"
+  },
+  "/5Hyyf": {
+    "defaultMessage": "Индонезийский"
+  },
+  "/g0o/G": {
+    "defaultMessage": "Венда"
+  },
+  "/vCXIP": {
+    "defaultMessage": "Перевод"
+  },
+  "0/xfKd": {
+    "defaultMessage": "Белорусский"
+  },
+  "0LJt/8": {
+    "defaultMessage": "Авестийский"
+  },
+  "0TPWS1": {
+    "defaultMessage": "Действие 1"
+  },
+  "0UZEdY": {
+    "defaultMessage": "Татарский"
+  },
+  "0Ul1ZD": {
+    "defaultMessage": "Амхарский"
+  },
+  "13R3L0": {
+    "defaultMessage": "Таджикский"
+  },
+  "1gkv1A": {
+    "defaultMessage": "Эстонский"
+  },
+  "2/2yg+": {
+    "defaultMessage": "Добавить"
+  },
+  "2E0SZe": {
+    "defaultMessage": "{count} слов"
+  },
+  "2h9dMx": {
+    "defaultMessage": "Гуарани"
+  },
+  "2p8A6e": {
+    "defaultMessage": "Бихарские языки"
+  },
+  "3ESc9L": {
+    "defaultMessage": "Рунди"
+  },
+  "3Iqr2F": {
+    "defaultMessage": "Албанский"
+  },
+  "3MC1Yh": {
+    "defaultMessage": "Валлийский"
+  },
+  "3vvIQA": {
+    "defaultMessage": "Landing page"
+  },
+  "4LgU10": {
+    "defaultMessage": "Тайский"
+  },
+  "4Rwd8/": {
+    "defaultMessage": "Гэльский, Шотландский гэльский"
+  },
+  "4chyO0": {
+    "defaultMessage": "Норвежский букмол"
+  },
+  "4g7O+o": {
+    "defaultMessage": "Интерлингва (Международная ассоциация вспомогательного языка)"
+  },
+  "4tH4ib": {
+    "defaultMessage": "Науру"
+  },
+  "5ZT5Sv": {
+    "defaultMessage": "Арагонский"
+  },
+  "5gfUzO": {
+    "defaultMessage": "Ганда"
+  },
+  "5yQSjb": {
+    "defaultMessage": "Афарский"
+  },
+  "6E8mQm": {
+    "defaultMessage": "Канури"
+  },
+  "7DKrB+": {
+    "defaultMessage": "Азербайджанский"
+  },
+  "7luvTu": {
+    "defaultMessage": "Испанский, Кастильский"
+  },
+  "81HOEl": {
+    "defaultMessage": "Тамильский"
+  },
+  "8HJxXG": {
+    "defaultMessage": "Зарегистрироваться"
+  },
+  "9OkVBI": {
+    "defaultMessage": "Башкирский"
+  },
+  "9u4ZIr": {
+    "defaultMessage": "Чичева, Чева, Ньянджа"
+  },
+  "A4UTjl": {
+    "defaultMessage": "Португальский"
+  },
+  "A7LR4X": {
+    "defaultMessage": "Малайский"
+  },
+  "AGH8O0": {
+    "defaultMessage": "Languages Learner"
+  },
+  "AQav1f": {
+    "defaultMessage": "Суахили"
+  },
+  "AiSwim": {
+    "defaultMessage": "Каннада"
+  },
+  "AkSN7P": {
+    "defaultMessage": "Македонский"
+  },
+  "BL/PMc": {
+    "defaultMessage": "Южный Ндебеле"
+  },
+  "BYA5HI": {
+    "defaultMessage": "Северный Саамский"
+  },
+  "C/Mko+": {
+    "defaultMessage": "Чаморро"
+  },
+  "C5R307": {
+    "defaultMessage": "Игбо"
+  },
+  "CACPC+": {
+    "defaultMessage": "Чешский"
+  },
+  "CLkbaI": {
+    "defaultMessage": "Боснийский"
+  },
+  "Clr/Fk": {
+    "defaultMessage": "Конго"
+  },
+  "D3idYv": {
+    "defaultMessage": "Настройки"
+  },
+  "DQG6va": {
+    "defaultMessage": "Кечуа"
+  },
+  "Dj5u49": {
+    "defaultMessage": "Знаю"
+  },
+  "Drr1tq": {
+    "defaultMessage": "Абхазский"
+  },
+  "E9Vfe9": {
+    "defaultMessage": "Пали"
+  },
+  "F4gyn3": {
+    "defaultMessage": "Очистить фильтры"
+  },
+  "Fjx2oN": {
+    "defaultMessage": "Гуджарати"
+  },
+  "GAyB2V": {
+    "defaultMessage": "Африкаанс"
+  },
+  "GIiOZa": {
+    "defaultMessage": "Ассамский"
+  },
+  "GYoPXv": {
+    "defaultMessage": "Ирландский"
+  },
+  "GpWVa1": {
+    "defaultMessage": "Синдхи"
+  },
+  "GwL5P4": {
+    "defaultMessage": "Молдавский, Молдавский, Румынский"
+  },
+  "Gx1lH/": {
+    "defaultMessage": "Гикуйю, Кикуйю"
+  },
+  "H/Wro7": {
+    "defaultMessage": "Маршалльский"
+  },
+  "H9zLLp": {
+    "defaultMessage": "Ошибка при удалении перевода слова"
+  },
+  "Ht+qS7": {
+    "defaultMessage": "Инуктитут"
+  },
+  "IPa7ex": {
+    "defaultMessage": "Уйгурский"
+  },
+  "IbrSk1": {
+    "defaultMessage": "Изучаю"
+  },
+  "JBILTX": {
+    "defaultMessage": "Навахо"
+  },
+  "JPW5lF": {
+    "defaultMessage": "Узбекский"
+  },
+  "Jb3mKo": {
+    "defaultMessage": "Словацкий"
+  },
+  "JpRlIY": {
+    "defaultMessage": "Волоф"
+  },
+  "K3NZ2q": {
+    "defaultMessage": "Оджибве"
+  },
+  "K3r6DQ": {
+    "defaultMessage": "Удалить"
+  },
+  "K4DTAh": {
+    "defaultMessage": "Кри"
+  },
+  "KDLj9t": {
+    "defaultMessage": "Телугу"
+  },
+  "KN7zKn": {
+    "defaultMessage": "Ошибка"
+  },
+  "Ljo9dF": {
+    "defaultMessage": "Болгарский"
+  },
+  "Me89Yu": {
+    "defaultMessage": "Коса"
+  },
+  "NEmnAV": {
+    "defaultMessage": "Итальянский"
+  },
+  "O19okS": {
+    "defaultMessage": "Словарь"
+  },
+  "ODbx9n": {
+    "defaultMessage": "Таитянский"
+  },
+  "OEgSz2": {
+    "defaultMessage": "Слово успешно добавлено!"
+  },
+  "OQSnl5": {
+    "defaultMessage": "Малагасийский"
+  },
+  "OiGM9v": {
+    "defaultMessage": "Бирманский"
+  },
+  "Ok37J5": {
+    "defaultMessage": "Люксембургский"
+  },
+  "OoAyWg": {
+    "defaultMessage": "Интерлингве"
+  },
+  "PK05cC": {
+    "defaultMessage": "Идо"
+  },
+  "PurNgG": {
+    "defaultMessage": "Турецкий"
+  },
+  "QGuX0Z": {
+    "defaultMessage": "Фула"
+  },
+  "QWTNl5": {
+    "defaultMessage": "Чеченский"
+  },
+  "Qj8bEA": {
+    "defaultMessage": "Дзонг-кэ"
+  },
+  "QmWU9I": {
+    "defaultMessage": "Тагальский"
+  },
+  "Qz9qLS": {
+    "defaultMessage": "Свати"
+  },
+  "R1QL2E": {
+    "defaultMessage": "Исходное слово"
+  },
+  "REyqqC": {
+    "defaultMessage": "Киньяруанда"
+  },
+  "RIUFf+": {
+    "defaultMessage": "Украинский"
+  },
+  "RsD3Mg": {
+    "defaultMessage": "Китайский"
+  },
+  "RwplMX": {
+    "defaultMessage": "Лимбургский"
+  },
+  "SQJto2": {
+    "defaultMessage": "Войти"
+  },
+  "SjLM72": {
+    "defaultMessage": "Хауса"
+  },
+  "Sq5NhR": {
+    "defaultMessage": "Перевод слова успешно удален!"
+  },
+  "Sy3MAE": {
+    "defaultMessage": "Носу, Сычуаньский И"
+  },
+  "T08s+2": {
+    "defaultMessage": "Фиджийский"
+  },
+  "TEMpMH": {
+    "defaultMessage": "Вы можете добавлять новые слова"
+  },
+  "TnA3lc": {
+    "defaultMessage": "Шона"
+  },
+  "U+OZv/": {
+    "defaultMessage": "Бенгальский"
+  },
+  "U/NPbq": {
+    "defaultMessage": "Немецкий"
+  },
+  "UgCctn": {
+    "defaultMessage": "Аварский"
+  },
+  "VPcJNw": {
+    "defaultMessage": "Дивехи, Мальдивский"
+  },
+  "VVFu/K": {
+    "defaultMessage": "Иврит"
+  },
+  "Vh6Bkv": {
+    "defaultMessage": "Инупиак"
+  },
+  "VtS1Zf": {
+    "defaultMessage": "Сото, Южный"
+  },
+  "W3t7Ob": {
+    "defaultMessage": "Японский"
+  },
+  "W8wyR3": {
+    "defaultMessage": "Акан"
+  },
+  "WfEDh2": {
+    "defaultMessage": "Романшский"
+  },
+  "WkrNSk": {
+    "defaultMessage": "Английский"
+  },
+  "WnQWEt": {
+    "defaultMessage": "Статус успешно обновлен!"
+  },
+  "X1qEgp": {
+    "defaultMessage": "Мальтийский"
+  },
+  "X3Fsez": {
+    "defaultMessage": "Эве"
+  },
+  "XVe5Xb": {
+    "defaultMessage": "Оромо"
+  },
+  "YadL/k": {
+    "defaultMessage": "Тви"
+  },
+  "YcU0hY": {
+    "defaultMessage": "Валлонский"
+  },
+  "YqsgWz": {
+    "defaultMessage": "Словенский"
+  },
+  "ZJE4Ya": {
+    "defaultMessage": "Сунданский"
+  },
+  "ZjRAwv": {
+    "defaultMessage": "Чувашский"
+  },
+  "ZrnRmj": {
+    "defaultMessage": "Хинди"
+  },
+  "Zv4RBA": {
+    "defaultMessage": "Маори"
+  },
+  "aE6o25": {
+    "defaultMessage": "Непальский"
+  },
+  "aEcE/S": {
+    "defaultMessage": "Персидский"
+  },
+  "aFyu8N": {
+    "defaultMessage": "Переводы"
+  },
+  "aJSvf0": {
+    "defaultMessage": "Грузинский"
+  },
+  "aWpBzj": {
+    "defaultMessage": "Показать больше"
+  },
+  "afRsSE": {
+    "defaultMessage": "Эсперанто"
+  },
+  "b9Ypq9": {
+    "defaultMessage": "Аймара"
+  },
+  "bW7B87": {
+    "defaultMessage": "Новые"
+  },
+  "cD/L1D": {
+    "defaultMessage": "Нет слов"
+  },
+  "cPO6DA": {
+    "defaultMessage": "Гереро"
+  },
+  "cc8Wyn": {
+    "defaultMessage": "Латышский"
+  },
+  "ce6brX": {
+    "defaultMessage": "Тсонга"
+  },
+  "ctFmEz": {
+    "defaultMessage": "Армянский"
+  },
+  "dblIW3": {
+    "defaultMessage": "Тонга (Острова Тонга)"
+  },
+  "e9YDZo": {
+    "defaultMessage": "Урду"
+  },
+  "eHmVh4": {
+    "defaultMessage": "Исландский"
+  },
+  "eIdxbu": {
+    "defaultMessage": "Зулу"
+  },
+  "eyuFrc": {
+    "defaultMessage": "Йоруба"
+  },
+  "f/jyk+": {
+    "defaultMessage": "Хорватский"
+  },
+  "f1EqW9": {
+    "defaultMessage": "Яванский"
+  },
+  "fA1Grb": {
+    "defaultMessage": "Латинский"
+  },
+  "fAtSM3": {
+    "defaultMessage": "Тигринья"
+  },
+  "fQ5yno": {
+    "defaultMessage": "Арабский"
+  },
+  "fXelj0": {
+    "defaultMessage": "Добавить новое слово"
+  },
+  "g8J1m+": {
+    "defaultMessage": "Тсвана"
+  },
+  "gbcBQx": {
+    "defaultMessage": "Каталанский, Валенсийский"
+  },
+  "h/qSeQ": {
+    "defaultMessage": "Литовский"
+  },
+  "hRiRF/": {
+    "defaultMessage": "Фарерский"
+  },
+  "hfXlpq": {
+    "defaultMessage": "Венгерский"
+  },
+  "hkemAh": {
+    "defaultMessage": "Хири-моту"
+  },
+  "hywNC+": {
+    "defaultMessage": "Датский"
+  },
+  "iSj7ww": {
+    "defaultMessage": "Кашмирский"
+  },
+  "iTJyw/": {
+    "defaultMessage": "Добавить слово"
+  },
+  "itPgxd": {
+    "defaultMessage": "Профиль"
+  },
+  "j58r0o": {
+    "defaultMessage": "Ошибка при обновлении статуса"
+  },
+  "jOQdpM": {
+    "defaultMessage": "Бислама"
+  },
+  "jdHDEC": {
+    "defaultMessage": "Сардинский"
+  },
+  "jrBc71": {
+    "defaultMessage": "Северный Ндебеле"
+  },
+  "kDcfg3": {
+    "defaultMessage": "Западно-фризский"
+  },
+  "kQ8QFg": {
+    "defaultMessage": "Корнский"
+  },
+  "kTt/ND": {
+    "defaultMessage": "Русский"
+  },
+  "kWxHnJ": {
+    "defaultMessage": "Норвежский"
+  },
+  "kXRyr+": {
+    "defaultMessage": "Сингальский"
+  },
+  "kZu6bA": {
+    "defaultMessage": "Чжуанский"
+  },
+  "keA8xm": {
+    "defaultMessage": "Мэнский"
+  },
+  "keE3T4": {
+    "defaultMessage": "Санго"
+  },
+  "kt12Y/": {
+    "defaultMessage": "Бретонский"
+  },
+  "l2C5wN": {
+    "defaultMessage": "Монгольский"
+  },
+  "l8QLOY": {
+    "defaultMessage": "Малаялам"
+  },
+  "lbsCV3": {
+    "defaultMessage": "Волапюк"
+  },
+  "mHjOY8": {
+    "defaultMessage": "Сербский"
+  },
+  "mNsvXG": {
+    "defaultMessage": "Добавьте ваше первое слово"
+  },
+  "n7SpjF": {
+    "defaultMessage": "Казахский"
+  },
+  "nc4geQ": {
+    "defaultMessage": "Корсиканский"
+  },
+  "ngp1Rq": {
+    "defaultMessage": "Финский"
+  },
+  "ni0ohk": {
+    "defaultMessage": "Окситанский (после 1500)"
+  },
+  "njAU72": {
+    "defaultMessage": "Французский"
+  },
+  "nsgiuY": {
+    "defaultMessage": "Гаитянский, Гаитянский креольский"
+  },
+  "oaO8hC": {
+    "defaultMessage": "Луба-катанга"
+  },
+  "ovr4vj": {
+    "defaultMessage": "Шведский"
+  },
+  "p9PNBI": {
+    "defaultMessage": "Перейти в Словарь"
+  },
+  "q7WVnC": {
+    "defaultMessage": "Ндонга"
+  },
+  "qIeGWT": {
+    "defaultMessage": "Сомалийский"
+  },
+  "qQ+Xla": {
+    "defaultMessage": "Корейский"
+  },
+  "qRTodB": {
+    "defaultMessage": "Осетинский"
+  },
+  "qqcgIL": {
+    "defaultMessage": "Попробуйте изменить значения фильтров или добавить новые слова"
+  },
+  "rEdBfL": {
+    "defaultMessage": "Курдский"
+  },
+  "rR/A8C": {
+    "defaultMessage": "Ория"
+  },
+  "rtJ7E1": {
+    "defaultMessage": "Пушту"
+  },
+  "teM9V9": {
+    "defaultMessage": "Кваньяма, Куаньяма"
+  },
+  "tfxRwT": {
+    "defaultMessage": "Маратхи"
+  },
+  "to6vVZ": {
+    "defaultMessage": "Слова не найдены"
+  },
+  "trS6/J": {
+    "defaultMessage": "Голландский, Фламандский"
+  },
+  "tsxDRp": {
+    "defaultMessage": "Баскский"
+  },
+  "u/yYaU": {
+    "defaultMessage": "Слово успешно удалено!"
+  },
+  "u8Bo1E": {
+    "defaultMessage": "Ошибка при удалении слова"
+  },
+  "uP99HQ": {
+    "defaultMessage": "Лаосский"
+  },
+  "uizxnQ": {
+    "defaultMessage": "Киргизский"
+  },
+  "uxAxwA": {
+    "defaultMessage": "Галисийский"
+  },
+  "vH6Af4": {
+    "defaultMessage": "Греческий (Современный)"
+  },
+  "wNOACE": {
+    "defaultMessage": "Бамбара"
+  },
+  "wkeUgR": {
+    "defaultMessage": "Тибетский"
+  },
+  "xGsJwX": {
+    "defaultMessage": "Центральный Кхмерский"
+  },
+  "xPDx7E": {
+    "defaultMessage": "Туркменский"
+  },
+  "xXbJso": {
+    "defaultMessage": "Выйти"
+  },
+  "xkVqPL": {
+    "defaultMessage": "Панджаби, Пенджабский"
+  },
+  "xmcVZ0": {
+    "defaultMessage": "Поиск"
+  },
+  "xxGgP2": {
+    "defaultMessage": "Санскрит"
+  },
+  "xzyHM+": {
+    "defaultMessage": "Вьетнамский"
+  },
+  "yJmS3E": {
+    "defaultMessage": "Норвежский Нюнорск"
+  },
+  "yn0wCl": {
+    "defaultMessage": "Ошибка при добавлении слова"
+  },
+  "ysSAXt": {
+    "defaultMessage": "Гренландский, Калааллисут"
+  },
+  "yvBiyQ": {
+    "defaultMessage": "Самоанский"
+  },
+  "zCAHPc": {
+    "defaultMessage": "Обновить статус"
+  },
+  "zQvVDJ": {
+    "defaultMessage": "Все"
+  },
+  "zjUHLu": {
+    "defaultMessage": "Коми"
+  },
+  "zk7Eje": {
+    "defaultMessage": "Церковнославянский, Старо-болгарский, Старославянский"
+  }
+}

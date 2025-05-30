@@ -1,17 +1,15 @@
 {
   "extends": ["../../tsconfig.ui.base.json"],
+  "include": [".", "typings.d.ts", "../vite-env.d.ts"],
+  "references": [{ "path": "../locales" }],
   "compilerOptions": {
     "tsBuildInfoFile": "../../node_modules/.tmp/tsconfig.ui.tsbuildinfo",
 
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "@@/*": ["../../*"]
-    },
-  },
-  "include": [
-    ".",
-    "typings.d.ts",
-    "../vite-env.d.ts"
-  ]
+      "@@/*": ["../../*"],
+      "locales/*": ["../locales/*"]
+    }
+  }
 }

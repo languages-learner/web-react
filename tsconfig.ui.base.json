@@ -11,8 +11,15 @@
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
     "jsx": "react-jsx",
+
+    /* Referenced Project */
+    "declaration": true,
+    // Referenced project may not disable emit - https://github.com/microsoft/TypeScript/issues/49844
+    "noEmit": false,
+    "composite": true,
+    "incremental": true,
+    "disableReferencedProjectLoad": true,
 
     /* Linting */
     "strict": true,
@@ -20,5 +27,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true
-  },
+  }
 }

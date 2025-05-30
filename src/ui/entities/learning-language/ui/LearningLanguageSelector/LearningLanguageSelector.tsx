@@ -5,6 +5,7 @@ import { Select } from "@gravity-ui/uikit";
 import { useMutation } from "@tanstack/react-query";
 
 import { useUser, userDataSource } from "@/entities/user";
+import { intl } from "@/shared/i18n";
 import { LANGUAGE_NAME, type Language } from "@/shared/languages";
 import { sdk } from "@/shared/services/api";
 
@@ -45,7 +46,9 @@ export const LearningLanguageSelector: React.FC = () => {
     return user ? (
         <Select<Language>
             title="Sample select"
-            label={"Learn"}
+            label={intl.formatMessage({
+                defaultMessage: "Learn",
+            })}
             onUpdate={(values) => updateActiveLearningLanguage(values[0])}
             value={[user.activeLearningLanguage as Language]}
             size={"l"}

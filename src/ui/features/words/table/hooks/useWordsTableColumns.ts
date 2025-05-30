@@ -4,6 +4,7 @@ import { type ColumnDef } from "@gravity-ui/table/tanstack";
 
 import { useUserSafe } from "@/entities/user";
 import { useWordMutations, wordColumns } from "@/entities/word";
+import { intl } from "@/shared/i18n";
 import { withToasts } from "@/shared/ui";
 
 import type { WordWithTranslations } from "@/shared/services/api";
@@ -28,8 +29,12 @@ export const useWordsTableColumns = () => {
                         }),
                         {
                             name: "wordsTableAddWord",
-                            success: "Word successfully added!",
-                            error: "Error adding word",
+                            success: intl.formatMessage({
+                                defaultMessage: "Word successfully added!",
+                            }),
+                            error: intl.formatMessage({
+                                defaultMessage: "Error adding word",
+                            }),
                         },
                     ),
                 baseTranslationLanguage: user.nativeLanguage,
@@ -41,8 +46,12 @@ export const useWordsTableColumns = () => {
                         }),
                         {
                             name: "wordsTableDeleteWordTranslations",
-                            success: "Word translation successfully deleted!",
-                            error: "Error deleting word translation",
+                            success: intl.formatMessage({
+                                defaultMessage: "Word translation successfully deleted!",
+                            }),
+                            error: intl.formatMessage({
+                                defaultMessage: "Error deleting word translation",
+                            }),
                         },
                     ),
             }),
@@ -55,8 +64,12 @@ export const useWordsTableColumns = () => {
                         }),
                         {
                             name: "words-table-update-word-status",
-                            success: "Status successfully updated!",
-                            error: "Error updating status",
+                            success: intl.formatMessage({
+                                defaultMessage: "Status successfully updated!",
+                            }),
+                            error: intl.formatMessage({
+                                defaultMessage: "Error updating status",
+                            }),
                         },
                     ),
             }),
@@ -79,8 +92,12 @@ export const useWordsTableColumns = () => {
                 onDelete: ({ item }) => {
                     return withToasts(deleteWords.mutateAsync({ wordIds: [item.id] }), {
                         name: "wordsTableDeleteWord",
-                        success: "Word successfully deleted!",
-                        error: "Error deleting word",
+                        success: intl.formatMessage({
+                            defaultMessage: "Word successfully deleted!",
+                        }),
+                        error: intl.formatMessage({
+                            defaultMessage: "Error deleting word",
+                        }),
                     });
                 },
             }),

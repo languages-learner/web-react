@@ -4,6 +4,8 @@ import { classNames } from "@/shared/classNames";
 
 import styles from "./Link.module.scss";
 
-export const Link = (props: NavLinkProps) => {
+export type LinkProps = NavLinkProps;
+
+export const Link = (props: LinkProps) => {
     return <NavLink {...props} className={classNames(styles.link, props.className)} />;
 };

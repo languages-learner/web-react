@@ -4,6 +4,7 @@ import { ArrowDown } from "@gravity-ui/icons";
 import { Button, Icon } from "@gravity-ui/uikit";
 
 import { classNames } from "@/shared/classNames";
+import { intl } from "@/shared/i18n";
 
 import type { MoreContainerProps } from "./types";
 
@@ -15,7 +16,7 @@ export const MoreContainer: React.FC<MoreContainerProps> = ({
     isLoading,
     onClick,
     view = "flat-secondary",
-    children = <div>Show more</div>,
+    children = <div>{intl.formatMessage({ defaultMessage: "Show more" })}</div>,
     ...restProps
 }) => {
     const button = (
@@ -41,7 +42,7 @@ export const EmptyMoreContainer: React.FC<MoreContainerProps> = () => null;
 export const MoreContainerWithArrow: React.FC<Omit<MoreContainerProps, "children">> = (props) => {
     return (
         <MoreContainer {...props}>
-            <Icon data={ArrowDown} /> {"Show more"}
+            <Icon data={ArrowDown} /> {intl.formatMessage({ defaultMessage: "Show more" })}
         </MoreContainer>
     );
 };
