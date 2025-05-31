@@ -6,11 +6,15 @@ import { userDataSource } from "@/entities/user";
 import { DataLoader } from "@/shared/data-source";
 import { useAuth } from "@/shared/services/auth";
 
-import { type User } from "../../types";
+import { type User, type UserContext as UserContextType } from "../../types";
 
 import { UserContext } from "./constants";
 
-export const UserProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+export interface UserProviderProps {
+    children: (context: UserContextType) => React.ReactNode;
+}
+
+export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const { session } = useAuth();
 
     const userQuery = useQueryData(userDataSource, session ? {} : idle);
@@ -29,21 +33,22 @@ export const UserProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
             nativeLanguage: userQuery.data.native_language,
             activeLearningLanguage: userQuery.data.active_learning_language,
             interfaceLanguage: userQuery.data.interface_language,
+            theme: userQuery.data.theme,
         };
     }, [session, userQuery.data]);
 
+    const value: UserContextType = {
+        user,
+    };
+
     return (
-        <UserContext.Provider
-            value={{
-                user,
-            }}
-        >
+        <UserContext.Provider value={value}>
             <DataLoader
                 status={userQuery.status}
                 error={userQuery.error}
                 errorAction={userQuery.refetch}
             >
-                {children}
+                {children(value)}
             </DataLoader>
         </UserContext.Provider>
     );

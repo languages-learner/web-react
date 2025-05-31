@@ -1,3 +1,5 @@
+import { type ApiTables } from "@/shared/services/api";
+
 export interface User {
     uid: string;
     displayName: string | null;
@@ -7,6 +9,7 @@ export interface User {
     nativeLanguage: string;
     activeLearningLanguage: string;
     interfaceLanguage: string;
+    theme: ApiTables<"user">["theme"];
 }
 
 export interface UserContext {

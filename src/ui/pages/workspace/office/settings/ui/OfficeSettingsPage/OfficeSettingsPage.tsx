@@ -1,10 +1,12 @@
 import { useUserMutations, useUserSafe } from "@/entities/user";
 import { LanguageSelector } from "@/features/language/languageSelector";
 import { LearningLanguageSelector } from "@/features/learning-language/learningLanguageSelector";
+import { ThemeSelector } from "@/features/theme/themeSelector";
 import { OfficeLayout } from "@/pages/workspace/office/layout";
 import { FormRowsContainer } from "@/shared/form-components";
 import { intl } from "@/shared/i18n";
 import { INTERFACE_LOCALES } from "@/shared/project-config";
+import { type ApiTables } from "@/shared/services/api";
 import { withToasts } from "@/shared/ui";
 
 export const OfficeSettingsPage = () => {
@@ -55,6 +57,28 @@ export const OfficeSettingsPage = () => {
         );
     };
 
+    const handleUpdateTheme = (theme: ApiTables<"user">["theme"]) => {
+        return withToasts(
+            updateUser.mutateAsync({
+                userId: user.uid,
+                payload: {
+                    theme,
+                },
+            }),
+            {
+                name: "userSettingsUpdateTheme",
+                success: intl.formatMessage({
+                    defaultMessage: "User theme successfully updated!",
+                    id: "IcY6iN",
+                }),
+                error: intl.formatMessage({
+                    defaultMessage: "Error updating user theme",
+                    id: "qW/XjQ",
+                }),
+            },
+        );
+    };
+
     return (
         <OfficeLayout title={intl.formatMessage({ defaultMessage: "Settings", id: "D3idYv" })}>
             <FormRowsContainer>
@@ -92,6 +116,21 @@ export const OfficeSettingsPage = () => {
                     })}
                 >
                     <LearningLanguageSelector size={"l"} filterable fullName width={"max"} />
+                </FormRowsContainer.Row>
+                <FormRowsContainer.Row
+                    title={intl.formatMessage({
+                        defaultMessage: "Theme",
+                        id: "Pe0ogR",
+                    })}
+                >
+                    <ThemeSelector
+                        size={"l"}
+                        width={"max"}
+                        value={[user.theme]}
+                        onUpdate={([value]) =>
+                            handleUpdateTheme(value as ApiTables<"user">["theme"])
+                        }
+                    />
                 </FormRowsContainer.Row>
             </FormRowsContainer>
         </OfficeLayout>

@@ -2,13 +2,17 @@ import { Button, Flex } from "@gravity-ui/uikit";
 
 import { useUser, useUserMutations } from "@/entities/user";
 import { LanguageSelector } from "@/features/language/languageSelector";
+import { ThemeSelector } from "@/features/theme/themeSelector";
 import { block } from "@/shared/class-names";
 import { intl } from "@/shared/i18n";
-import { INTERFACE_LOCALES } from "@/shared/project-config";
+import { BASE_THEME, INTERFACE_LOCALES } from "@/shared/project-config";
 import { createHrefTyped, getLocaleFromPathSafe, useNavigate } from "@/shared/react-router";
 import { landingRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
+import { useThemeQuery } from "@/shared/theme";
 import { useAuthenticationDialog } from "@/widgets/auth/auth-dialog";
+
+import type { ApiTables } from "@/shared/services/api";
 
 import "./LandingHeader.scss";
 
@@ -20,6 +24,7 @@ export const LandingHeader = () => {
     const navigate = useNavigate();
     const { user } = useUser();
     const { updateUser } = useUserMutations();
+    const themeQuery = useThemeQuery();
 
     const currentInterfaceLanguage = user ? user.interfaceLanguage : getLocaleFromPathSafe();
     const handleUpdateInterfaceLanguage = (language: string) => {
@@ -35,8 +40,32 @@ export const LandingHeader = () => {
         window.location.pathname = createHrefTyped(landingRoutes.root, { locale: language });
     };
 
+    const currentTheme = user ? user.theme : (themeQuery.theme ?? BASE_THEME);
+    const handleUpdateTheme = (theme: ApiTables<"user">["theme"]) => {
+        if (user) {
+            themeQuery.clearTheme();
+
+            return updateUser.mutateAsync({
+                userId: user.uid,
+                payload: {
+                    theme,
+                },
+            });
+        }
+
+        themeQuery.setTheme(theme);
+        window.location.reload();
+    };
+
     return (
         <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3} className={b()}>
+            <div>
+                <ThemeSelector
+                    size={"l"}
+                    value={[currentTheme]}
+                    onUpdate={([value]) => handleUpdateTheme(value as ApiTables<"user">["theme"])}
+                />
+            </div>
             <div>
                 <LanguageSelector
                     fullName
@@ -48,7 +77,11 @@ export const LandingHeader = () => {
                 />
             </div>
             {isLoggedIn ? (
-                <Button onClick={() => navigate(workspaceRoutes.dictionary)} view={"action"}>
+                <Button
+                    size={"l"}
+                    onClick={() => navigate(workspaceRoutes.dictionary)}
+                    view={"action"}
+                >
                     {intl.formatMessage({
                         defaultMessage: "Go to workspace",
                         id: "p9PNBI",

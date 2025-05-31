@@ -39,6 +39,7 @@ export type Database = {
                         referencedRelation: "user";
                         referencedColumns: ["id"];
                     },
+
                     {
                         foreignKeyName: "translations_word_id_fkey";
                         columns: ["word_id"];
@@ -54,18 +55,21 @@ export type Database = {
                     id: string;
                     interface_language: string;
                     native_language: string;
+                    theme: Database["public"]["Enums"]["Theme"];
                 };
                 Insert: {
                     active_learning_language: string;
                     id?: string;
                     interface_language: string;
                     native_language: string;
+                    theme?: Database["public"]["Enums"]["Theme"];
                 };
                 Update: {
                     active_learning_language?: string;
                     id?: string;
                     interface_language?: string;
                     native_language?: string;
+                    theme?: Database["public"]["Enums"]["Theme"];
                 };
                 Relationships: [];
             };
@@ -118,6 +122,7 @@ export type Database = {
             [_ in never]: never;
         };
         Enums: {
+            Theme: "system" | "dark" | "light";
             UserWordStatus: "New" | "Learn" | "Learned";
         };
         CompositeTypes: {
@@ -234,6 +239,7 @@ export type CompositeTypes<
 export const Constants = {
     public: {
         Enums: {
+            Theme: ["system", "dark", "light"],
             UserWordStatus: ["New", "Learn", "Learned"],
         },
     },

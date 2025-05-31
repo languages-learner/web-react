@@ -122,6 +122,7 @@ export const wordColumns = {
         id: "delete",
         cell: (props) => (
             <Popover
+                trigger={"click"}
                 content={
                     <Flex className={spacing({ p: 2 })} gap={3} alignItems="center">
                         <Text>Delete word?</Text>

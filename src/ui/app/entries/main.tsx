@@ -10,7 +10,9 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router";
 import { UserProvider } from "@/entities/user";
 import { dataManager } from "@/shared/data-source";
 import { intl } from "@/shared/i18n";
+import { BASE_THEME } from "@/shared/project-config";
 import { SupabaseAuthProvider } from "@/shared/services/auth";
+import { getThemeQuery } from "@/shared/theme";
 import { ToasterProvider } from "@/shared/ui";
 
 import { routes } from "../routes";
@@ -20,6 +22,8 @@ import "@/app/styles/gravity-theme.scss";
 import "@/app/styles/reset.scss";
 
 const bootstrap = () => {
+    const themeFromQuery = getThemeQuery();
+
     const router = createBrowserRouter([
         {
             id: "main",
@@ -38,11 +42,15 @@ const bootstrap = () => {
                     <QueryClientProvider client={dataManager.queryClient}>
                         <SupabaseAuthProvider>
                             <UserProvider>
-                                <ThemeProvider theme={"dark"}>
-                                    <ToasterProvider>
-                                        <RouterProvider router={router} />
-                                    </ToasterProvider>
-                                </ThemeProvider>
+                                {({ user }) => (
+                                    <ThemeProvider
+                                        theme={user?.theme ?? themeFromQuery ?? BASE_THEME}
+                                    >
+                                        <ToasterProvider>
+                                            <RouterProvider router={router} />
+                                        </ToasterProvider>
+                                    </ThemeProvider>
+                                )}
                             </UserProvider>
                         </SupabaseAuthProvider>
                     </QueryClientProvider>
