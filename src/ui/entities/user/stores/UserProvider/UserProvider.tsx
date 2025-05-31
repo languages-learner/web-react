@@ -3,6 +3,7 @@ import React from "react";
 import { idle, useQueryData } from "@gravity-ui/data-source";
 
 import { userDataSource } from "@/entities/user";
+import { DataLoader } from "@/shared/data-source";
 import { useAuth } from "@/shared/services/auth";
 
 import { type User } from "../../types";
@@ -37,9 +38,13 @@ export const UserProvider: React.FC<React.PropsWithChildren> = ({ children }) =>
                 user,
             }}
         >
-            {/* TODO Load user data on server*/}
-            {/* TODO App loader*/}
-            {user ? children : null}
+            <DataLoader
+                status={userQuery.status}
+                error={userQuery.error}
+                errorAction={userQuery.refetch}
+            >
+                {children}
+            </DataLoader>
         </UserContext.Provider>
     );
 };

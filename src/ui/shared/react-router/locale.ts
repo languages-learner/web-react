@@ -16,6 +16,10 @@ export const getLocaleFromPath = (): InterfaceLocale | undefined => {
         : undefined;
 };
 
+export const getLocaleFromPathSafe = (): InterfaceLocale => {
+    return getLocaleFromPath()!;
+};
+
 export const patchToWithLocale = (to: To, locale: string): To => {
     if (typeof to === "string") {
         return createHrefTyped(to, { locale });

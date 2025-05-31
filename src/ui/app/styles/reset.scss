@@ -1,7 +1,14 @@
 body {
   margin: 0;
+  --g-actions-panel-height: 52px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+
+.g-col {
+  --g-spacing-1: 0;
+  --g-spacing-2: 0;
 }

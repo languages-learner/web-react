@@ -19,6 +19,8 @@ export const AuthenticationDialog: React.FC<AuthenticationDialogProps> = ({ ...d
                     supabaseClient={supabase}
                     appearance={{ theme: ThemeSupa }}
                     providers={["google"]}
+                    // TODO: Add localization
+                    localization={undefined}
                 />
             </Dialog.Body>
         </Dialog>

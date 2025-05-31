@@ -5,7 +5,7 @@ import { Button, Col, DropdownMenu, Flex, Row, Text } from "@gravity-ui/uikit";
 import { UserAvatar } from "@/entities/user";
 import { LearningLanguageSelector } from "@/features/learning-language/learningLanguageSelector";
 import { intl } from "@/shared/i18n";
-import { useNavigate } from "@/shared/react-router";
+import { getPathWithCurrentLocale, useIsMatched, useNavigate } from "@/shared/react-router";
 import { landingRoutes, officeRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
 import { Link } from "@/shared/ui";
@@ -15,6 +15,7 @@ import styles from "./WorkspaceHeader.module.scss";
 export const WorkspaceHeader: React.FC = () => {
     const navigate = useNavigate();
     const { supabase } = useAuth();
+    const isMatched = useIsMatched();
 
     return (
         <div className={styles.workspaceHeader}>
@@ -33,7 +34,13 @@ export const WorkspaceHeader: React.FC = () => {
                 </Col>
                 <Col s={6}>
                     <Link to={workspaceRoutes.dictionary}>
-                        <Button size={"l"} view={"flat"}>
+                        <Button
+                            size={"l"}
+                            view={"flat"}
+                            selected={isMatched(
+                                getPathWithCurrentLocale(workspaceRoutes.dictionary),
+                            )}
+                        >
                             {intl.formatMessage({
                                 defaultMessage: "Dictionary",
                                 id: "O19okS",

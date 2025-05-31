@@ -50,6 +50,9 @@
   "2p8A6e": {
     "defaultMessage": "Бихарские языки"
   },
+  "3EElpV": {
+    "defaultMessage": "Web-приложение для изучения иностранных языков"
+  },
   "3ESc9L": {
     "defaultMessage": "Рунди"
   },
@@ -58,9 +61,6 @@
   },
   "3MC1Yh": {
     "defaultMessage": "Валлийский"
-  },
-  "3vvIQA": {
-    "defaultMessage": "Landing page"
   },
   "4LgU10": {
     "defaultMessage": "Тайский"
@@ -101,6 +101,9 @@
   "8HJxXG": {
     "defaultMessage": "Зарегистрироваться"
   },
+  "9J9Rj9": {
+    "defaultMessage": "Ошибка обновления изучаемого языка"
+  },
   "9OkVBI": {
     "defaultMessage": "Башкирский"
   },
@@ -124,6 +127,9 @@
   },
   "AkSN7P": {
     "defaultMessage": "Македонский"
+  },
+  "AxApyG": {
+    "defaultMessage": "Ошибка обновления родного языка"
   },
   "BL/PMc": {
     "defaultMessage": "Южный Ндебеле"
@@ -293,6 +299,9 @@
   "RwplMX": {
     "defaultMessage": "Лимбургский"
   },
+  "S7y0Y8": {
+    "defaultMessage": "Родной язык"
+  },
   "SQJto2": {
     "defaultMessage": "Войти"
   },
@@ -349,6 +358,9 @@
   },
   "WnQWEt": {
     "defaultMessage": "Статус успешно обновлен!"
+  },
+  "WvA01e": {
+    "defaultMessage": "Язык интерфейса успешно обновлен!"
   },
   "X1qEgp": {
     "defaultMessage": "Мальтийский"
@@ -407,6 +419,9 @@
   "cD/L1D": {
     "defaultMessage": "Нет слов"
   },
+  "cEP2o6": {
+    "defaultMessage": "Родной язык успешно обновлен!"
+  },
   "cPO6DA": {
     "defaultMessage": "Гереро"
   },
@@ -445,6 +460,9 @@
   },
   "fAtSM3": {
     "defaultMessage": "Тигринья"
+  },
+  "fJ/RT7": {
+    "defaultMessage": "Изучаемый язык"
   },
   "fQ5yno": {
     "defaultMessage": "Арабский"
@@ -527,6 +545,9 @@
   "l8QLOY": {
     "defaultMessage": "Малаялам"
   },
+  "landing-about": {
+    "defaultMessage": "© {year}. <repo-link>languages-learner/web-react</repo-link>. Developed by <profile-link>Aleksandr Chernigin</profile-link>"
+  },
   "lbsCV3": {
     "defaultMessage": "Волапюк"
   },
@@ -587,6 +608,15 @@
   "rtJ7E1": {
     "defaultMessage": "Пушту"
   },
+  "sCxNP9": {
+    "defaultMessage": "Languages Learner"
+  },
+  "sM7TRG": {
+    "defaultMessage": "Язык интерфейса"
+  },
+  "t/MnRq": {
+    "defaultMessage": "Изучаемый язык успешно обновлен!"
+  },
   "teM9V9": {
     "defaultMessage": "Кваньяма, Куаньяма"
   },
@@ -596,11 +626,17 @@
   "to6vVZ": {
     "defaultMessage": "Слова не найдены"
   },
+  "tpGxc3": {
+    "defaultMessage": "{lang} (Native)"
+  },
   "trS6/J": {
     "defaultMessage": "Голландский, Фламандский"
   },
   "tsxDRp": {
     "defaultMessage": "Баскский"
+  },
+  "tvorNQ": {
+    "defaultMessage": "Ошибка обновления языка интерфейса"
   },
   "u/yYaU": {
     "defaultMessage": "Слово успешно удалено!"

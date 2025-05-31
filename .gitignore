@@ -28,12 +28,6 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-# Configs
-firebase.config.json
-
-# Cache files
-.firebase
-
 # Ignore local files
 .env
 *.local

@@ -3,7 +3,7 @@ import type React from "react";
 import { Outlet, useLocation } from "react-router";
 
 import { useUser } from "@/entities/user";
-import { type InterfaceLocale } from "@/shared/project-config";
+import { BASE_INTERFACE_LOCALE, type InterfaceLocale } from "@/shared/project-config";
 import { createHrefTyped, getLocaleFromPath } from "@/shared/react-router";
 import { landingRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
@@ -11,7 +11,7 @@ import { useAuth } from "@/shared/services/auth";
 export const RequireLocaleMiddleware: React.FC = () => {
     const location = useLocation();
     const currentLocale = getLocaleFromPath();
-    let neededLocale: InterfaceLocale = "en";
+    let neededLocale: InterfaceLocale = currentLocale ?? BASE_INTERFACE_LOCALE;
 
     const { isLoggedIn } = useAuth();
     const { user } = useUser();
@@ -27,6 +27,8 @@ export const RequireLocaleMiddleware: React.FC = () => {
 
         return null;
     }
+
+    window.document.querySelector("html")?.setAttribute("lang", currentLocale);
 
     return <Outlet />;
 };

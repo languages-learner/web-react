@@ -50,6 +50,9 @@
   "2p8A6e": {
     "defaultMessage": "Bihari languages"
   },
+  "3EElpV": {
+    "defaultMessage": "Web application for learning languages"
+  },
   "3ESc9L": {
     "defaultMessage": "Rundi"
   },
@@ -58,9 +61,6 @@
   },
   "3MC1Yh": {
     "defaultMessage": "Welsh"
-  },
-  "3vvIQA": {
-    "defaultMessage": "Landing page"
   },
   "4LgU10": {
     "defaultMessage": "Thai"
@@ -101,6 +101,9 @@
   "8HJxXG": {
     "defaultMessage": "Sign up"
   },
+  "9J9Rj9": {
+    "defaultMessage": "Error updating user active learning language"
+  },
   "9OkVBI": {
     "defaultMessage": "Bashkir"
   },
@@ -124,6 +127,9 @@
   },
   "AkSN7P": {
     "defaultMessage": "Macedonian"
+  },
+  "AxApyG": {
+    "defaultMessage": "Error updating user native language"
   },
   "BL/PMc": {
     "defaultMessage": "South Ndebele"
@@ -293,6 +299,9 @@
   "RwplMX": {
     "defaultMessage": "Limburgish, Limburgan, Limburger"
   },
+  "S7y0Y8": {
+    "defaultMessage": "Native language"
+  },
   "SQJto2": {
     "defaultMessage": "Sign in"
   },
@@ -349,6 +358,9 @@
   },
   "WnQWEt": {
     "defaultMessage": "Status successfully updated!"
+  },
+  "WvA01e": {
+    "defaultMessage": "User interface language successfully updated!"
   },
   "X1qEgp": {
     "defaultMessage": "Maltese"
@@ -407,6 +419,9 @@
   "cD/L1D": {
     "defaultMessage": "No words"
   },
+  "cEP2o6": {
+    "defaultMessage": "User native language successfully updated!"
+  },
   "cPO6DA": {
     "defaultMessage": "Herero"
   },
@@ -445,6 +460,9 @@
   },
   "fAtSM3": {
     "defaultMessage": "Tigrinya"
+  },
+  "fJ/RT7": {
+    "defaultMessage": "Learning language"
   },
   "fQ5yno": {
     "defaultMessage": "Arabic"
@@ -527,6 +545,9 @@
   "l8QLOY": {
     "defaultMessage": "Malayalam"
   },
+  "landing-about": {
+    "defaultMessage": "© {year}. <repo-link>languages-learner/web-react</repo-link>. Developed by <profile-link>Aleksandr Chernigin</profile-link>"
+  },
   "lbsCV3": {
     "defaultMessage": "Volap_k"
   },
@@ -587,6 +608,15 @@
   "rtJ7E1": {
     "defaultMessage": "Pashto, Pushto"
   },
+  "sCxNP9": {
+    "defaultMessage": "Languages Learner"
+  },
+  "sM7TRG": {
+    "defaultMessage": "Interface language"
+  },
+  "t/MnRq": {
+    "defaultMessage": "User active learning language successfully updated!"
+  },
   "teM9V9": {
     "defaultMessage": "Kwanyama, Kuanyama"
   },
@@ -596,11 +626,17 @@
   "to6vVZ": {
     "defaultMessage": "No found words"
   },
+  "tpGxc3": {
+    "defaultMessage": "{lang} (Native)"
+  },
   "trS6/J": {
     "defaultMessage": "Dutch, Flemish"
   },
   "tsxDRp": {
     "defaultMessage": "Basque"
+  },
+  "tvorNQ": {
+    "defaultMessage": "Error updating user interface language"
   },
   "u/yYaU": {
     "defaultMessage": "Word successfully deleted!"

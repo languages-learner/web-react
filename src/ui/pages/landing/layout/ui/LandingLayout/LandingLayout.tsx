@@ -1,16 +1,20 @@
 import React from "react";
 
-import { spacing } from "@gravity-ui/uikit";
+import { block } from "@/shared/class-names";
 
 import { LandingHeader } from "./LandingHeader";
+
+import "./LandingLayout.scss";
+
+const b = block("LandingLayout");
 
 export type LandingLayoutProps = React.PropsWithChildren;
 
 export const LandingLayout: React.FC<LandingLayoutProps> = ({ children }) => {
     return (
-        <div>
+        <div className={b()}>
             <LandingHeader />
-            <div className={spacing({ p: 10 })}>{children}</div>
+            <div className={b("Content")}>{children}</div>
         </div>
     );
 };

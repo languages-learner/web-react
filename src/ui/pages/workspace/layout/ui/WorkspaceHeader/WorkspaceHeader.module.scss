@@ -1,16 +1,16 @@
 .workspaceHeader {
-    height: var(--layout-header-height);
-    align-items: center;
     display: grid;
+    align-items: center;
+    height: var(--layout-header-height);
     background: var(--g-color-base-generic-ultralight);
     box-shadow: 0 0 10px 0 rgb(0 0 0 / 20%);
 }
 
 .workspaceHeaderContent {
-    padding-top: var(--g-spacing-1);
+    align-items: center;
     height: 100%;
     padding: 0 var(--g-spacing-3);
-    align-items: center;
+    padding-top: var(--g-spacing-1);
 }
 
 .userAvatarButton {

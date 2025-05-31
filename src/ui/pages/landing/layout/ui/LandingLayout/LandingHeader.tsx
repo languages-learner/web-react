@@ -1,22 +1,54 @@
 import { Button, Flex } from "@gravity-ui/uikit";
 
-import { LanguageSelector } from "@/features/language/languageSelector/ui/LanguageSelector";
+import { useUser, useUserMutations } from "@/entities/user";
+import { LanguageSelector } from "@/features/language/languageSelector";
+import { block } from "@/shared/class-names";
 import { intl } from "@/shared/i18n";
-import { useNavigate } from "@/shared/react-router";
-import { workspaceRoutes } from "@/shared/routes";
+import { INTERFACE_LOCALES } from "@/shared/project-config";
+import { createHrefTyped, getLocaleFromPathSafe, useNavigate } from "@/shared/react-router";
+import { landingRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
 import { useAuthenticationDialog } from "@/widgets/auth/auth-dialog";
+
+import "./LandingHeader.scss";
+
+const b = block("LandingHeader");
 
 export const LandingHeader = () => {
     const { isLoggedIn } = useAuth();
     const { showAuthenticationDialog, AuthenticationDialog } = useAuthenticationDialog();
     const navigate = useNavigate();
+    const { user } = useUser();
+    const { updateUser } = useUserMutations();
+
+    const currentInterfaceLanguage = user ? user.interfaceLanguage : getLocaleFromPathSafe();
+    const handleUpdateInterfaceLanguage = (language: string) => {
+        if (user) {
+            return updateUser.mutateAsync({
+                userId: user.uid,
+                payload: {
+                    interface_language: language,
+                },
+            });
+        }
+
+        window.location.pathname = createHrefTyped(landingRoutes.root, { locale: language });
+    };
 
     return (
-        <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3}>
-            <LanguageSelector />
+        <Flex justifyContent={"flex-end"} alignItems={"center"} gap={3} className={b()}>
+            <div>
+                <LanguageSelector
+                    fullName
+                    languages={INTERFACE_LOCALES}
+                    width={"max"}
+                    size={"l"}
+                    value={[currentInterfaceLanguage]}
+                    onUpdate={([value]) => handleUpdateInterfaceLanguage(value)}
+                />
+            </div>
             {isLoggedIn ? (
-                <Button onClick={() => navigate(workspaceRoutes.dictionary)}>
+                <Button onClick={() => navigate(workspaceRoutes.dictionary)} view={"action"}>
                     {intl.formatMessage({
                         defaultMessage: "Go to workspace",
                         id: "p9PNBI",

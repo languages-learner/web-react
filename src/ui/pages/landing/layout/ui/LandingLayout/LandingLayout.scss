@@ -1,0 +1,16 @@
+.LandingLayout {
+  --layout-header-height: 64px;
+
+  width: 100svw;
+  height: 100vh;
+  background: linear-gradient(135deg,
+    var(--g-color-private-white-20-solid),
+    var(--g-color-private-brand-500)
+  );
+
+  &__Content {
+    height: calc(100vh - var(--layout-header-height));
+    padding: 60px 100px 0 100px;
+    overflow-y: hidden;
+  }
+}

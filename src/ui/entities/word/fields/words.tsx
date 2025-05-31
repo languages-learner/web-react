@@ -82,6 +82,7 @@ export const wordColumns = {
             <Button
                 view={columnProps.editView(props.row.original) ? "flat-success" : "flat"}
                 onClick={() => columnProps.onEditClick({ item: props.row.original })}
+                style={{ opacity: 0.5 }}
             >
                 <Button.Icon>
                     <Icon data={Pencil} />
@@ -139,7 +140,7 @@ export const wordColumns = {
                     </Flex>
                 }
             >
-                <Button view={"flat"}>
+                <Button view={"flat"} style={{ opacity: 0.5 }}>
                     <Button.Icon>
                         <Icon data={TrashBin} />
                     </Button.Icon>
