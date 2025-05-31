@@ -12,16 +12,12 @@ const isErrorWithMessage = (error: unknown): error is ErrorWithMessage => {
 };
 
 const toErrorWithMessage = (maybeError: unknown): ErrorWithMessage => {
-    if (isErrorWithMessage(maybeError)) return maybeError;
+    if (isErrorWithMessage(maybeError)) {
+        if (maybeError instanceof Error) {
+            return maybeError;
+        }
 
-    if (typeof maybeError === "string" && maybeError) {
-        return new Error(maybeError);
-    }
-
-    if (!maybeError) {
-        return new Error(
-            "Произошла непредвиденная ошибка. Попробуйте обновить страницу через некоторое время.",
-        );
+        return new Error(maybeError.message);
     }
 
     try {

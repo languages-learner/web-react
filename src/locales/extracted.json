@@ -1,4 +1,7 @@
 {
+  "+CwN9C": {
+    "defaultMessage": "System"
+  },
   "+oXbh6": {
     "defaultMessage": "Lingala"
   },
@@ -61,6 +64,9 @@
   },
   "3MC1Yh": {
     "defaultMessage": "Welsh"
+  },
+  "3cc4Ct": {
+    "defaultMessage": "Light"
   },
   "4LgU10": {
     "defaultMessage": "Thai"
@@ -205,6 +211,9 @@
   },
   "IbrSk1": {
     "defaultMessage": "Learn"
+  },
+  "IcY6iN": {
+    "defaultMessage": "User theme successfully updated!"
   },
   "JBILTX": {
     "defaultMessage": "Navajo, Navaho"
@@ -599,6 +608,9 @@
   "qRTodB": {
     "defaultMessage": "Ossetian, Ossetic"
   },
+  "qW/XjQ": {
+    "defaultMessage": "Error updating user theme"
+  },
   "qqcgIL": {
     "defaultMessage": "Try to change filter values or add new words"
   },
@@ -619,6 +631,9 @@
   },
   "t/MnRq": {
     "defaultMessage": "User active learning language successfully updated!"
+  },
+  "tOdNiY": {
+    "defaultMessage": "Dark"
   },
   "teM9V9": {
     "defaultMessage": "Kwanyama, Kuanyama"

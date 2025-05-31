@@ -1,1 +1,1 @@
-export { getErrorMessage } from "./utils";
+export { getErrorMessage } from "./lib";

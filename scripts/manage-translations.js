@@ -107,3 +107,5 @@ console.info("\n✨ Translation management complete!");
 console.info("\nNext steps:");
 console.info("1. Translate the messages marked with [NEEDS_TRANSLATION]");
 console.info("2. Run this script again to compile the translations");
+
+// TODO: Add to git after extracting

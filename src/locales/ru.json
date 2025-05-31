@@ -1,4 +1,7 @@
 {
+  "+CwN9C": {
+    "defaultMessage": "[NEEDS_TRANSLATION] System"
+  },
   "+oXbh6": {
     "defaultMessage": "Лингала"
   },
@@ -61,6 +64,9 @@
   },
   "3MC1Yh": {
     "defaultMessage": "Валлийский"
+  },
+  "3cc4Ct": {
+    "defaultMessage": "[NEEDS_TRANSLATION] Light"
   },
   "4LgU10": {
     "defaultMessage": "Тайский"
@@ -205,6 +211,9 @@
   },
   "IbrSk1": {
     "defaultMessage": "Изучаю"
+  },
+  "IcY6iN": {
+    "defaultMessage": "[NEEDS_TRANSLATION] User theme successfully updated!"
   },
   "JBILTX": {
     "defaultMessage": "Навахо"
@@ -599,6 +608,9 @@
   "qRTodB": {
     "defaultMessage": "Осетинский"
   },
+  "qW/XjQ": {
+    "defaultMessage": "[NEEDS_TRANSLATION] Error updating user theme"
+  },
   "qqcgIL": {
     "defaultMessage": "Попробуйте изменить значения фильтров или добавить новые слова"
   },
@@ -619,6 +631,9 @@
   },
   "t/MnRq": {
     "defaultMessage": "Изучаемый язык успешно обновлен!"
+  },
+  "tOdNiY": {
+    "defaultMessage": "[NEEDS_TRANSLATION] Dark"
   },
   "teM9V9": {
     "defaultMessage": "Кваньяма, Куаньяма"
