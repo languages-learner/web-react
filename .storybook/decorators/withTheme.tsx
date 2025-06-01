@@ -1,0 +1,11 @@
+import { ThemeProvider } from "@gravity-ui/uikit";
+
+import type { Decorator } from "@storybook/react-vite";
+
+export const WithTheme: Decorator = (Story, context) => {
+    return (
+        <ThemeProvider theme={context.globals.theme}>
+            <Story {...context} />
+        </ThemeProvider>
+    );
+};

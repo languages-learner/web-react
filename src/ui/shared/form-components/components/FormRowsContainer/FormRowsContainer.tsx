@@ -12,27 +12,32 @@ export interface FormRowsContainerProps extends React.PropsWithChildren {
     className?: string;
 }
 
+const processChildren = (children: React.ReactNode): React.ReactNode => {
+    return React.Children.map(children, (child) => {
+        if (!React.isValidElement(child)) return child;
+
+        const childProps = child.props as FormRowProps;
+
+        // Handle React.Fragment by recursively processing its children
+        if (child.type === React.Fragment) {
+            return processChildren(childProps.children);
+        }
+
+        // Skip DOM elements like <div>
+        if (typeof child.type === "string") {
+            return child;
+        }
+
+        return React.cloneElement(child as React.ReactElement<FormRowProps>, {
+            className: classNames(b("row"), childProps.className),
+        });
+    });
+};
+
 export const FormRowsContainer: React.FC<FormRowsContainerProps> & {
     Row: React.FC<FormRowProps>;
 } = ({ className, children }) => {
-    return (
-        <div className={classNames(b(), className)}>
-            {React.Children.map(children, (child) => {
-                if (
-                    React.isValidElement(child) &&
-                    typeof child.type !== "string" // skip DOM elements like <div>
-                ) {
-                    const propsWithClassName = child.props as FormRowProps;
-
-                    return React.cloneElement(child as React.ReactElement<FormRowProps>, {
-                        className: classNames(b("row"), propsWithClassName.className),
-                    });
-                }
-
-                return child;
-            })}
-        </div>
-    );
+    return <div className={classNames(b(), className)}>{processChildren(children)}</div>;
 };
 
 FormRowsContainer.Row = FormRow;

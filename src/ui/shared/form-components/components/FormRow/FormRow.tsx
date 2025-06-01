@@ -9,7 +9,7 @@ import "./FormRow.scss";
 const b = block("form-row");
 
 export interface FormRowProps extends React.PropsWithChildren {
-    title?: React.ReactNode;
+    title: React.ReactNode;
     className?: string;
 }
 

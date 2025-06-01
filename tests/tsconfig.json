@@ -1,6 +1,6 @@
 {
   "extends": ["../tsconfig.ui.base.json"],
-  "include": [".", "../src/ui/**/*.test.*"],
+  "include": [".", "../src/ui/**/*.test.*", "../src/ui/**/*.stories.*"],
   "references": [{ "path": "../src/ui" }],
   "compilerOptions": {
     "tsBuildInfoFile": "../node_modules/.tmp/tsconfig.tests.tsbuildinfo",

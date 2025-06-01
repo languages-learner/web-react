@@ -11,8 +11,6 @@ export interface PlaceholderContainerProps extends Omit<BasePlaceholderContainer
 }
 
 export const PlaceholderContainer: React.FC<PlaceholderContainerProps> = ({
-    // TODO: Fix types
-
     status,
     ...placeholderContainerProps
 }) => {
