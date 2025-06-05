@@ -1,7 +1,7 @@
 {
   "extends": ["../../tsconfig.ui.base.json"],
   "include": [".", "typings.d.ts", "../vite-env.d.ts"],
-  "exclude": ["**/*.test.*", "**/*.stories.*"],
+  "exclude": ["**/*.test.*", "**/*.test.*", "**/*.stories.*", "**/__stories__", "**/__tests__"],
   "references": [{ "path": "../locales" }],
   "compilerOptions": {
     "tsBuildInfoFile": "../../node_modules/.tmp/tsconfig.ui.tsbuildinfo",

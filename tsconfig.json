@@ -1,5 +1,6 @@
 {
   "files": [],
+  "include": [],
   "references": [
     { "path": "./src/locales/tsconfig.json" },
     { "path": "./src/ui/tsconfig.json" },

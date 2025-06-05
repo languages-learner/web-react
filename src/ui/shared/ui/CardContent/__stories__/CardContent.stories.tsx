@@ -1,4 +1,4 @@
-import { CardContent } from "./CardContent";
+import { CardContent } from "../CardContent";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 
