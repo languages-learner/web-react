@@ -22,7 +22,8 @@
     "test:ci": "vitest --run",
     "test:componen": "playwright test --config=tests/component/playwright.config.ts",
     "test:componen:update": "npm run test:componen -- -update",
-    "test:integration": "playwright test --config=tests/integration/playwright.config.ts",
+    "test:integration": "playwright test --config=tests/app/integration/playwright.config.ts",
+    "test:integration:update": "npm run test:integration -- -update",
     "playwright:install": "npx playwright install --with-deps"
   },
   "lint-staged": {

@@ -1,7 +1,7 @@
 import { test as baseTest, expect } from "@playwright/test";
 import lodash from "lodash";
 
-import { type Theme } from "../types";
+import { type Theme } from "../types/types";
 
 import type {
     Locator,
@@ -18,7 +18,7 @@ export type MatchScreenshotParams = {
     options?: PageAssertionsToHaveScreenshotOptions;
     themes?: Theme[];
     onSwitchTheme?: OnSwitchThemeCallback;
-    onBeforeScreenshot: (page: Page) => Promise<void>;
+    onBeforeScreenshot?: (page: Page) => Promise<void>;
     testInfo: TestInfo;
 };
 
@@ -58,7 +58,6 @@ export function expectScreenshotFixtureFactory(
     }>({
         expectScreenshot: async ({ page }, use, testInfo) => {
             const wrapper: ExpectScreenshotFixture = async (params) => {
-                // TODO: deep merge
                 const resolvedParams: MatchScreenshotParams = lodash.merge(
                     {
                         locator: await factoryParams.getLocator?.(page),

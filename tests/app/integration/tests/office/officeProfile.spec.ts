@@ -1,5 +1,5 @@
-import { test } from "@/tests/integration/core";
-import { OfficeProfilePage } from "@/tests/pages/office/OfficeProfilePage";
+import { test } from "@/tests/app/integration/core";
+import { OfficeProfilePage } from "@/tests/app/pages/office/OfficeProfilePage";
 
 test.describe("office profile page @office", () => {
     test("visual", async ({ page, expectScreenshot }) => {

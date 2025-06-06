@@ -31,8 +31,12 @@ export const patchToWithLocale = (to: To, locale: string): To => {
     };
 };
 
+export const getPathWithLocale = (path: string, locale: string): string => {
+    return patchToWithLocale(path, locale ?? BASE_INTERFACE_LOCALE) as string;
+};
+
 export const getPathWithCurrentLocale = (path: string): string => {
     const locale = getLocaleFromPath();
 
-    return patchToWithLocale(path, locale ?? BASE_INTERFACE_LOCALE) as string;
+    return getPathWithLocale(path, locale ?? BASE_INTERFACE_LOCALE);
 };

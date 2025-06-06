@@ -1,5 +1,5 @@
-import { test } from "@/tests/integration/core";
-import { DictionaryPage } from "@/tests/pages/dictionary/DictionaryPage";
+import { test } from "@/tests/app/integration/core";
+import { DictionaryPage } from "@/tests/app/pages/dictionary/DictionaryPage";
 
 test.describe("dictionary page @dictionary", () => {
     test("visual", async ({ page, expectScreenshot }) => {

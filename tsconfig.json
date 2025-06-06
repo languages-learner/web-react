@@ -2,8 +2,9 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "./src/locales/tsconfig.json" },
-    { "path": "./src/ui/tsconfig.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./src/locales" },
+    { "path": "./src/ui" },
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tests/tsconfig.json" }
   ]
 }

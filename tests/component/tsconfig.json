@@ -1,0 +1,16 @@
+{
+  "extends": ["../tsconfig.base.json"],
+  "include": [
+    "**/*",
+    "../../src/ui/**/*.test.*",
+    "../../src/ui/**/*.stories.*",
+    "../../src/ui/**/__stories__",
+    "../../src/ui/**/__tests__"
+  ],
+  "exclude": ["**/*.d.ts"],
+  "references": [{ "path": "../shared" }, { "path": "../../src/ui" }],
+  "compilerOptions": {
+    "tsBuildInfoFile": "../../node_modules/.tmp/tsconfig.tests.component.tsbuildinfo",
+    "baseUrl": "../"
+  }
+}

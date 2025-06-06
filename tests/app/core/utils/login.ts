@@ -2,7 +2,7 @@ import fs from "fs";
 
 import { type Page, test } from "@playwright/test";
 
-import { LandingPage } from "@/tests/pages/landing/LandingPage";
+import { LandingPage } from "@/tests/app/pages/landing/LandingPage";
 
 export type LoginConfig = {
     storageStateFilePath: string;

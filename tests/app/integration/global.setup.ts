@@ -3,8 +3,9 @@ import { fileURLToPath } from "url";
 
 import { test } from "@playwright/test";
 
-import { STORAGE_STATE_FILE_NAME } from "../constants";
-import { commonSetup } from "../core/setup/commonSetup";
+import { commonSetup } from "../core";
+
+import { STORAGE_STATE_FILE_NAME } from "@/tests/shared/constants";
 
 const dirname =
     typeof __dirname === "undefined" ? path.dirname(fileURLToPath(import.meta.url)) : __dirname;

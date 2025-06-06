@@ -1,4 +1,9 @@
-import { expectScreenshotFixtureFactory, waitImagesLoaded } from "@/tests/shared/playwright-utils";
+import { TEST_LOCALE } from "@/tests/shared/constants";
+import {
+    expectScreenshotFixtureFactory,
+    testWithGoToWithLocaleFactory,
+    waitImagesLoaded,
+} from "@/tests/shared/playwright-utils";
 
 export const testWithExpectScreenshot = expectScreenshotFixtureFactory({
     themes: ["light", "dark"],
@@ -8,4 +13,8 @@ export const testWithExpectScreenshot = expectScreenshotFixtureFactory({
     onBeforeScreenshot: async (page) => {
         await waitImagesLoaded(page);
     },
+});
+
+export const testWithGoToWithLocale = testWithGoToWithLocaleFactory({
+    locale: TEST_LOCALE,
 });

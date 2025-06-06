@@ -1,5 +1,5 @@
-import { test } from "@/tests/integration/core";
-import { OfficeSettingsPage } from "@/tests/pages/office/OfficeSettingsPage";
+import { test } from "@/tests/app/integration/core";
+import { OfficeSettingsPage } from "@/tests/app/pages/office/OfficeSettingsPage";
 
 test.describe("office settings page @office", () => {
     test("visual", async ({ page, expectScreenshot }) => {

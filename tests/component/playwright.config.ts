@@ -14,7 +14,7 @@ const pathFromRoot = (p: string) => {
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    tsconfig: pathFromRoot("tests/tsconfig.json"),
+    tsconfig: pathFromRoot("tests/component/tsconfig.json"),
     testDir: pathFromRoot("src/ui"),
     testMatch: "*.spec.*",
     /* Maximum time one test can run for */

@@ -4,9 +4,8 @@ import path from "path";
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
 import * as dotenv from "dotenv";
 
-import { STORAGE_STATE_FILE_NAME } from "../constants";
-
-import { validateTestEnvironment } from "@/tests/core/utils/validateTestEnvironment";
+import { validateTestEnvironment } from "@/tests/app/core/utils/validateTestEnvironment";
+import { STORAGE_STATE_FILE_NAME } from "@/tests/shared/constants";
 
 const dirname =
     typeof __dirname === "undefined" ? path.dirname(fileURLToPath(import.meta.url)) : __dirname;
@@ -15,7 +14,7 @@ const envPath = path.resolve(dirname, ".env");
 dotenv.config({ path: envPath, override: false });
 
 const pathFromRoot = (p: string) => {
-    return path.resolve(dirname, "../..", p);
+    return path.resolve(dirname, "../../..", p);
 };
 
 if (!validateTestEnvironment()) {
@@ -26,8 +25,8 @@ if (!validateTestEnvironment()) {
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-    tsconfig: pathFromRoot("tests/tsconfig.json"),
-    testDir: pathFromRoot("tests/integration/tests"),
+    tsconfig: pathFromRoot("tests/app/tsconfig.json"),
+    testDir: pathFromRoot("tests/app/integration/tests"),
     testMatch: "*.spec.*",
     /* Maximum time one test can run for */
     timeout: 30000,

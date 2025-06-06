@@ -1,5 +1,5 @@
-import { test } from "@/tests/integration/core";
-import { LandingPage } from "@/tests/pages/landing/LandingPage";
+import { test } from "@/tests/app/integration/core";
+import { LandingPage } from "@/tests/app/pages/landing/LandingPage";
 
 test.describe("landing page @landing", () => {
     test("visual", async ({ page, expectScreenshot }) => {
