@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { TextInput } from "@gravity-ui/uikit";
 
-import { FormRowsContainer } from "./FormRowsContainer";
+import { FormRowsContainer } from "../FormRowsContainer";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 

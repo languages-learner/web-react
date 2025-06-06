@@ -2,23 +2,45 @@ import { fileURLToPath } from "node:url";
 import path from "path";
 
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
+import * as dotenv from "dotenv";
+
+import { STORAGE_STATE_FILE_NAME } from "../constants";
+
+import { validateTestEnvironment } from "@/tests/core/utils/validateTestEnvironment";
 
 const dirname =
     typeof __dirname === "undefined" ? path.dirname(fileURLToPath(import.meta.url)) : __dirname;
 
+const envPath = path.resolve(dirname, ".env");
+dotenv.config({ path: envPath, override: false });
+
 const pathFromRoot = (p: string) => {
     return path.resolve(dirname, "../..", p);
 };
+
+if (!validateTestEnvironment()) {
+    process.exit(1);
+}
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
     tsconfig: pathFromRoot("tests/tsconfig.json"),
-    testDir: pathFromRoot("src/ui"),
+    testDir: pathFromRoot("tests/integration/tests"),
     testMatch: "*.spec.*",
     /* Maximum time one test can run for */
-    timeout: 10000,
+    timeout: 30000,
+    expect: {
+        /**
+         * Maximum time expect() should wait for the condition to be met.
+         * For example in `await expect(locator).toHaveText();`
+         */
+        timeout: 5000,
+        // toMatchSnapshot: {
+        //     threshold: 0.2,
+        // },
+    },
     /* Run tests in files in parallel */
     fullyParallel: true,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -33,24 +55,29 @@ export default defineConfig({
     use: {
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry",
-        headless: true,
-        ctPort: 3100,
+        // ignoreHTTPSErrors: true,
+        /* Base URL to use in actions like `await page.goto('/')`. */
+        baseURL: process.env.BASE_URL,
         timezoneId: "America/New_York",
-        ctViteConfig: {
-            resolve: {
-                alias: {
-                    "@@": pathFromRoot("."),
-                    "@": pathFromRoot("./src/ui"),
-                    locales: pathFromRoot("./src/locales"),
-                },
-            },
+        launchOptions: {
+            timeout: 60000,
         },
     },
     /* Configure projects for major browsers */
     projects: [
         {
+            name: "global_setup",
+            testDir: "./",
+            testMatch: /global\.setup\.ts/,
+            timeout: process.env.CI ? 2 * 60 * 1000 : 30000,
+        },
+        {
             name: "chromium",
-            use: { ...devices["Desktop Chrome"] },
+            dependencies: ["global_setup"],
+            use: {
+                ...devices["Desktop Chrome"],
+                storageState: path.resolve(dirname, STORAGE_STATE_FILE_NAME),
+            },
         },
     ],
     snapshotPathTemplate:

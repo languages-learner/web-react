@@ -14,7 +14,8 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/tests/*": ["./*"]
+      "@/tests/*": ["./*"],
+      "@/*": ["../src/ui/*"]
     },
     "resolveJsonModule": true
   }

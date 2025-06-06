@@ -22,9 +22,13 @@
     "test:ci": "vitest --run",
     "test:componen": "playwright test --config=tests/component/playwright.config.ts",
     "test:componen:update": "npm run test:componen -- -update",
+    "test:integration": "playwright test --config=tests/integration/playwright.config.ts",
     "playwright:install": "npx playwright install --with-deps"
   },
   "lint-staged": {
+    "*.{ts,tsx}": [
+      "sh -c 'npm run typecheck'"
+    ],
     "**/*.scss": [
       "stylelint --fix"
     ],
