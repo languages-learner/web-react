@@ -1,5 +1,4 @@
-import { fileURLToPath } from "node:url";
-import path from "path";
+import * as path from "path";
 
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
 import * as dotenv from "dotenv";
@@ -7,14 +6,11 @@ import * as dotenv from "dotenv";
 import { validateTestEnvironment } from "@/tests/app/core/utils/validateTestEnvironment";
 import { STORAGE_STATE_FILE_NAME } from "@/tests/shared/constants";
 
-const dirname =
-    typeof __dirname === "undefined" ? path.dirname(fileURLToPath(import.meta.url)) : __dirname;
-
-const envPath = path.resolve(dirname, ".env");
+const envPath = path.resolve(__dirname, ".env");
 dotenv.config({ path: envPath, override: false });
 
 const pathFromRoot = (p: string) => {
-    return path.resolve(dirname, "../../..", p);
+    return path.resolve(__dirname, "../../..", p);
 };
 
 if (!validateTestEnvironment()) {
@@ -75,7 +71,7 @@ export default defineConfig({
             dependencies: ["global_setup"],
             use: {
                 ...devices["Desktop Chrome"],
-                storageState: path.resolve(dirname, STORAGE_STATE_FILE_NAME),
+                storageState: path.resolve(__dirname, STORAGE_STATE_FILE_NAME),
             },
         },
     ],

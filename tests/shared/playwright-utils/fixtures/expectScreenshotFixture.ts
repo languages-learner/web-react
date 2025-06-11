@@ -1,7 +1,7 @@
 import { test as baseTest, expect } from "@playwright/test";
-import lodash from "lodash";
+import * as lodash from "lodash";
 
-import { type Theme } from "../types/types";
+import { type Theme } from "../types";
 
 import type {
     Locator,

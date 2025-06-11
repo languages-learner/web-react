@@ -5,6 +5,8 @@
     { "path": "./src/locales" },
     { "path": "./src/ui" },
     { "path": "./tsconfig.node.json" },
-    { "path": "./tests/tsconfig.json" }
+    { "path": "./tests/tsconfig.json" },
+    { "path": "./scripts/tsconfig.json" },
+    { "path": "./src/packages/har-sanitizer/tsconfig.json" }
   ]
 }

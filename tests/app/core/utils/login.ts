@@ -1,6 +1,8 @@
-import fs from "fs";
+import * as fs from "fs";
 
-import { type Page, test } from "@playwright/test";
+import { type Page } from "@playwright/test";
+
+import { test } from "../test";
 
 import { LandingPage } from "@/tests/app/pages/landing/LandingPage";
 

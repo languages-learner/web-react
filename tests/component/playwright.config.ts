@@ -1,13 +1,9 @@
-import { fileURLToPath } from "node:url";
-import path from "path";
+import * as path from "path";
 
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
 
-const dirname =
-    typeof __dirname === "undefined" ? path.dirname(fileURLToPath(import.meta.url)) : __dirname;
-
 const pathFromRoot = (p: string) => {
-    return path.resolve(dirname, "../..", p);
+    return path.resolve(__dirname, "../..", p);
 };
 
 /**

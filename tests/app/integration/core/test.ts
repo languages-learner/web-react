@@ -1,5 +1,7 @@
 import { mergeTests } from "@playwright/test";
 
-import { testWithExpectScreenshot, testWithGoToWithLocale } from "./fixtures";
+import { testWithMockedNetwork } from "./fixtures";
 
-export const test = mergeTests(testWithExpectScreenshot, testWithGoToWithLocale);
+import { test as coreTest } from "@/tests/app/core";
+
+export const test = mergeTests(coreTest, testWithMockedNetwork);

@@ -1,20 +1,18 @@
-import { TEST_LOCALE } from "@/tests/shared/constants";
-import {
-    expectScreenshotFixtureFactory,
-    testWithGoToWithLocaleFactory,
-    waitImagesLoaded,
-} from "@/tests/shared/playwright-utils";
+import { testWithMockedNetworkFactory } from "@/tests/shared/playwright-utils";
 
-export const testWithExpectScreenshot = expectScreenshotFixtureFactory({
-    themes: ["light", "dark"],
-    onSwitchTheme: async (theme, page) => {
-        await page.emulateMedia({ colorScheme: theme });
+export const testWithMockedNetwork = testWithMockedNetworkFactory({
+    routeFromHarOptions: {
+        update: Boolean(process.env.UPDATE),
     },
-    onBeforeScreenshot: async (page) => {
-        await waitImagesLoaded(page);
+    forceUpdateIfHarMissing: !process.env.CI,
+    url: () => {
+        return "**/*supabase.co/rest/*/**";
     },
-});
+    dumpsFilePath: ({ testInfo }) => {
+        const filePath = testInfo.snapshotPath(
+            testInfo.titlePath.slice(1).join("-").replace(/ /g, "-").replace(/@/g, ""),
+        );
 
-export const testWithGoToWithLocale = testWithGoToWithLocaleFactory({
-    locale: TEST_LOCALE,
+        return `${filePath}.har`;
+    },
 });
