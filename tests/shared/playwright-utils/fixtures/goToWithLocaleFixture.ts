@@ -1,0 +1,29 @@
+import { test as baseTest } from "@playwright/test";
+
+import { getPathWithLocale } from "@/shared/react-router";
+
+export type GoToWithLocaleFixtureFactoryParams = {
+    locale: string;
+};
+
+export const testWithGoToWithLocaleFactory = (
+    factoryParams: GoToWithLocaleFixtureFactoryParams,
+) => {
+    const testWithGoToWithLocale = baseTest.extend({
+        page: async ({ page }, use) => {
+            page.goToWithLocale = async function (path, locale) {
+                const result = await page.goto(
+                    getPathWithLocale(path, locale ?? factoryParams.locale),
+                );
+                await page.waitForLoadState("networkidle");
+
+                return result;
+            };
+
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            use(page);
+        },
+    });
+
+    return testWithGoToWithLocale;
+};

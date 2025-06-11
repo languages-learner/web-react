@@ -1,6 +1,6 @@
 import { TextInput } from "@gravity-ui/uikit";
 
-import { FormRow } from "./FormRow";
+import { FormRow } from "../FormRow";
 
 import type { Meta, StoryObj } from "@storybook/react-vite";
 

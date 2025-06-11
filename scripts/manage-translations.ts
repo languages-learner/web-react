@@ -1,9 +1,9 @@
-#!/usr/bin/env node
-
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { execSync } from "child_process";
 import process from "process";
+
+import { type MessageDescriptor } from "react-intl";
 
 // Configuration
 const LOCALES_DIR = path.relative(process.cwd(), path.resolve("src/locales"));
@@ -25,26 +25,27 @@ if (!fs.existsSync(COMPILED_DIR)) {
 console.info("Extracting messages from source code...");
 try {
     execSync("npm run i18n:extract", { stdio: "inherit" });
+    execSync(`git add ${EXTRACTED_FILE}`, { stdio: "inherit" });
     console.info("✅ Messages extracted successfully");
 } catch (error) {
-    console.error("❌ Failed to extract messages:", error.message);
+    console.error("❌ Failed to extract messages:", String(error));
     process.exit(1);
 }
 
 // Step 2: Read the extracted messages
-let extractedMessages;
+let extractedMessages: Record<string, MessageDescriptor>;
 try {
     extractedMessages = JSON.parse(fs.readFileSync(EXTRACTED_FILE, "utf8"));
     console.info(`Found ${Object.keys(extractedMessages).length} messages in extracted file`);
 } catch (error) {
-    console.error("❌ Failed to read extracted messages:", error.message);
+    console.error("❌ Failed to read extracted messages:", String(error));
     process.exit(1);
 }
 
 // Step 3: Update language files
 for (const lang of LANGUAGES) {
     const langFile = path.join(LOCALES_DIR, `${lang}.json`);
-    let existingTranslations = {};
+    let existingTranslations: Record<string, MessageDescriptor> = {};
 
     // Try to read existing translations
     try {
@@ -55,11 +56,11 @@ for (const lang of LANGUAGES) {
             );
         }
     } catch (error) {
-        console.warn(`⚠️ Could not read existing ${lang} translations:`, error.message);
+        console.warn(`⚠️ Could not read existing ${lang} translations:`, String(error));
     }
 
     // Create updated translations
-    const updatedTranslations = {};
+    const updatedTranslations: Record<string, MessageDescriptor> = {};
     let newCount = 0;
     let existingCount = 0;
 
@@ -86,6 +87,7 @@ for (const lang of LANGUAGES) {
 
     // Write updated translations back to file
     fs.writeFileSync(langFile, JSON.stringify(updatedTranslations, null, 2), "utf8");
+    execSync(`git add ${langFile}`, { stdio: "inherit" });
     console.info(`✅ Updated ${lang} translations (${existingCount} existing, ${newCount} new)`);
 
     // Compile the translations
@@ -99,7 +101,7 @@ for (const lang of LANGUAGES) {
         );
         console.info(`✅ Compiled ${lang} translations`);
     } catch (error) {
-        console.error(`❌ Failed to compile ${lang} translations:`, error.message);
+        console.error(`❌ Failed to compile ${lang} translations:`, String(error));
     }
 }
 
@@ -107,5 +109,3 @@ console.info("\n✨ Translation management complete!");
 console.info("\nNext steps:");
 console.info("1. Translate the messages marked with [NEEDS_TRANSLATION]");
 console.info("2. Run this script again to compile the translations");
-
-// TODO: Add to git after extracting

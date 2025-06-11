@@ -17,6 +17,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 .tmp
+*.cache
 
 # Editor directories and files
 .vscode/*
@@ -36,5 +37,10 @@ lerna-debug.log*
 # Build
 src/locales/compiled
 
-*storybook.log
 storybook-static
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
