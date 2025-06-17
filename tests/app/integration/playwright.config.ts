@@ -1,13 +1,16 @@
+import * as process from "node:process";
 import * as path from "path";
 
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
 import * as dotenv from "dotenv";
 
 import { validateTestEnvironment } from "@/tests/app/core/utils/validateTestEnvironment";
-import { STORAGE_STATE_FILE_NAME } from "@/tests/shared/constants";
+import { getAuthStorageStateFileName } from "@/tests/shared/auth-storage";
 
 const envPath = path.resolve(__dirname, ".env");
 dotenv.config({ path: envPath, override: false });
+
+const { BASE_URL } = process.env;
 
 const pathFromRoot = (p: string) => {
     return path.resolve(__dirname, "../../..", p);
@@ -52,7 +55,7 @@ export default defineConfig({
         trace: "on-first-retry",
         // ignoreHTTPSErrors: true,
         /* Base URL to use in actions like `await page.goto('/')`. */
-        baseURL: process.env.BASE_URL,
+        baseURL: BASE_URL,
         timezoneId: "America/New_York",
         launchOptions: {
             timeout: 60000,
@@ -71,7 +74,7 @@ export default defineConfig({
             dependencies: ["global_setup"],
             use: {
                 ...devices["Desktop Chrome"],
-                storageState: path.resolve(__dirname, STORAGE_STATE_FILE_NAME),
+                storageState: path.resolve(__dirname, getAuthStorageStateFileName(BASE_URL)),
             },
         },
     ],

@@ -1,0 +1,24 @@
+services:
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.52.0-noble
+    working_dir: /app
+    volumes:
+      - .:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      BASE_URL: http://host.docker.internal:5173
+    entrypoint: ["npm", "run"]
+    command: ["test:integration"]
+
+  playwright-ct:
+    build:
+      context: .
+      dockerfile: Dockerfile.tests.component
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/tests/component/playwright/.cache
+    entrypoint: ["npm", "run"]
+    command: [ "test:component" ]
