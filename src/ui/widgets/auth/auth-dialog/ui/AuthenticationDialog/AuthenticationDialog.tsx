@@ -21,6 +21,7 @@ export const AuthenticationDialog: React.FC<AuthenticationDialogProps> = ({ ...d
                     providers={["google"]}
                     // TODO: Add localization
                     localization={undefined}
+                    redirectTo={window.location.origin}
                 />
             </Dialog.Body>
         </Dialog>

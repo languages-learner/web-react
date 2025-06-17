@@ -1,0 +1,1 @@
+export { getAuthStorageStateFileName } from "./lib";

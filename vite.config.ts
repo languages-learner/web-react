@@ -29,4 +29,16 @@ export default defineConfig({
         }),
         storybookTest({ configDir: path.join(__dirname, ".storybook") }),
     ],
+    server: {
+        host: "0.0.0.0",
+        port: 5173,
+        watch: {
+            usePolling: true,
+        },
+        allowedHosts: ["host.docker.internal"],
+    },
+    preview: {
+        host: true,
+        port: 8080,
+    },
 });
