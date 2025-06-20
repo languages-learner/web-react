@@ -1,0 +1,26 @@
+name: Main
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  npm-ci:
+    name: 'npm ci'
+    uses: ./.github/workflows/npm-ci.yml
+
+  build:
+    name: 'Build'
+    needs: npm-ci
+    uses: ./.github/workflows/build.yml
+
+  precommit-checks:
+    name: 'Pre-commit checks'
+    needs: npm-ci
+    uses: ./.github/workflows/precommit-checks.yml
+
+  components-tests:
+    name: 'Components tests'
+    needs: npm-ci
+    uses: ./.github/workflows/components-tests.yml
