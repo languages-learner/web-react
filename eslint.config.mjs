@@ -18,7 +18,7 @@ export default tseslint.config(
     ...baseConfig,
     ...prettierConfig,
     ...clientConfig,
-    { ignores: ["dist", "node_modules"] },
+    { ignores: ["**/dist", "node_modules", "**/.cache"] },
     {
         extends: [js.configs.recommended, ...tseslint.configs.recommended],
         files: ["**/*.{ts,tsx}"],

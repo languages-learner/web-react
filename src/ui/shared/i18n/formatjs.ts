@@ -3,7 +3,13 @@ import { type ResolvedIntlConfig, createIntl, createIntlCache } from "react-intl
 import { type InterfaceLocale } from "@/shared/project-config";
 import { getLocaleFromPath } from "@/shared/react-router";
 
+// Ignoring if locales are not compiled during typecheck
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import en from "locales/compiled/en.json";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import ru from "locales/compiled/ru.json";
 
 const cache = createIntlCache();

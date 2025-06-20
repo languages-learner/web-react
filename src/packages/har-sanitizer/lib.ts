@@ -52,6 +52,7 @@ export const sanitize = (har: Har) => {
             if (entry.request && entry.request.headers) {
                 entry.request.headers.forEach((header) => {
                     if (DEFAULT_SANITIZE_OPTIONS.words?.includes(header.name)) {
+                        // eslint-disable-next-line no-param-reassign
                         header.value = DEFAULT_SANITIZE_OPTIONS.stubValue;
                     }
                 });
@@ -59,6 +60,7 @@ export const sanitize = (har: Har) => {
             if (entry.response && entry.response.headers) {
                 entry.response.headers.forEach((header) => {
                     if (DEFAULT_SANITIZE_OPTIONS.words.includes(header.name)) {
+                        // eslint-disable-next-line no-param-reassign
                         header.value = DEFAULT_SANITIZE_OPTIONS.stubValue;
                     }
                 });
