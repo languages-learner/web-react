@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import fs from "fs/promises";
 import path from "path";
 import process from "process";
@@ -57,6 +58,7 @@ async function main() {
 
         for (const filePath of harFiles) {
             await sanitizeHarFile(filePath);
+            execSync(`git add ${filePath}`, { stdio: "inherit" });
         }
 
         console.info("All HAR files have been processed.");

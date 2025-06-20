@@ -38,6 +38,8 @@ export const LandingHeader = () => {
         }
 
         window.location.pathname = createHrefTyped(landingRoutes.root, { locale: language });
+
+        return Promise.resolve();
     };
 
     const currentTheme = user ? user.theme : (themeQuery.theme ?? BASE_THEME);
@@ -55,6 +57,8 @@ export const LandingHeader = () => {
 
         themeQuery.setTheme(theme);
         window.location.reload();
+
+        return Promise.resolve();
     };
 
     return (

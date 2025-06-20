@@ -97,6 +97,7 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                 />
             ) : null,
         );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedWords]);
 
     const tableContent = () => {

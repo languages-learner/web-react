@@ -17,6 +17,7 @@ export const useTableRowsSelection = ({ table }: UseTableSelectionProps) => {
 
     const selectedItems = React.useMemo(
         () => table.getSelectedRowModel().rows.map((row) => row.original),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [table.getState().rowSelection],
     );
 
@@ -35,6 +36,7 @@ export const useTableRowsSelection = ({ table }: UseTableSelectionProps) => {
     React.useEffect(() => {
         if (forceSelectAllRows) {
             table.toggleAllRowsSelected(true);
+            // eslint-disable-next-line react-hooks/exhaustive-deps
             wasAllRowsSelectedInCurrentRender = true;
         }
     }, [table.getRowModel().rows, forceSelectAllRows]);
@@ -44,6 +46,7 @@ export const useTableRowsSelection = ({ table }: UseTableSelectionProps) => {
         if (!isAllRowsSelected && forceSelectAllRows && !wasAllRowsSelectedInCurrentRender) {
             setForceSelectAllRows(false);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAllRowsSelected]);
 
     return {

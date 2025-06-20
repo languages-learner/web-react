@@ -9,8 +9,9 @@ export type GoToWithLocaleFixtureFactoryParams = {
 export const testWithGoToWithLocaleFactory = (
     factoryParams: GoToWithLocaleFixtureFactoryParams,
 ) => {
-    const testWithGoToWithLocale = baseTest.extend({
+    return baseTest.extend({
         page: async ({ page }, use) => {
+            // eslint-disable-next-line no-param-reassign
             page.goToWithLocale = async function (path, locale) {
                 const result = await page.goto(
                     getPathWithLocale(path, locale ?? factoryParams.locale),
@@ -21,9 +22,7 @@ export const testWithGoToWithLocaleFactory = (
             };
 
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            use(page);
+            await use(page);
         },
     });
-
-    return testWithGoToWithLocale;
 };
