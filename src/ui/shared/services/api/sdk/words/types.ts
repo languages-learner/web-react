@@ -1,5 +1,9 @@
-import { type ApiDatabase, type ApiTables } from "@/shared/services/api";
-import { type PaginatedRequestParams, type PaginatedResponse } from "@/shared/services/api/types";
+import {
+    type ApiDatabase,
+    type ApiTables,
+    type PaginatedRequestParams,
+    type PaginatedResponse,
+} from "../../types";
 
 export type FetchWordsNextPageToken = number;
 

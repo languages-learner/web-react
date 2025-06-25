@@ -10,3 +10,14 @@ export interface PaginatedResponse<T = string> {
 }
 
 export type ApiError = PostgrestError;
+
+export type {
+    Database as ApiDatabase,
+    Tables as ApiTables,
+    TablesInsert as ApiTablesInsert,
+    TablesUpdate as ApiTablesUpdate,
+    Enums as ApiEnums,
+    CompositeTypes as ApiCompositeType,
+} from "./database.types.generated";
+
+export { Constants as ApiConstants } from "./database.types.generated";

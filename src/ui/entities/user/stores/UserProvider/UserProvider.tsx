@@ -2,10 +2,10 @@ import React from "react";
 
 import { idle, useQueryData } from "@gravity-ui/data-source";
 
-import { userDataSource } from "@/entities/user";
 import { DataLoader } from "@/shared/data-source";
 import { useAuth } from "@/shared/services/auth";
 
+import { userDataSource } from "../../queries/user";
 import { type User, type UserContext as UserContextType } from "../../types";
 
 import { UserContext } from "./constants";

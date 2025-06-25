@@ -1,10 +1,11 @@
-import { type FetchWordsNextPageToken, supabase } from "@/shared/services/api";
+import { supabase } from "../../supabase";
 
 import type {
     AddWordTranslationsRequest,
     CreateWordRequest,
     DeleteWordTranslationsRequest,
     DeleteWordsRequest,
+    FetchWordsNextPageToken,
     FetchWordsRequest,
     FetchWordsResponse,
     UpdateWordsStatusRequest,

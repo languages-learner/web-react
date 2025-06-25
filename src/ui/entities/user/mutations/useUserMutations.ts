@@ -1,8 +1,9 @@
 import { useDataManager } from "@gravity-ui/data-source";
 import { useMutation } from "@tanstack/react-query";
 
-import { userDataSource } from "@/entities/user";
 import { sdk } from "@/shared/services/api";
+
+import { userDataSource } from "../queries/user";
 
 export const useUserMutations = () => {
     const dataManager = useDataManager();

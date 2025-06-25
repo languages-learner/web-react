@@ -88,7 +88,11 @@ for (const lang of LANGUAGES) {
     // Write updated translations back to file
     fs.writeFileSync(langFile, JSON.stringify(updatedTranslations, null, 2), "utf8");
     execSync(`git add ${langFile}`, { stdio: "inherit" });
-    console.info(`✅ Updated ${lang} translations (${existingCount} existing, ${newCount} new)`);
+    if (newCount > 0) {
+        console.info(
+            `✅ Updated ${lang} translations (${existingCount} existing, ${newCount} new)`,
+        );
+    }
 
     // Compile the translations
     const compiledFile = path.join(COMPILED_DIR, `${lang}.json`);
@@ -104,8 +108,3 @@ for (const lang of LANGUAGES) {
         console.error(`❌ Failed to compile ${lang} translations:`, String(error));
     }
 }
-
-console.info("\n✨ Translation management complete!");
-console.info("\nNext steps:");
-console.info("1. Translate the messages marked with [NEEDS_TRANSLATION]");
-console.info("2. Run this script again to compile the translations");

@@ -1,4 +1,4 @@
-import { supabase } from "@/shared/services/api";
+import { supabase } from "../../supabase";
 
 import { type FetchUserResponse, type UpdateUserParams } from "./types";
 

@@ -4,7 +4,10 @@ import * as path from "path";
 import * as dotenv from "dotenv";
 
 const envPath = path.resolve(__dirname, "../.env");
-const dbTypesPath = path.resolve(__dirname, "../src/ui/shared/services/api/database.types.ts");
+const dbTypesPath = path.resolve(
+    __dirname,
+    "../src/ui/shared/services/api/database.types.generated.ts",
+);
 
 dotenv.config({ path: envPath });
 

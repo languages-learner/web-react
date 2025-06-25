@@ -3,7 +3,7 @@ import React from "react";
 import { GraduationCap } from "@gravity-ui/icons";
 import { Avatar } from "@gravity-ui/uikit";
 
-import { useUser } from "@/entities/user";
+import { useUser } from "../../stores/UserProvider";
 
 import styles from "./UserAvatar.module.scss";
 

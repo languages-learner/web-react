@@ -3,7 +3,6 @@ import { selectionColumn } from "@gravity-ui/table";
 import { type ColumnDef } from "@gravity-ui/table/tanstack";
 import { Button, Flex, Icon, Popover, Text, spacing } from "@gravity-ui/uikit";
 
-import { WordStatusSelector } from "@/entities/word";
 import {
     type AddWordTranslationFormType,
     AddWordTranslationsForm,
@@ -13,7 +12,7 @@ import { intl } from "@/shared/i18n";
 import { type ApiDatabase, type WordWithTranslations } from "@/shared/services/api";
 import { type ColumnsDef } from "@/shared/ui/Table";
 
-// type Word = ApiTables<"words">;
+import { WordStatusSelector } from "../ui/WordStatusSelector";
 
 type BaseColumnCallbackPayload = {
     item: WordWithTranslations;
