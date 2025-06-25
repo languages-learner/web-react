@@ -22,10 +22,10 @@ jobs:
         with:
           path: ./node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
-#
-#      - name: Install dependencies
-#        if: steps.cache.outputs.cache-hit != 'true'
-#        run: npm ci
+      #
+      #      - name: Install dependencies
+      #        if: steps.cache.outputs.cache-hit != 'true'
+      #        run: npm ci
 
       - run: node --version
       - run: node -p 'os.cpus()'

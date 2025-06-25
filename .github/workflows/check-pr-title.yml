@@ -1,0 +1,14 @@
+name: Check PR title
+
+on:
+  workflow_call:
+
+jobs:
+  check-pr-title:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check PR title with commitlint
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
