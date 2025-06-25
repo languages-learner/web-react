@@ -1,4 +1,4 @@
-import { type ApiDatabase } from "@/shared/services/api";
+import { type ApiDatabase } from "../../types";
 
 export type FetchUserResponse = ApiDatabase["public"]["Tables"]["user"]["Row"];
 

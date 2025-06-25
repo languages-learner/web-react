@@ -2,9 +2,9 @@ import React from "react";
 
 import { Button, Popover, Select } from "@gravity-ui/uikit";
 
-import { WORD_STATUS_NAME } from "@/entities/word";
 import { ApiConstants, type ApiDatabase } from "@/shared/services/api";
 
+import { WORD_STATUS_NAME } from "../../constants";
 import { WordStatusIcon, type WordStatusIconProps } from "../WordStatusIcon";
 
 export interface WordStatusSelectorProps {

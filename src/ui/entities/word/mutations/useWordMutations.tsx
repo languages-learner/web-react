@@ -1,8 +1,9 @@
 import { useDataManager } from "@gravity-ui/data-source";
 import { useMutation } from "@tanstack/react-query";
 
-import { wordsDataSource } from "@/entities/word";
 import { sdk } from "@/shared/services/api";
+
+import { wordsDataSource } from "../queries/words";
 
 export const useWordMutations = () => {
     const dataManager = useDataManager();
