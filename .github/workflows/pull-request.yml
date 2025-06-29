@@ -17,15 +17,31 @@ jobs:
   deploy:
     name: "Deploy staging"
     uses: ./.github/workflows/deploy.yml
+    needs: npm-ci
     secrets:
       SA_DEPLOYER_PRIVATE_KEY: ${{ secrets.SA_STAGING_DEPLOYER_PRIVATE_KEY }}
+      S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
+      S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
     with:
+      main: false
       pr_number: ${{ github.event.pull_request.number }}
       revision_name: pr-${{ github.event.pull_request.number }}
       cloud_id: b1g9utblfaj1k8am3nmg
       folder_name: languages-learner
       sa_deployer_id: ajelfqpn1n9hn128gsc4
       container_registry_id: crp7sst4j2jnr7n52g3g
+
+  bundle-stats:
+    name: "Bundle stats"
+    uses: ./.github/workflows/bundle-stats.yml
+    needs: deploy
+    secrets:
+      S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
+      S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+    with:
+      main: false
+      pr_number: ${{ github.event.pull_request.number }}
+      bundle_stats_s3_dir: /pull-requests/${{ github.event.pull_request.number }}/bundle-stats
 
   precommit-checks:
     name: "Pre-commit checks"

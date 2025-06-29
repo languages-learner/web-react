@@ -4,6 +4,7 @@ node_modules
 # production
 dist
 dist-ssr
+dist-docker
 .typecheck
 
 # pwa
@@ -37,8 +38,9 @@ lerna-debug.log*
 
 # Build
 src/locales/compiled
-
 storybook-static
+.bundle-stats
+.bundle-stats-baseline
 
 # Playwright
 /test-results/

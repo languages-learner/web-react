@@ -7,7 +7,8 @@ on:
 
 concurrency:
   group: main
-  cancel-in-progress: true
+  # Wait previous flow on main branch
+  cancel-in-progress: false
 
 jobs:
   npm-ci:
@@ -17,14 +18,29 @@ jobs:
   deploy:
     name: "Deploy staging"
     uses: ./.github/workflows/deploy.yml
+    needs: npm-ci
     secrets:
       SA_DEPLOYER_PRIVATE_KEY: ${{ secrets.SA_STAGING_DEPLOYER_PRIVATE_KEY }}
+      S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
+      S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
     with:
+      main: true
       revision_name: prod
       cloud_id: b1g9utblfaj1k8am3nmg
       folder_name: languages-learner
       sa_deployer_id: ajelfqpn1n9hn128gsc4
       container_registry_id: crp7sst4j2jnr7n52g3g
+
+  bundle-stats:
+    name: "Bundle stats"
+    uses: ./.github/workflows/bundle-stats.yml
+    needs: deploy
+    secrets:
+      S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
+      S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+    with:
+      main: true
+      bundle_stats_s3_dir: /prod/commits/${{ github.sha }}/bundle-stats
 
   precommit-checks:
     name: "Pre-commit checks"

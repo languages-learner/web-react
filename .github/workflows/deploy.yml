@@ -5,6 +5,12 @@ on:
     secrets:
       SA_DEPLOYER_PRIVATE_KEY:
         required: true
+      S3_KEY_ID:
+        required: true
+        description: S3 key ID
+      S3_SECRET_KEY:
+        required: true
+        description: S3 secret key
     inputs:
       revision_name:
         type: string
@@ -29,6 +35,10 @@ on:
         description: Pull request number
         type: string
         required: false
+      main:
+        description: Is workflow running in main branch
+        type: boolean
+        default: false
 
 jobs:
   deploy:
@@ -37,6 +47,68 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch main branch only
+        run: git fetch origin main --depth=100
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Install AWS CLI
+        uses: unfor19/install-aws-cli-action@v1
+        with:
+          version: 2.22.35
+          arch: amd64
+
+      - name: Fetch bundle-stats (baseline) to compare with
+        run: npm run bundle-stats:fetch-actual-baseline
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_KEY }}
+          AWS_DEFAULT_REGION: ru-central1
+
+      - name: Create Docker Image
+        if: inputs.main == false
+        run: npm run build:docker
+
+      - name: Create Docker Image (main)
+        if: inputs.main == true
+        run: npm run build:baseline:docker
+
+      - name: Tag Docker Image
+        run: |
+          docker tag web-react-app cr.yandex/${{ inputs.container_registry_id }}/web-react-app:hello
+
+      - name: Extract bundle-stats
+        if: inputs.main == false
+        run: npm run bundle-stats:get-from-docker
+
+      - name: Extract bundle-stats (baseline)
+        if: inputs.main == true
+        run: npm run bundle-stats:get-from-docker:baseline
+
+      - name: Save bundle-stats
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-stats
+          if-no-files-found: warn
+          path: .bundle-stats
+          include-hidden-files: true
+
+      - name: Save bundle-stats (baseline)
+        if: inputs.main == true
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundle-stats-baseline
+          if-no-files-found: error
+          path: .bundle-stats-baseline
+          include-hidden-files: true
 
       - name: Install Yandex Cloud dependencies
         run: |
@@ -70,11 +142,6 @@ jobs:
 
       - name: Revision name
         run: echo ${{ inputs.revision_name }}
-
-      - name: Create Docker Image
-        run: |
-          docker build -t web-react-app .
-          docker tag web-react-app cr.yandex/${{ inputs.container_registry_id }}/web-react-app:hello
 
       - name: Create Container
         id: create_container
