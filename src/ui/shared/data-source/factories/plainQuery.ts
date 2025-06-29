@@ -1,6 +1,6 @@
 import { type PlainQueryDataSource, makePlainQueryDataSource } from "@gravity-ui/data-source";
 
-import type { ApiError } from "@/shared/services/api";
+import type { ApiError } from "shared/services/api";
 
 export const makePlainQuery = <
     TParams,

@@ -4,6 +4,7 @@ node_modules
 # production
 dist
 dist-ssr
+.typecheck
 
 # pwa
 dev-dist

@@ -1,7 +1,7 @@
 import { type ResolvedIntlConfig, createIntl, createIntlCache } from "react-intl";
 
-import { type InterfaceLocale } from "@/shared/project-config";
 import { getLocaleFromPath } from "@/shared/react-router";
+import { type InterfaceLocale } from "shared/project-config";
 
 // Ignoring if locales are not compiled during typecheck
 

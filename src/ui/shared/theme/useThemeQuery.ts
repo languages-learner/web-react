@@ -1,11 +1,10 @@
 import { useSearchParams } from "react-router";
 
-import { type ApiEnums } from "@/shared/services/api";
+import { type ApiEnums } from "shared/services/api";
+import { getThemeQuery as baseGetThemeQuery } from "shared/theme";
 
 export const getThemeQuery = () => {
-    const params = new URLSearchParams(window.location.search);
-
-    return params.get("theme") as ApiEnums<"Theme"> | null;
+    return baseGetThemeQuery(window.location.href);
 };
 
 export const useThemeQuery = () => {

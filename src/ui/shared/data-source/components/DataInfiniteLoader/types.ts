@@ -1,4 +1,4 @@
-import { type ApiError } from "@/shared/services/api";
+import { type ApiError } from "shared/services/api";
 
 import { type ErrorContainerProps } from "../ErrorContainer";
 

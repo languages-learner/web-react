@@ -1,4 +1,4 @@
-import { type PaginatedRequestParams, type PaginatedResponse } from "@/shared/services/api/types";
+import { type PaginatedRequestParams, type PaginatedResponse } from "shared/services/api/types";
 
 export const getNextPageToken = <T>({
     nextPageToken,

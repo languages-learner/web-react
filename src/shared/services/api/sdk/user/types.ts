@@ -1,4 +1,4 @@
-import { type ApiDatabase } from "../../types";
+import { type ApiDatabase } from "../../database.types.public";
 
 export type FetchUserResponse = ApiDatabase["public"]["Tables"]["user"]["Row"];
 

@@ -2,7 +2,7 @@ import React from "react";
 
 import { Select, type SelectProps } from "@gravity-ui/uikit";
 
-import { ApiConstants, type ApiDatabase } from "@/shared/services/api";
+import { ApiConstants, type ApiDatabase } from "shared/services/api";
 
 import { THEME_NAME } from "./constants";
 

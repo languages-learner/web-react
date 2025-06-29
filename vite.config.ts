@@ -1,9 +1,10 @@
 import path from "path";
 
-import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import react from "@vitejs/plugin-react";
+import * as dotenv from "dotenv";
 import { defineConfig } from "vite";
 
+dotenv.config();
 // https://vite.dev/config/
 export default defineConfig({
     resolve: {
@@ -11,6 +12,7 @@ export default defineConfig({
             "@@": path.resolve(__dirname, "."),
             "@": path.resolve(__dirname, "./src/ui"),
             locales: path.resolve(__dirname, "./src/locales"),
+            shared: path.resolve(__dirname, "./src/shared"),
         },
     },
     plugins: [
@@ -27,7 +29,6 @@ export default defineConfig({
                 ],
             },
         }),
-        storybookTest({ configDir: path.join(__dirname, ".storybook") }),
     ],
     server: {
         host: "0.0.0.0",
@@ -40,5 +41,8 @@ export default defineConfig({
     preview: {
         host: true,
         port: 8080,
+    },
+    ssr: {
+        noExternal: ["@gravity-ui/uikit"],
     },
 });

@@ -1,12 +1,12 @@
 import type React from "react";
 
 import { classNames } from "@/shared/class-names";
-import { type ApiError } from "@/shared/services/api";
 import {
     PlaceholderContainer,
     type PlaceholderContainerProps,
     PlaceholderContainerStatus,
 } from "@/shared/ui";
+import { type ApiError } from "shared/services/api";
 
 import type { ErrorAction, ErrorViewProps } from "@gravity-ui/data-source";
 

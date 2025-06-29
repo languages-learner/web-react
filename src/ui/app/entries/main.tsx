@@ -10,16 +10,16 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router";
 import { UserProvider } from "@/entities/user";
 import { dataManager } from "@/shared/data-source";
 import { intl } from "@/shared/i18n";
-import { BASE_THEME } from "@/shared/project-config";
 import { SupabaseAuthProvider } from "@/shared/services/auth";
 import { getThemeQuery } from "@/shared/theme";
 import { ToasterProvider } from "@/shared/ui";
+import { BASE_THEME } from "shared/project-config";
 
 import { routes } from "../routes";
 
-import "@/app/styles/gravity-imports.scss";
-import "@/app/styles/gravity-theme.scss";
-import "@/app/styles/reset.scss";
+import "@/app/styles/gravity-imports.css";
+import "@/app/styles/gravity-theme.css";
+import "@/app/styles/reset.css";
 
 const bootstrap = () => {
     const themeFromQuery = getThemeQuery();

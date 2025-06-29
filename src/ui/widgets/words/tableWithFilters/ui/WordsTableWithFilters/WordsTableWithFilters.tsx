@@ -17,12 +17,12 @@ import {
 import { DataInfiniteLoader } from "@/shared/data-source";
 import { intl } from "@/shared/i18n";
 import { useDebounceState } from "@/shared/react-utils";
-import { type FetchWordsRequest } from "@/shared/services/api";
 import {
     PlaceholderContainer,
     PlaceholderContainerStatus,
     useTableRowsSelection,
 } from "@/shared/ui";
+import { type FetchWordsRequest } from "shared/services/api";
 
 import { WordsTableActionsPanel } from "./WordsTableActionsPanel";
 

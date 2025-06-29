@@ -5,8 +5,8 @@ import { ActionsPanel, type ButtonButtonProps, Icon, Menu, Popup } from "@gravit
 
 import { WORD_STATUS_NAME, useWordMutations } from "@/entities/word";
 import { intl } from "@/shared/i18n";
-import { ApiConstants, type WordWithTranslations } from "@/shared/services/api";
 import { withToasts } from "@/shared/ui";
+import { ApiConstants, type WordWithTranslations } from "shared/services/api";
 
 export interface WordsTableActionsPanelProps {
     selectedWords: WordWithTranslations["translations"];

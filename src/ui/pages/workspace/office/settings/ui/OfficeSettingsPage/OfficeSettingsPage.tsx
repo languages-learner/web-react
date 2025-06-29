@@ -5,9 +5,9 @@ import { ThemeSelector } from "@/features/theme/themeSelector";
 import { OfficeLayout } from "@/pages/workspace/office/layout";
 import { FormRowsContainer } from "@/shared/form-components";
 import { intl } from "@/shared/i18n";
-import { INTERFACE_LOCALES } from "@/shared/project-config";
-import { type ApiTables } from "@/shared/services/api";
 import { withToasts } from "@/shared/ui";
+import { INTERFACE_LOCALES } from "shared/project-config";
+import { type ApiTables } from "shared/services/api";
 
 export const OfficeSettingsPage = () => {
     const { user } = useUserSafe();
