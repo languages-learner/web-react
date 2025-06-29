@@ -3,7 +3,7 @@ import { Icon, type IconData, type IconProps } from "@gravity-ui/uikit";
 
 import { block, classNames } from "@/shared/class-names";
 
-import type { ApiDatabase } from "@/shared/services/api";
+import type { ApiDatabase } from "shared/services/api";
 
 import "./WordStatusIcon.scss";
 

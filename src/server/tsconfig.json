@@ -1,0 +1,16 @@
+{
+  "extends": ["../../tsconfig.base.json"],
+  "include": [".", "./typings.d.ts"],
+  "references": [{
+    "path": "../shared"
+  }],
+  "compilerOptions": {
+    "baseUrl": ".",
+// TODO: Fix relative server paths
+//    "paths": {
+//      "@/*": ["./*"],
+//      "@@/*": ["../../*"],
+//      "shared/*": ["../shared/*"]
+//    }
+  }
+}

@@ -6,7 +6,7 @@ import {
     useNavigate as useNavigateBase,
 } from "react-router";
 
-import { BASE_INTERFACE_LOCALE } from "@/shared/project-config";
+import { BASE_INTERFACE_LOCALE } from "shared/project-config";
 
 import { getLocaleFromPath, patchToWithLocale } from "./locale";
 

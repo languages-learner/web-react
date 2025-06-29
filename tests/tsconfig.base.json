@@ -5,7 +5,9 @@
     "paths": {
       "@/tests/*": ["./*"],
       "@/*": ["../src/ui/*"],
-      "@/packages/*": ["../src/packages/*"]
+      "@@/*": ["../*"],
+      "@/packages/*": ["../src/packages/*"],
+      "shared/*": ["../src/shared/*"]
     }
   }
 }

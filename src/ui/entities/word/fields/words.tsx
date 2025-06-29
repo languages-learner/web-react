@@ -9,8 +9,8 @@ import {
 } from "@/features/words/addWordTranslationsForm";
 import { InlineWordTranslationsList } from "@/features/words/inlineWordTranslationsList";
 import { intl } from "@/shared/i18n";
-import { type ApiDatabase, type WordWithTranslations } from "@/shared/services/api";
 import { type ColumnsDef } from "@/shared/ui/Table";
+import { type ApiDatabase, type WordWithTranslations } from "shared/services/api";
 
 import { WordStatusSelector } from "../ui/WordStatusSelector";
 

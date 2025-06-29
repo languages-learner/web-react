@@ -3,10 +3,10 @@ import type React from "react";
 import { Outlet, useLocation } from "react-router";
 
 import { useUser } from "@/entities/user";
-import { BASE_INTERFACE_LOCALE, type InterfaceLocale } from "@/shared/project-config";
 import { createHrefTyped, getLocaleFromPath } from "@/shared/react-router";
 import { landingRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
+import { BASE_INTERFACE_LOCALE, type InterfaceLocale } from "shared/project-config";
 
 export const RequireLocaleMiddleware: React.FC = () => {
     const location = useLocation();

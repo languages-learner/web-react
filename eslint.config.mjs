@@ -18,7 +18,7 @@ export default tseslint.config(
     ...baseConfig,
     ...prettierConfig,
     ...clientConfig,
-    { ignores: ["**/dist", "node_modules", "**/.cache"] },
+    { ignores: ["**/dist", "node_modules", "**/.cache", "**/.typecheck"] },
     {
         extends: [js.configs.recommended, ...tseslint.configs.recommended],
         files: ["**/*.{ts,tsx}"],
@@ -115,7 +115,6 @@ export default tseslint.config(
             "newline-before-return": "error",
             "@typescript-eslint/explicit-module-boundary-types": "off",
             "object-curly-spacing": ["error", "always"],
-            "prefer-destructuring": ["error", { object: true, array: false }],
 
             "@typescript-eslint/consistent-type-imports": [
                 "error",

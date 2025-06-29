@@ -38,6 +38,7 @@ export default defineConfig({
                     "@@": pathFromRoot("."),
                     "@": pathFromRoot("./src/ui"),
                     locales: pathFromRoot("./src/locales"),
+                    shared: pathFromRoot("./src/shared"),
                 },
             },
         },

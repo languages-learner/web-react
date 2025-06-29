@@ -3,7 +3,7 @@ import {
     makeInfiniteQueryDataSource as makeInfiniteQueryDataSourceBase,
 } from "@gravity-ui/data-source";
 
-import { type ApiError } from "@/shared/services/api";
+import { type ApiError } from "shared/services/api";
 
 export const makeInfiniteQuery = <
     TParams,

@@ -1,19 +1,13 @@
 import { type To } from "react-router";
 
-import {
-    BASE_INTERFACE_LOCALE,
-    INTERFACE_LOCALES,
-    type InterfaceLocale,
-} from "@/shared/project-config";
 import { createHrefTyped } from "@/shared/react-router/createHrefTyped";
+import { getLocaleFromPath as baseGetLocaleFromPath } from "shared/locale";
+import { BASE_INTERFACE_LOCALE, type InterfaceLocale } from "shared/project-config";
 
 export const getLocaleFromPath = (): InterfaceLocale | undefined => {
     const path = window.location.pathname;
-    const [_, locale] = path.split("/");
 
-    return locale && INTERFACE_LOCALES.includes(locale as InterfaceLocale)
-        ? (locale as InterfaceLocale)
-        : undefined;
+    return baseGetLocaleFromPath(path);
 };
 
 export const getLocaleFromPathSafe = (): InterfaceLocale => {

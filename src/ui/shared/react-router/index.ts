@@ -5,6 +5,7 @@ export {
     getPathWithCurrentLocale,
     getLocaleFromPathSafe,
     getPathWithLocale,
+    patchToWithLocale,
 } from "./locale";
 export { useNavigate } from "./useNavigate";
 export { useIsMatched } from "./useIsMatched";

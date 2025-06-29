@@ -5,14 +5,14 @@ import { LanguageSelector } from "@/features/language/languageSelector";
 import { ThemeSelector } from "@/features/theme/themeSelector";
 import { block } from "@/shared/class-names";
 import { intl } from "@/shared/i18n";
-import { BASE_THEME, INTERFACE_LOCALES } from "@/shared/project-config";
 import { createHrefTyped, getLocaleFromPathSafe, useNavigate } from "@/shared/react-router";
 import { landingRoutes, workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
 import { useThemeQuery } from "@/shared/theme";
 import { useAuthenticationDialog } from "@/widgets/auth/auth-dialog";
+import { BASE_THEME, INTERFACE_LOCALES } from "shared/project-config";
 
-import type { ApiTables } from "@/shared/services/api";
+import type { ApiTables } from "shared/services/api";
 
 import "./LandingHeader.scss";
 

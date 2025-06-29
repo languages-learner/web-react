@@ -7,7 +7,7 @@ import { useWordMutations, wordColumns } from "@/entities/word";
 import { intl } from "@/shared/i18n";
 import { withToasts } from "@/shared/ui";
 
-import type { WordWithTranslations } from "@/shared/services/api";
+import type { WordWithTranslations } from "shared/services/api";
 
 export const useWordsTableColumns = () => {
     const [editingWords, setEditingWords] = React.useState(new Set<string>());

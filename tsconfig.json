@@ -3,10 +3,12 @@
   "include": [],
   "references": [
     { "path": "./src/locales" },
+    { "path": "./src/shared" },
     { "path": "./src/ui" },
+    { "path": "./src/server" },
     { "path": "./tsconfig.node.json" },
     { "path": "./tests/tsconfig.json" },
+    { "path": "./src/packages/har-sanitizer/tsconfig.json" },
     { "path": "./scripts/tsconfig.json" },
-    { "path": "./src/packages/har-sanitizer/tsconfig.json" }
   ]
 }

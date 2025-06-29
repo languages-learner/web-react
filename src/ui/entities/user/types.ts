@@ -1,4 +1,4 @@
-import { type ApiTables } from "@/shared/services/api";
+import { type ApiTables } from "shared/services/api";
 
 export interface User {
     uid: string;

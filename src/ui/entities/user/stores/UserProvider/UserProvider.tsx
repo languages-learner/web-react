@@ -1,6 +1,7 @@
 import React from "react";
 
 import { idle, useQueryData } from "@gravity-ui/data-source";
+import { Loader } from "@gravity-ui/uikit";
 
 import { DataLoader } from "@/shared/data-source";
 import { useAuth } from "@/shared/services/auth";
@@ -41,12 +42,28 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         user,
     };
 
+    // TODO: make common loader with main-server
+    const loader = () => (
+        <div
+            style={{
+                width: "100wh",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+            }}
+        >
+            <Loader size={"l"} />
+        </div>
+    );
+
     return (
         <UserContext.Provider value={value}>
             <DataLoader
                 status={userQuery.status}
                 error={userQuery.error}
                 errorAction={userQuery.refetch}
+                LoadingView={loader}
             >
                 {children(value)}
             </DataLoader>

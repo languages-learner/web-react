@@ -4,9 +4,9 @@ import { themes } from "./theme";
 
 import type { Preview } from "@storybook/react-vite";
 
-import "../src/ui/app/styles/gravity-imports.scss";
-import "../src/ui/app/styles/gravity-theme.scss";
-import "../src/ui/app/styles/reset.scss";
+import "../src/ui/app/styles/gravity-imports.css";
+import "../src/ui/app/styles/gravity-theme.css";
+import "../src/ui/app/styles/reset.css";
 
 const preview: Preview = {
     parameters: {
