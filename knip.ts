@@ -1,10 +1,25 @@
 import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
-    entry: ["src/ui/app/entries/*.{js,ts,jsx,tsx}"],
-    project: ["src/ui/**/*.{js,ts,jsx,tsx}"],
-    // TODO: Fix paths problems (https://knip.dev/reference/known-issues)
-    playwright: false,
+    entry: [
+        "src/ui/app/entries/*.{js,ts,jsx,tsx}",
+        "src/server/main.ts",
+        "tests/app/integration/playwright.config.ts",
+        "tests/app/integration/global.setup.ts",
+        "tests/app/integration/tests/**/*.ts",
+        "tests/component/playwright.config.ts",
+    ],
+    project: ["src/**/*.{js,ts,jsx,tsx}", "tests/**/*.{js,ts,jsx,tsx}"],
+    ignore: ["**/*.d.ts", "tests/component/playwright/index.tsx"],
+    ignoreDependencies: ["crypto", "npm-run-all", "core", "formatjs"],
+    paths: {
+        "@/tests/*": ["tests/*"],
+        "@/packages/*": ["src/packages/*"],
+    },
+    rules: {
+        types: "off",
+        exports: "off",
+    },
 };
 
 export default config;

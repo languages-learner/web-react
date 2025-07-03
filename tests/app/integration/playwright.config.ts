@@ -4,8 +4,8 @@ import * as path from "path";
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
 import * as dotenv from "dotenv";
 
-import { validateTestEnvironment } from "@/tests/app/core/utils/validateTestEnvironment";
-import { getAuthStorageStateFileName } from "@/tests/shared/auth-storage";
+import { getAuthStorageStateFileName } from "../../shared/auth-storage";
+import { validateTestEnvironment } from "../core/utils/validateTestEnvironment";
 
 const envPath = path.resolve(__dirname, ".env");
 dotenv.config({ path: envPath, override: false });
