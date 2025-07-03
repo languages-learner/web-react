@@ -9,7 +9,14 @@ const config: KnipConfig = {
     ],
     project: ["src/**/*.{js,ts,jsx,tsx}", "tests/**/*.{js,ts,jsx,tsx}"],
     ignore: ["**/*.d.ts", "tests/component/playwright/index.tsx"],
-    ignoreDependencies: ["crypto", "npm-run-all", "core", "formatjs", "babel-plugin-formatjs"],
+    ignoreDependencies: [
+        "crypto",
+        "npm-run-all",
+        "core",
+        "formatjs",
+        "babel-plugin-formatjs",
+        "locales/*",
+    ],
     paths: {
         "@/tests/*": ["tests/*"],
         "@/packages/*": ["src/packages/*"],
