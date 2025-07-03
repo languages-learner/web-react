@@ -94,6 +94,7 @@
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/browser": "^3.1.4",
+    "babel-plugin-formatjs": "^10.5.39",
     "cookie-parser": "^1.4.7",
     "cross-env": "^7.0.3",
     "crypto": "^1.0.1",

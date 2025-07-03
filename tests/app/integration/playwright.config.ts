@@ -5,7 +5,6 @@ import { defineConfig, devices } from "@playwright/experimental-ct-react";
 import * as dotenv from "dotenv";
 
 import { getAuthStorageStateFileName } from "../../shared/auth-storage";
-import { validateTestEnvironment } from "../core/utils/validateTestEnvironment";
 
 const envPath = path.resolve(__dirname, ".env");
 dotenv.config({ path: envPath, override: false });
@@ -15,10 +14,6 @@ const { BASE_URL } = process.env;
 const pathFromRoot = (p: string) => {
     return path.resolve(__dirname, "../../..", p);
 };
-
-if (!validateTestEnvironment()) {
-    process.exit(1);
-}
 
 /**
  * See https://playwright.dev/docs/test-configuration.
