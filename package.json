@@ -32,7 +32,8 @@
     "test:integration:update:docker": "docker compose run --rm playwright test:integration:update",
     "test:unit": "vitest",
     "test:unit:ci": "vitest --run",
-    "typecheck": "tsc --build ./tsconfig.json"
+    "typecheck": "tsc --build ./tsconfig.json",
+    "knip": "knip --config ./knip.ts --tsConfig ./src/ui/tsconfig.json"
   },
   "lint-staged": {
     "**/*.scss": [
@@ -116,6 +117,7 @@
     "express": "^5.1.0",
     "globals": "^16.0.0",
     "husky": "^9.1.7",
+    "knip": "^5.61.3",
     "lint-staged": "^16.1.0",
     "madge": "^8.0.0",
     "nodemon": "^3.1.10",
