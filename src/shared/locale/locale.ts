@@ -10,6 +10,6 @@ export const getLocaleFromPath = (path: string): InterfaceLocale | undefined => 
 };
 
 export const getLocaleFromPathSafe = (path: string): InterfaceLocale => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line no-non-null-assertion
     return getLocaleFromPath(path)!;
 };

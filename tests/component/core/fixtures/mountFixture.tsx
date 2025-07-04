@@ -27,7 +27,6 @@ export const testWithMountFixture = baseTest.extend<{
             );
         };
 
-        // eslint-disable-next-line react-hooks/rules-of-hooks
         await use(wrapper);
     },
 });

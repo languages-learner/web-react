@@ -7,6 +7,7 @@ import { BASE_INTERFACE_LOCALE } from "../../shared/project-config";
 export const localeMiddleware = async function (req: Request, res: Response, next: NextFunction) {
     const url = req.originalUrl;
 
+    // eslint-disable-next-line no-param-reassign
     res.locals.locale =
         // TODO: redirect to url with user interface language if not match
         res.locals?.userSettings?.interface_language ??

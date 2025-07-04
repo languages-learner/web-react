@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-
+// oxlint-disable no-require-imports
+// oxlint-disable no-undef
 /* global process, __dirname, require */
 
 // npm-run-all doesn't provide a way to get the exit code when NodeJS crashes due to memory overflow.

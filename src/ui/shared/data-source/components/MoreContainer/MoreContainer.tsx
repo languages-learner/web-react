@@ -21,7 +21,7 @@ export const MoreContainer: React.FC<MoreContainerProps> = ({
 }) => {
     const button = (
         // TODO: Fix type
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // oxlint-disable-next-line ban-ts-comment
         // @ts-expect-error
         <Button
             {...restProps}

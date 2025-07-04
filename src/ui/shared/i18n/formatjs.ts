@@ -5,11 +5,9 @@ import { type InterfaceLocale } from "shared/project-config";
 
 // Ignoring if locales are not compiled during typecheck
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error
 import en from "locales/compiled/en.json";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// @ts-expect-error
 import ru from "locales/compiled/ru.json";
 
 const cache = createIntlCache();

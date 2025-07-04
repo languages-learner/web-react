@@ -34,7 +34,7 @@ const bootstrap = () => {
         },
     ]);
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // oxlint-disable-next-line no-non-null-assertion
     createRoot(document.getElementById("root")!).render(
         <React.StrictMode>
             <RawIntlProvider value={intl}>
