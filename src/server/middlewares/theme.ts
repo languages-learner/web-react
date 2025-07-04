@@ -12,8 +12,10 @@ export const themeMiddleware = async function (req: Request, res: Response, next
     const theme: Theme = res.locals?.userSettings?.theme ?? getThemeQuery(`http:/${url}`);
 
     if (isResolvedTheme(theme)) {
+        // eslint-disable-next-line no-param-reassign
         res.locals.theme = theme;
     } else {
+        // eslint-disable-next-line no-param-reassign
         res.locals.theme = systemTheme;
     }
 

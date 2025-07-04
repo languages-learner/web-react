@@ -9,9 +9,7 @@ export const makeRoutesWithLocale = <T extends RouteObject>(
 ): RouteObjectWithLocales<T> => {
     const result = Object.fromEntries(
         Object.entries(routes).map(([key, value]) => [key, `/:locale${value}`]),
-    );
+    ) as RouteObjectWithLocales<T>;
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     return result;
 };

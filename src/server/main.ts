@@ -1,4 +1,4 @@
-/* eslint-disable no-console */
+// oxlint-disable no-console
 import fs from "node:fs/promises";
 
 import cookieParser from "cookie-parser";
@@ -53,11 +53,11 @@ const createServer = async () => {
             let render;
             if (isProduction) {
                 template = templateHtml;
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
+                // oxlint-disable-next-line ban-ts-comment
                 // @ts-expect-error
                 render = (await import("../../dist/server/main-server.mjs")).render;
             } else {
-                // Always read fresh template in development
                 template = await fs.readFile("./index.html", "utf-8");
                 template = await vite.transformIndexHtml(url, template);
                 render = (await vite.ssrLoadModule("./src/ui/app/entries/main-server.tsx")).render;
@@ -73,19 +73,17 @@ const createServer = async () => {
 
             res.status(200).set({ "Content-Type": "text/html" }).send(html);
         } catch (e) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            vite?.ssrFixStacktrace(e);
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            console.log(e.stack);
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            res.status(500).end(e.stack);
+            if (e instanceof Error) {
+                vite?.ssrFixStacktrace(e);
+                console.log(e.stack);
+                res.status(500).end(e.stack);
+            } else {
+                console.log("Unknown error:", e);
+                res.status(500).end("An unknown error occurred");
+            }
         }
     });
 
-    // Start http server
     app.listen(port, () => {
         console.log(`Server started at http://localhost:${port}`);
     });

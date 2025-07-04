@@ -14,7 +14,9 @@ export interface FormRowsContainerProps extends React.PropsWithChildren {
 
 const processChildren = (children: React.ReactNode): React.ReactNode => {
     return React.Children.map(children, (child) => {
-        if (!React.isValidElement(child)) return child;
+        if (!React.isValidElement(child)) {
+            return child;
+        }
 
         const childProps = child.props as FormRowProps;
 

@@ -10,7 +10,6 @@ import type { DocsContainerProps } from "@storybook/addon-docs";
 export type DocsDecoratorProps = React.PropsWithChildren<DocsContainerProps>;
 
 export function DocsDecorator({ children, context }: DocsDecoratorProps) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const { theme } = context.store.userGlobals.globals;
 

@@ -22,7 +22,7 @@ import {
     PlaceholderContainerStatus,
     useTableRowsSelection,
 } from "@/shared/ui";
-import { type FetchWordsRequest } from "shared/services/api";
+import { type FetchWordsRequest, type WordWithTranslations } from "shared/services/api";
 
 import { WordsTableActionsPanel } from "./WordsTableActionsPanel";
 
@@ -64,7 +64,7 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
     const showPlaceholders = !showAddWordCard;
 
     const { wordsTableColumns } = useWordsTableColumns();
-    const table = useTable({
+    const table = useTable<WordWithTranslations>({
         columns: wordsTableColumns,
         data: wordsQuery.data,
         getCoreRowModel: getCoreRowModel(),
@@ -97,7 +97,6 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                 />
             ) : null,
         );
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedWords]);
 
     const tableContent = () => {

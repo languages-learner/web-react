@@ -48,7 +48,6 @@ export const WordsTableActionsPanel: React.FC<WordsTableActionsPanelProps> = ({
                         // TODO
                         dropdown: {
                             item: {
-                                // eslint-disable-next-line no-console
                                 action: () => console.log("click dropdown action 1"),
                                 text: intl.formatMessage({
                                     defaultMessage: "Action 1",

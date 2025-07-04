@@ -6,7 +6,9 @@ import { type ApiDatabase } from "../../shared/services/api";
 
 export const useSupabaseClient = (req: Request, res: Response) => {
     const supabaseClient = createServerClient<ApiDatabase>(
+        // oxlint-disable-next-line no-non-null-assertion
         process.env.VITE_SUPABASE_PROJECT_URL!,
+        // oxlint-disable-next-line no-non-null-assertion
         process.env.VITE_SUPABASE_PROJECT_KEY!,
         {
             cookies: {

@@ -51,7 +51,6 @@ export const login = async (config: LoginConfig, page: Page) => {
                 });
             });
 
-            // eslint-disable-next-line no-console
             console.log(`File "${config.storageStateFilePath}" with user session created!`);
         }
     });

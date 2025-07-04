@@ -70,7 +70,6 @@ export function expectScreenshotFixtureFactory(
                 return matchScreenshot(page, resolvedParams);
             };
 
-            // eslint-disable-next-line react-hooks/rules-of-hooks
             await use(wrapper);
         },
     });
