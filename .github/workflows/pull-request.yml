@@ -40,3 +40,14 @@ jobs:
   check-pr-title:
     name: "Check PR title"
     uses: ./.github/workflows/check-pr-title.yml
+
+  deploy-storybook:
+    name: Deploy storybook
+    needs: npm-ci
+    uses: ./.github/workflows/storybook.yml
+    secrets:
+      S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
+      S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+    with:
+      dest_path: /pull-requests/${{ github.event.pull_request.number }}/storybook
+      pr_number: ${{ github.event.pull_request.number }}
