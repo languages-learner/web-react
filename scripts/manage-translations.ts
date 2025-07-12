@@ -6,6 +6,7 @@ import process from "process";
 import { type MessageDescriptor } from "react-intl";
 
 // Configuration
+const PRE_COMMIT = Boolean(process.env.PRE_COMMIT);
 const LOCALES_DIR = path.relative(process.cwd(), path.resolve("src/locales"));
 const EXTRACTED_FILE = path.join(LOCALES_DIR, "extracted.json");
 const COMPILED_DIR = path.join(LOCALES_DIR, "compiled");
@@ -25,7 +26,9 @@ if (!fs.existsSync(COMPILED_DIR)) {
 console.info("Extracting messages from source code...");
 try {
     execSync("npm run i18n:extract", { stdio: "inherit" });
-    execSync(`git add ${EXTRACTED_FILE}`, { stdio: "inherit" });
+    if (PRE_COMMIT) {
+        execSync(`git add ${EXTRACTED_FILE}`, { stdio: "inherit" });
+    }
     console.info("✅ Messages extracted successfully");
 } catch (error) {
     console.error("❌ Failed to extract messages:", String(error));
@@ -87,7 +90,9 @@ for (const lang of LANGUAGES) {
 
     // Write updated translations back to file
     fs.writeFileSync(langFile, JSON.stringify(updatedTranslations, null, 2), "utf8");
-    execSync(`git add ${langFile}`, { stdio: "inherit" });
+    if (PRE_COMMIT) {
+        execSync(`git add ${langFile}`, { stdio: "inherit" });
+    }
     if (newCount > 0) {
         console.info(
             `✅ Updated ${lang} translations (${existingCount} existing, ${newCount} new)`,
