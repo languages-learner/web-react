@@ -1,5 +1,3 @@
-import { type SupabaseClient } from "@supabase/supabase-js";
-
 import type {
     AddWordTranslationsRequest,
     CreateWordRequest,
@@ -10,6 +8,7 @@ import type {
     FetchWordsResponse,
     UpdateWordsStatusRequest,
 } from "./types";
+import type { SupabaseClient } from "../../supabase";
 
 export const createWordsActions = (supabase: SupabaseClient) => {
     const fetchWords = async (props: FetchWordsRequest): Promise<FetchWordsResponse> => {
@@ -48,10 +47,11 @@ export const createWordsActions = (supabase: SupabaseClient) => {
     };
 
     const updateWordsStatus = async (props: UpdateWordsStatusRequest) => {
-        await supabase
+        return await supabase
             .from("words")
             .update({ status: props.status })
             .in("id", props.wordsIds)
+            .select()
             .throwOnError();
     };
 

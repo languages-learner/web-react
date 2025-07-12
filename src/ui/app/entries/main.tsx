@@ -2,6 +2,7 @@ import React from "react";
 
 import { DataManagerContext } from "@gravity-ui/data-source";
 import { ThemeProvider } from "@gravity-ui/uikit";
+import { QueryNormalizerProvider } from "@normy/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createRoot } from "react-dom/client";
 import { RawIntlProvider } from "react-intl";
@@ -38,23 +39,25 @@ const bootstrap = () => {
     createRoot(document.getElementById("root")!).render(
         <React.StrictMode>
             <RawIntlProvider value={intl}>
-                <DataManagerContext.Provider value={dataManager}>
-                    <QueryClientProvider client={dataManager.queryClient}>
-                        <SupabaseAuthProvider>
-                            <UserProvider>
-                                {({ user }) => (
-                                    <ThemeProvider
-                                        theme={user?.theme ?? themeFromQuery ?? BASE_THEME}
-                                    >
-                                        <ToasterProvider>
-                                            <RouterProvider router={router} />
-                                        </ToasterProvider>
-                                    </ThemeProvider>
-                                )}
-                            </UserProvider>
-                        </SupabaseAuthProvider>
-                    </QueryClientProvider>
-                </DataManagerContext.Provider>
+                <QueryNormalizerProvider queryClient={dataManager.queryClient}>
+                    <DataManagerContext.Provider value={dataManager}>
+                        <QueryClientProvider client={dataManager.queryClient}>
+                            <SupabaseAuthProvider>
+                                <UserProvider>
+                                    {({ user }) => (
+                                        <ThemeProvider
+                                            theme={user?.theme ?? themeFromQuery ?? BASE_THEME}
+                                        >
+                                            <ToasterProvider>
+                                                <RouterProvider router={router} />
+                                            </ToasterProvider>
+                                        </ThemeProvider>
+                                    )}
+                                </UserProvider>
+                            </SupabaseAuthProvider>
+                        </QueryClientProvider>
+                    </DataManagerContext.Provider>
+                </QueryNormalizerProvider>
             </RawIntlProvider>
         </React.StrictMode>,
     );
