@@ -10,9 +10,6 @@ export const useWordMutations = () => {
 
     const updateWordsStatus = useMutation({
         mutationFn: sdk.words.updateWordsStatus,
-        onSuccess: () => {
-            dataManager.invalidateSource(wordsDataSource);
-        },
     });
 
     const createWord = useMutation({
