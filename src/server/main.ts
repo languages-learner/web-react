@@ -14,7 +14,7 @@ import { userMiddleware } from "./middlewares/user";
 dotenv.config();
 
 const isProduction = process.env.NODE_ENV === "production";
-const port = process.env.PORT || 5173;
+const port = process.env.PORT || 8080;
 const base = process.env.BASE || "/";
 
 const createServer = async () => {

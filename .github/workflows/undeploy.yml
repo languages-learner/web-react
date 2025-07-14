@@ -1,0 +1,92 @@
+name: Undeploy
+
+on:
+  workflow_call:
+    secrets:
+      SA_DEPLOYER_PRIVATE_KEY:
+        required: true
+    inputs:
+      revision_name:
+        type: string
+        required: true
+      cloud_id:
+        description: Yandex Cloud Id
+        type: string
+        required: true
+      folder_name:
+        description: Yandex Cloud folder name
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Yandex Cloud dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bash curl jq gettext
+          # Install yq from GitHub releases (recommended on Ubuntu)
+          YQ_VERSION="v4.44.1"
+          sudo wget -q https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -O /usr/local/bin/yq
+          sudo chmod +x /usr/local/bin/yq
+          # Install Yandex Cloud CLI
+          curl --fail -sSL -o install.sh https://storage.yandexcloud.net/yandexcloud-yc/install.sh
+          sudo bash install.sh -i /usr/local/yandex-cloud -n
+          sudo ln -s /usr/local/yandex-cloud/bin/yc /usr/local/bin/yc
+
+      - name: Create deployer private key json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "key.json"
+          json: ${{ secrets.SA_DEPLOYER_PRIVATE_KEY }}
+
+      - name: Yandex Cloud Auth
+        run: |
+          yc config profile create sa-profile
+          yc config set service-account-key key.json
+
+      - name: Delete Api Gateway
+        run: |
+          # Try to get the api-gateway ID
+          gw_info=$(yc serverless api-gateway get \
+            --name ${{ inputs.revision_name }} \
+            --cloud-id ${{ inputs.cloud_id }} \
+            --folder-name "${{ inputs.folder_name }}"
+            --format json 2>/dev/null || true)
+
+          if [ -n "$gw_info" ]; then
+            yc serverless api-gateway delete \
+              --name ${{ inputs.revision_name }} \
+              --cloud-id ${{ inputs.cloud_id }} \
+              --folder-name "${{ inputs.folder_name }}"
+            echo "API Gateway ${{ inputs.revision_name }} deleted"
+          else
+            echo "API Gateway ${{ inputs.revision_name }} is not exist"
+          fi
+
+      - name: Delete Container
+        run: |
+          # Try to get the container ID
+          container_info=$(yc serverless container get \
+            --name "${{ inputs.revision_name }}" \
+            --cloud-id "${{ inputs.cloud_id }}" \
+            --folder-name "${{ inputs.folder_name }}" \
+            --format json 2>/dev/null || true)
+
+          if [ -n "$container_info" ]; then
+            yc serverless container delete \
+              --name "${{ inputs.revision_name }}" \
+              --cloud-id "${{ inputs.cloud_id }}" \
+              --folder-name "${{ inputs.folder_name }}"
+            echo "Container ${{ inputs.revision_name }} deleted"
+          else
+            echo "Container ${{ inputs.revision_name }} is not exist"
+          fi
+
+

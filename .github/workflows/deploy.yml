@@ -1,0 +1,142 @@
+name: Deploy
+
+on:
+  workflow_call:
+    secrets:
+      SA_DEPLOYER_PRIVATE_KEY:
+        required: true
+    inputs:
+      revision_name:
+        type: string
+        required: true
+      sa_deployer_id:
+        description: Yandex Cloud service account Id
+        type: string
+        required: true
+      cloud_id:
+        description: Yandex Cloud Id
+        type: string
+        required: true
+      folder_name:
+        description: Yandex Cloud folder name
+        type: string
+        required: true
+      container_registry_id:
+        description: Yandex Cloud container registry id
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Yandex Cloud dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y bash curl jq gettext
+          # Install yq from GitHub releases (recommended on Ubuntu)
+          YQ_VERSION="v4.44.1"
+          sudo wget -q https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -O /usr/local/bin/yq
+          sudo chmod +x /usr/local/bin/yq
+          # Install Yandex Cloud CLI
+          curl --fail -sSL -o install.sh https://storage.yandexcloud.net/yandexcloud-yc/install.sh
+          sudo bash install.sh -i /usr/local/yandex-cloud -n
+          sudo ln -s /usr/local/yandex-cloud/bin/yc /usr/local/bin/yc
+
+#          apk add yq --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
+#          curl --fail -silent --location --remote-name https://storage.yandexcloud.net/yandexcloud-yc/install.sh
+#          bash install.sh -i /usr/local/yandex-cloud -n
+#          ln -s /usr/local/yandex-cloud/bin/yc /usr/local/bin/yc
+
+      - name: Create deployer private key json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "key.json"
+          json: ${{ secrets.SA_DEPLOYER_PRIVATE_KEY }}
+
+      - name: Yandex Cloud Auth
+        run: |
+          yc config profile create sa-profile
+          yc config set service-account-key key.json
+
+      - name: Revision name
+        run: echo ${{ inputs.revision_name }}
+
+      - name: Create Docker Image
+        run: |
+          docker build -t web-react-app .
+          docker tag web-react-app cr.yandex/${{ inputs.container_registry_id }}/web-react-app:hello
+
+      - name: Create Container
+        id: create_container
+        run: |
+          # Try to get the container ID
+          container_info=$(yc serverless container get \
+            --name "${{ inputs.revision_name }}" \
+            --cloud-id "${{ inputs.cloud_id }}" \
+            --folder-name "${{ inputs.folder_name }}" \
+            --format json 2>/dev/null || true)
+
+          if [ -n "$container_info" ]; then
+            container_id=$(echo "$container_info" | yq .id)
+            echo "Container already exists with ID: $container_id"
+          else
+            export container_id=$(yc serverless container create \
+              --name ${{ inputs.revision_name }} \
+              --cloud-id ${{ inputs.cloud_id }} \
+              --folder-name "${{ inputs.folder_name }}" | yq .id)
+            echo "Created container with ID: $container_id"
+          fi
+
+          echo "container_id=$container_id" >> $GITHUB_OUTPUT
+
+      - name: Deploy Container Revision
+        run: |
+          yc serverless container revision deploy \
+            --container-name ${{ inputs.revision_name }} \
+            --image "cr.yandex/${{ inputs.container_registry_id }}/web-react-app:hello" \
+            --cores 1 \
+            --memory 512mb \
+            --concurrency 1 \
+            --execution-timeout 10s \
+            --cloud-id ${{ inputs.cloud_id }} \
+            --folder-name "${{ inputs.folder_name }}" \
+            --service-account-id ${{ inputs.sa_deployer_id }}
+
+      - name: Configure Api Gateway
+        run: |
+          export sa_id="${{ inputs.sa_deployer_id }}"
+          export container_id="${{ steps.create_container.outputs.container_id }}"
+          (cat apigw.yaml.j2 | envsubst) > apigw.yaml
+          cat apigw.yaml
+
+          # Try to get the api-gateway ID
+          gw_info=$(yc serverless api-gateway get \
+            --name ${{ inputs.revision_name }} \
+            --cloud-id ${{ inputs.cloud_id }} \
+            --folder-name "${{ inputs.folder_name }}"
+            --format json 2>/dev/null || true)
+
+          if [ -n "$gw_info" ]; then
+            gwdomain=$(echo "$gw_info" | yq .domain)
+            echo "API Gateway already exists with DOMAIN: $gwdomain"
+          else
+            yc serverless api-gateway create \
+              --name ${{ inputs.revision_name }} \
+              --spec=apigw.yaml \
+              --description "created from CI" \
+              --cloud-id ${{ inputs.cloud_id }} \
+              --folder-name "${{ inputs.folder_name }}"
+
+            gwdomain=$(yc serverless api-gateway get ${{ inputs.revision_name }} \
+              --cloud-id ${{ inputs.cloud_id }} \
+              --folder-name "${{ inputs.folder_name }}" | yq .domain)
+            echo "Created API Gateway with DOMAIN: $gwdomain"
+          fi
+
+          echo "https://"$gwdomain

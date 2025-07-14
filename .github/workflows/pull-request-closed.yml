@@ -1,0 +1,17 @@
+name: Pull request (Closed)
+
+on:
+  pull_request:
+    types: [ closed ]
+  workflow_dispatch:
+
+jobs:
+  undeploy:
+    name: "Undeploy staging"
+    uses: ./.github/workflows/undeploy.yml
+    secrets:
+      SA_DEPLOYER_PRIVATE_KEY: ${{ secrets.SA_STAGING_DEPLOYER_PRIVATE_KEY }}
+    with:
+      revision_name: pr-${{ github.event.pull_request.number }}
+      cloud_id: b1g9utblfaj1k8am3nmg
+      folder_name: languages-learner
