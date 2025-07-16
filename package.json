@@ -33,7 +33,7 @@
     "test:unit": "vitest",
     "test:unit:ci": "vitest --run",
     "typecheck": "tsc --build ./tsconfig.json",
-    "knip": "knip --config ./knip.ts"
+    "knip": "knip --config ./knip.config.ts"
   },
   "lint-staged": {
     "**/*.scss": [

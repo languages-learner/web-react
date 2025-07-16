@@ -5,15 +5,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   npm-ci:
     name: "npm ci"
     uses: ./.github/workflows/npm-ci.yml
-
-#  build:
-#    name: "Build"
-#    needs: npm-ci
-#    uses: ./.github/workflows/build.yml
 
   deploy:
     name: "Deploy staging"
@@ -21,6 +20,7 @@ jobs:
     secrets:
       SA_DEPLOYER_PRIVATE_KEY: ${{ secrets.SA_STAGING_DEPLOYER_PRIVATE_KEY }}
     with:
+      pr_number: ${{ github.event.pull_request.number }}
       revision_name: pr-${{ github.event.pull_request.number }}
       cloud_id: b1g9utblfaj1k8am3nmg
       folder_name: languages-learner
