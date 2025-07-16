@@ -5,15 +5,14 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   npm-ci:
     name: "npm ci"
     uses: ./.github/workflows/npm-ci.yml
-
-#  build:
-#    name: "Build"
-#    needs: npm-ci
-#    uses: ./.github/workflows/build.yml
 
   deploy:
     name: "Deploy staging"
