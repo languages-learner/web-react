@@ -25,6 +25,10 @@ on:
         description: Yandex Cloud container registry id
         type: string
         required: true
+      pr_number:
+        description: Pull request number
+        type: string
+        required: false
 
 jobs:
   deploy:
@@ -109,6 +113,7 @@ jobs:
             --service-account-id ${{ inputs.sa_deployer_id }}
 
       - name: Configure Api Gateway
+        id: configure_api_gateway
         run: |
           export sa_id="${{ inputs.sa_deployer_id }}"
           export container_id="${{ steps.create_container.outputs.container_id }}"
@@ -140,3 +145,25 @@ jobs:
           fi
 
           echo "https://"$gwdomain
+          echo "stage_url=https://$gwdomain" >> $GITHUB_OUTPUT
+
+      - name: Comment PR with Stage URL
+        if: inputs.pr_number != ''
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const stageUrl = "${{ steps.configure_api_gateway.outputs.stage_url }}";
+            const prNumber = parseInt("${{ inputs.pr_number }}");
+            
+            if (stageUrl && !isNaN(prNumber)) {
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: `🚀 Stage environment deployed successfully!\n\n**Stage URL:** ${stageUrl}`
+              });
+              console.log(`Added stage URL comment to PR #${prNumber}`);
+            } else {
+              console.log("Skipping PR comment: missing stage URL or invalid PR number");
+            }
