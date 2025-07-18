@@ -1,0 +1,64 @@
+name: Deploy
+
+on:
+  workflow_call:
+    secrets:
+      S3_KEY_ID:
+        required: true
+        description: S3 key ID
+      S3_SECRET_KEY:
+        required: true
+        description: S3 secret key
+    inputs:
+      dest_path:
+        type: string
+        description: Destination S3 URL
+        required: true
+      pr_number:
+        description: Pull request number
+        type: string
+        required: false
+
+jobs:
+  deploy-storybook:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Build storybook
+        run: npm run build:storybook
+
+      - name: Deploy storybook build to s3
+        uses: ./.github/actions/upload-to-s3
+        with:
+          source_path: .storybook/dist
+          dest_path: ${{ inputs.dest_path }}
+          s3_key_id: ${{ secrets.S3_KEY_ID }}
+          s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
+
+      - name: Create Comment
+        if: inputs.pr_number != ''
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ inputs.pr_number }}
+          header: storybook
+          recreate: true
+          message: |
+            📚 Storybook deployed successfully!
+            **Storybook URL:** https://languages-learner-static.website.yandexcloud.net${{ inputs.dest_path }}/index.html
+

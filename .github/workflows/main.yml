@@ -35,3 +35,13 @@ jobs:
     name: "Components tests"
     needs: npm-ci
     uses: ./.github/workflows/components-tests.yml
+
+  deploy-storybook:
+    name: Deploy storybook
+    needs: npm-ci
+    uses: ./.github/workflows/storybook.yml
+    secrets:
+      S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
+      S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+    with:
+      dest_path: /prod/storybook
