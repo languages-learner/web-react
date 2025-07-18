@@ -147,23 +147,12 @@ jobs:
           echo "https://"$gwdomain
           echo "stage_url=https://$gwdomain" >> $GITHUB_OUTPUT
 
-      - name: Comment PR with Stage URL
+      - name: Create Comment
         if: inputs.pr_number != ''
-        uses: actions/github-script@v6
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const stageUrl = "${{ steps.configure_api_gateway.outputs.stage_url }}";
-            const prNumber = parseInt("${{ inputs.pr_number }}");
-            
-            if (stageUrl && !isNaN(prNumber)) {
-              github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: prNumber,
-                body: `🚀 Stage environment deployed successfully!\n\n**Stage URL:** ${stageUrl}`
-              });
-              console.log(`Added stage URL comment to PR #${prNumber}`);
-            } else {
-              console.log("Skipping PR comment: missing stage URL or invalid PR number");
-            }
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ inputs.pr_number }}
+          message: |
+            🚀 Stage environment deployed successfully!
+            **Stage URL:** ${stageUrl}
