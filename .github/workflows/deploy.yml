@@ -153,6 +153,8 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ inputs.pr_number }}
+          header: deploy
+          recreate: true
           message: |
             🚀 Stage environment deployed successfully!
-            **Stage URL:** ${stageUrl}
+            **Stage URL:** ${{ steps.configure_api_gateway.outputs.stage_url }}

@@ -56,6 +56,8 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ inputs.pr_number }}
+          header: storybook
+          recreate: true
           message: |
             📚 Storybook deployed successfully!
             **Storybook URL:** https://languages-learner-static.website.yandexcloud.net${{ inputs.dest_path }}/index.html
