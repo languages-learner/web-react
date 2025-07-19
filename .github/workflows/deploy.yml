@@ -54,6 +54,7 @@ jobs:
         run: git fetch origin main --depth=100
 
       - name: Cache dependencies
+        if: inputs.main == false
         id: cache
         uses: actions/cache@v3
         with:
@@ -61,12 +62,14 @@ jobs:
           key: modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install AWS CLI
+        if: inputs.main == false
         uses: unfor19/install-aws-cli-action@v1
         with:
           version: 2.22.35
           arch: amd64
 
       - name: Fetch bundle-stats (baseline) to compare with
+        if: inputs.main == false
         run: npm run bundle-stats:fetch-actual-baseline
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_KEY_ID }}
