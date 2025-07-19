@@ -59,7 +59,7 @@ jobs:
         uses: ./.github/actions/upload-to-s3
         with:
           source_path: .bundle-stats-baseline/baseline.json
-          dest_path: ${{ inputs.bundle_stats_s3_dir }}
+          dest_path: ${{ inputs.bundle_stats_s3_dir }}/baseline.json
           s3_key_id: ${{ secrets.S3_KEY_ID }}
           s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
 
