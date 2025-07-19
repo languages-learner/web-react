@@ -9,6 +9,8 @@ import { BUNDLE_STATS_BASELINE_PATH, BUNDLE_STATS_DIR } from "./project.config";
 
 dotenv.config();
 
+const isBaseline = process.env.BUNDLE_STATS_BASELINE === "true";
+
 // https://vite.dev/config/
 export default defineConfig({
     build: {
@@ -39,10 +41,12 @@ export default defineConfig({
             },
         }),
         bundleStats({
+            baseline: isBaseline,
             // .bundle-stats
             outDir: `../../${BUNDLE_STATS_DIR}`,
             baselineFilepath: `../${BUNDLE_STATS_BASELINE_PATH}`,
-            compare: true,
+            // TODO: Comparing baseline works wrong
+            compare: !isBaseline,
             json: true,
             html: true,
         }),
