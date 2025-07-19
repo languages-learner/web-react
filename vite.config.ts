@@ -2,11 +2,20 @@ import path from "path";
 
 import react from "@vitejs/plugin-react";
 import * as dotenv from "dotenv";
+import { bundleStats } from "rollup-plugin-bundle-stats";
 import { defineConfig } from "vite";
 
+import { BUNDLE_STATS_BASELINE_PATH, BUNDLE_STATS_DIR } from "./project.config";
+
 dotenv.config();
+
 // https://vite.dev/config/
 export default defineConfig({
+    build: {
+        rollupOptions: {
+            treeshake: true,
+        },
+    },
     resolve: {
         alias: {
             "@@": path.resolve(__dirname, "."),
@@ -29,19 +38,15 @@ export default defineConfig({
                 ],
             },
         }),
+        bundleStats({
+            // .bundle-stats
+            outDir: `../../${BUNDLE_STATS_DIR}`,
+            baselineFilepath: `../${BUNDLE_STATS_BASELINE_PATH}`,
+            compare: true,
+            json: true,
+            html: true,
+        }),
     ],
-    server: {
-        host: "0.0.0.0",
-        port: 5173,
-        watch: {
-            usePolling: true,
-        },
-        allowedHosts: ["host.docker.internal"],
-    },
-    preview: {
-        host: true,
-        port: 8080,
-    },
     ssr: {
         noExternal: ["@gravity-ui/uikit"],
     },

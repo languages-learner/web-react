@@ -1,0 +1,75 @@
+name: Bundle stats
+
+on:
+  workflow_call:
+    secrets:
+      S3_KEY_ID:
+        required: true
+        description: S3 key ID
+      S3_SECRET_KEY:
+        required: true
+        description: S3 secret key
+    inputs:
+      main:
+        description: Is workflow running in main branch
+        type: boolean
+        default: false
+      pr_number:
+        description: Pull request number
+        type: string
+        required: false
+      bundle_stats_s3_dir:
+        description: S3 dir to store bundle-stats
+        type: string
+        required: true
+
+jobs:
+  bundle-stats:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download bundle-stats
+        uses: actions/download-artifact@main
+        with:
+          name: bundle-stats
+          path: .bundle-stats
+
+      - name: Download bundle-stats (baseline)
+        if: inputs.main == true
+        uses: actions/download-artifact@main
+        with:
+          name: bundle-stats-baseline
+          path: .bundle-stats-baseline
+
+      - name: Upload bundle-stats to s3
+        uses: ./.github/actions/upload-to-s3
+        with:
+          source_path: .bundle-stats
+          dest_path: ${{ inputs.bundle_stats_s3_dir }}
+          s3_key_id: ${{ secrets.S3_KEY_ID }}
+          s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
+
+      - name: Upload bundle-stats (baseline) to s3
+        if: inputs.main == true
+        uses: ./.github/actions/upload-to-s3
+        with:
+          source_path: .bundle-stats-baseline/baseline.json
+          dest_path: ${{ inputs.bundle_stats_s3_dir }}
+          s3_key_id: ${{ secrets.S3_KEY_ID }}
+          s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
+
+      - name: Create Comment
+        if: inputs.pr_number != ''
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          number: ${{ inputs.pr_number }}
+          header: bundle-stats
+          recreate: true
+          message: |
+            📊 **Bundle Stats URL:** https://languages-learner-static.website.yandexcloud.net${{ inputs.bundle_stats_s3_dir }}/bundle-stats.html
