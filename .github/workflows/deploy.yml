@@ -11,6 +11,12 @@ on:
       S3_SECRET_KEY:
         required: true
         description: S3 secret key
+      SUPABASE_PROJECT_ID:
+        required: true
+      SUPABASE_PROJECT_URL:
+        required: true
+      SUPABASE_PROJECT_KEY:
+        required: true
     inputs:
       revision_name:
         type: string
@@ -60,12 +66,24 @@ jobs:
           path: ./node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
 
+      - name: Install Yandex Cloud CLI
+        uses: ./.github/actions/yc-cli-install
+        with:
+          SA_KEY: ${{ secrets.SA_DEPLOYER_PRIVATE_KEY }}
+
       - name: Install AWS CLI
         if: inputs.main == false
         uses: unfor19/install-aws-cli-action@v1
         with:
           version: 2.22.35
           arch: amd64
+
+      - name: Fill .env
+        run: |
+          cp .env.example .env
+          echo "SUPABASE_PROJECT_ID=${{ secrets.SUPABASE_PROJECT_ID }}" >> .env
+          echo "VITE_SUPABASE_PROJECT_URL=${{ secrets.SUPABASE_PROJECT_URL }}" >> .env
+          echo "VITE_SUPABASE_PROJECT_KEY=${{ secrets.SUPABASE_PROJECT_KEY }}" >> .env
 
       - name: Fetch bundle-stats (baseline) to compare with
         if: inputs.main == false
@@ -82,10 +100,6 @@ jobs:
       - name: Create Docker Image (main)
         if: inputs.main == true
         run: npm run build:baseline:docker
-
-      - name: Tag Docker Image
-        run: |
-          docker tag web-react-app cr.yandex/${{ inputs.container_registry_id }}/web-react-app:hello
 
       - name: Extract bundle-stats
         if: inputs.main == false
@@ -112,38 +126,16 @@ jobs:
           path: .bundle-stats-baseline
           include-hidden-files: true
 
-      - name: Install Yandex Cloud dependencies
+      - name: Login to Docker Hub
+        uses: ./.github/actions/login-to-yandex-docker-hub
+
+      - name: Push Docker Image
+        id: push_docker_image
         run: |
-          sudo apt-get update
-          sudo apt-get install -y bash curl jq gettext
-          # Install yq from GitHub releases (recommended on Ubuntu)
-          YQ_VERSION="v4.44.1"
-          sudo wget -q https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_amd64 -O /usr/local/bin/yq
-          sudo chmod +x /usr/local/bin/yq
-          # Install Yandex Cloud CLI
-          curl --fail -sSL -o install.sh https://storage.yandexcloud.net/yandexcloud-yc/install.sh
-          sudo bash install.sh -i /usr/local/yandex-cloud -n
-          sudo ln -s /usr/local/yandex-cloud/bin/yc /usr/local/bin/yc
-
-#          apk add yq --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
-#          curl --fail -silent --location --remote-name https://storage.yandexcloud.net/yandexcloud-yc/install.sh
-#          bash install.sh -i /usr/local/yandex-cloud -n
-#          ln -s /usr/local/yandex-cloud/bin/yc /usr/local/bin/yc
-
-      - name: Create deployer private key json
-        id: create-json
-        uses: jsdaniell/create-json@1.1.2
-        with:
-          name: "key.json"
-          json: ${{ secrets.SA_DEPLOYER_PRIVATE_KEY }}
-
-      - name: Yandex Cloud Auth
-        run: |
-          yc config profile create sa-profile
-          yc config set service-account-key key.json
-
-      - name: Revision name
-        run: echo ${{ inputs.revision_name }}
+          docker_image_tag=cr.yandex/${{ inputs.container_registry_id }}/web-react-app:${{ inputs.revision_name }}
+          docker tag web-react-app $docker_image_tag
+          docker push $docker_image_tag
+          echo "docker_image_tag=$docker_image_tag" >> $GITHUB_OUTPUT
 
       - name: Create Container
         id: create_container
@@ -159,7 +151,7 @@ jobs:
             container_id=$(echo "$container_info" | yq .id)
             echo "Container already exists with ID: $container_id"
           else
-            export container_id=$(yc serverless container create \
+            container_id=$(yc serverless container create \
               --name ${{ inputs.revision_name }} \
               --cloud-id ${{ inputs.cloud_id }} \
               --folder-name "${{ inputs.folder_name }}" | yq .id)
@@ -169,17 +161,33 @@ jobs:
           echo "container_id=$container_id" >> $GITHUB_OUTPUT
 
       - name: Deploy Container Revision
+        if: inputs.main == false
         run: |
           yc serverless container revision deploy \
             --container-name ${{ inputs.revision_name }} \
-            --image "cr.yandex/${{ inputs.container_registry_id }}/web-react-app:hello" \
+            --image "${{ steps.push_docker_image.outputs.docker_image_tag }}" \
             --cores 1 \
             --memory 512mb \
             --concurrency 1 \
-            --execution-timeout 10s \
+            --execution-timeout 30s \
             --cloud-id ${{ inputs.cloud_id }} \
             --folder-name "${{ inputs.folder_name }}" \
             --service-account-id ${{ inputs.sa_deployer_id }}
+
+      - name: Deploy Container Revision (main)
+        if: inputs.main == true
+        run: |
+          yc serverless container revision deploy \
+            --container-name ${{ inputs.revision_name }} \
+            --image "${{ steps.push_docker_image.outputs.docker_image_tag }}" \
+            --cores 2 \
+            --memory 1gb \
+            --concurrency 10 \
+            --execution-timeout 30s \
+            --cloud-id ${{ inputs.cloud_id }} \
+            --folder-name "${{ inputs.folder_name }}" \
+            --service-account-id ${{ inputs.sa_deployer_id }} \
+            --min-instances 1
 
       - name: Configure Api Gateway
         id: configure_api_gateway
