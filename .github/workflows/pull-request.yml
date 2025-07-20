@@ -22,6 +22,9 @@ jobs:
       SA_DEPLOYER_PRIVATE_KEY: ${{ secrets.SA_STAGING_DEPLOYER_PRIVATE_KEY }}
       S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
       S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+      SUPABASE_PROJECT_URL: ${{ secrets.SUPABASE_PROJECT_URL }}
+      SUPABASE_PROJECT_KEY: ${{ secrets.SUPABASE_PROJECT_KEY }}
     with:
       main: false
       pr_number: ${{ github.event.pull_request.number }}
