@@ -1,103 +1,55 @@
 import React from "react";
 
-import { PencilToSquare } from "@gravity-ui/icons";
-import { ActionsPanel, type ButtonButtonProps, Icon, Menu, Popup } from "@gravity-ui/uikit";
-
-import { WORD_STATUS_NAME, useWordMutations } from "@/entities/word";
+import { WordStatusSelector, useWordMutations } from "@/entities/word";
 import { intl } from "@/shared/i18n";
-import { withToasts } from "@/shared/ui";
-import { ApiConstants, type WordWithTranslations } from "shared/services/api";
+import { ActionsPanel, type ActionsPanelProps, withToasts } from "@/shared/ui";
+import { type WordWithTranslations } from "shared/services/api";
 
-export interface WordsTableActionsPanelProps {
+export interface WordsTableActionsPanelProps
+    extends Pick<ActionsPanelProps, "className" | "style"> {
     selectedWords: WordWithTranslations["translations"];
     onClose: () => unknown;
-    className?: string;
 }
 
 export const WordsTableActionsPanel: React.FC<WordsTableActionsPanelProps> = ({
     selectedWords,
     onClose,
-    className,
+    ...actionsPanelProps
 }) => {
-    const [open, setOpen] = React.useState(false);
-    const [buttonElement, setButtonElement] = React.useState(null);
-
     const { updateWordsStatus } = useWordMutations();
 
     return (
-        <React.Fragment>
-            <ActionsPanel
-                onClose={onClose}
-                className={className}
-                actions={[
-                    {
-                        id: "action_2",
-                        button: {
-                            props: {
-                                children: [
-                                    <Icon key="icon" data={PencilToSquare} />,
-                                    intl.formatMessage({
-                                        defaultMessage: "Update status",
-                                        id: "zCAHPc",
-                                    }),
-                                ],
-                                onClick: () => setOpen((prev) => !prev),
-                                ref: setButtonElement,
-                            } as ButtonButtonProps,
-                        },
-                        // TODO
-                        dropdown: {
-                            item: {
-                                // eslint-disable-next-line no-console
-                                action: () => console.log("click dropdown action 1"),
-                                text: intl.formatMessage({
-                                    defaultMessage: "Action 1",
-                                    id: "0TPWS1",
-                                }),
+        <ActionsPanel
+            {...actionsPanelProps}
+            onClose={onClose}
+            actions={[
+                <WordStatusSelector
+                    classNames={{
+                        trigger: "text-primary-foreground",
+                    }}
+                    key="update-status"
+                    variant="button"
+                    onUpdate={(status) => {
+                        withToasts(
+                            updateWordsStatus.mutateAsync({
+                                wordsIds: selectedWords.map((word) => word.id),
+                                status: status,
+                            }),
+                            {
+                                success: "Words statuses successfully updated!",
+                                error: "Words statuses update error",
                             },
-                        },
-                    },
-                ]}
-                renderNote={() =>
-                    intl.formatMessage(
-                        {
-                            defaultMessage: "{count} words",
-                            id: "2E0SZe",
-                        },
-                        { count: selectedWords.length },
-                    )
-                }
-            />
-            <Popup
-                anchorElement={buttonElement}
-                open={open}
-                placement="bottom"
-                onOpenChange={(value) => setOpen(value)}
-            >
-                <Menu>
-                    {ApiConstants.public.Enums.UserWordStatus.map((wordStatus) => (
-                        <Menu.Item
-                            key={wordStatus}
-                            onClick={() => {
-                                withToasts(
-                                    updateWordsStatus.mutateAsync({
-                                        wordsIds: selectedWords.map((word) => word.id),
-                                        status: wordStatus,
-                                    }),
-                                    {
-                                        name: "wordsTableUpdateStatuses",
-                                        success: "Words statuses successfully updated!",
-                                        error: "Words statuses update error",
-                                    },
-                                );
-                                setOpen(false);
-                            }}
-                        >
-                            {WORD_STATUS_NAME[wordStatus]}
-                        </Menu.Item>
-                    ))}
-                </Menu>
-            </Popup>
-        </React.Fragment>
+                        );
+                    }}
+                />,
+            ]}
+            note={intl.formatMessage(
+                {
+                    defaultMessage: "{count} words",
+                    id: "2E0SZe",
+                },
+                { count: selectedWords.length },
+            )}
+        />
     );
 };

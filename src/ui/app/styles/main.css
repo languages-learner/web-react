@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+@import "tailwindcss";
+
+@config '../../../../tailwind.config.js';
+
+body {
+    --app-actions-panel-height: 52px;
+    --app-layout-header-height: 64px;
+    --workspace-page-max-width: 900px;
+
+    font-family: 'Inter', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.dark body {
+    /* TODO: Better solution */
+    /* Landing page backgound gradient */
+    --color-private-green-50: rgba(77, 176, 155, 0.1);
+    /* Landing page backgound gradient */
+    --color-private-green-350: rgba(77, 176, 155, 0.6);
+    --color-text-link: rgb(97, 131, 110);
+    --color-base-generic-ultralight: rgb(38, 34, 38);
+}
+
+.light body {
+    --color-private-green-50: rgba(50, 186, 118, .1);
+    --color-private-green-350: rgba(50, 186, 118, .6);
+    --color-text-link: rgb(25, 147, 83);
+    --color-base-generic-ultralight: rgb(250, 250, 250);
+}

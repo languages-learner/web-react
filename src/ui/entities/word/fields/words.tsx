@@ -1,7 +1,7 @@
-import { Pencil, TrashBin } from "@gravity-ui/icons";
-import { selectionColumn } from "@gravity-ui/table";
-import { type ColumnDef } from "@gravity-ui/table/tanstack";
-import { Button, Flex, Icon, Popover, Text, spacing } from "@gravity-ui/uikit";
+import { Button } from "@heroui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
+import { type ColumnDef } from "@tanstack/react-table";
+import { BiPencil, BiTrash } from "react-icons/bi";
 
 import {
     type AddWordTranslationFormType,
@@ -9,7 +9,7 @@ import {
 } from "@/features/words/addWordTranslationsForm";
 import { InlineWordTranslationsList } from "@/features/words/inlineWordTranslationsList";
 import { intl } from "@/shared/i18n";
-import { type ColumnsDef } from "@/shared/ui/Table";
+import { type ColumnsDef, selectionColumn } from "@/shared/ui";
 import { type ApiDatabase, type WordWithTranslations } from "shared/services/api";
 
 import { WordStatusSelector } from "../ui/WordStatusSelector";
@@ -35,11 +35,11 @@ export const wordColumns = {
         id: "text-with-translations",
         cell: (props) => {
             return (
-                <Flex direction={"column"} gap={3}>
-                    <Text color={"positive"}>{props.row.original.text}</Text>
+                <div className="flex flex-col gap-3">
+                    <span className="text-success">{props.row.original.text}</span>
 
                     {columnProps.editView(props.row.original) ? (
-                        <Flex gap={2} wrap={"wrap"}>
+                        <div className="flex flex-wrap gap-2">
                             <InlineWordTranslationsList
                                 translations={props.row.original.translations}
                                 onDeleteTranslation={(translation) =>
@@ -58,15 +58,15 @@ export const wordColumns = {
                                 }}
                                 baseTranslationLanguage={columnProps.baseTranslationLanguage}
                             />
-                        </Flex>
+                        </div>
                     ) : (
-                        <Text>
+                        <span>
                             {props.row.original.translations
                                 .map((translation) => translation.text)
                                 .join(", ")}
-                        </Text>
+                        </span>
                     )}
-                </Flex>
+                </div>
             );
         },
         size: 600,
@@ -79,18 +79,19 @@ export const wordColumns = {
         id: "edit",
         cell: (props) => (
             <Button
-                view={columnProps.editView(props.row.original) ? "flat-success" : "flat"}
-                onClick={() => columnProps.onEditClick({ item: props.row.original })}
+                isIconOnly
+                size="sm"
+                variant={"light"}
+                onPress={() => columnProps.onEditClick({ item: props.row.original })}
                 style={{ opacity: 0.5 }}
+                color={columnProps.editView(props.row.original) ? "success" : "default"}
             >
-                <Button.Icon>
-                    <Icon data={Pencil} />
-                </Button.Icon>
+                <BiPencil size={16} />
             </Button>
         ),
-        size: 40,
-        minSize: 40,
-        maxSize: 40,
+        size: 50,
+        minSize: 50,
+        maxSize: 50,
     }),
     status: (columnProps: {
         onUpdate: (
@@ -109,46 +110,49 @@ export const wordColumns = {
                     })
                 }
                 status={props.row.original.status}
+                variant="icon"
             />
         ),
-        size: 40,
-        minSize: 40,
-        maxSize: 40,
+        size: 50,
+        minSize: 50,
+        maxSize: 50,
     }),
     delete: (columnProps: {
         onDelete: (payload: BaseColumnCallbackPayload) => Promise<unknown>;
     }) => ({
         id: "delete",
         cell: (props) => (
-            <Popover
-                trigger={"click"}
-                content={
-                    <Flex className={spacing({ p: 2 })} gap={3} alignItems="center">
-                        <Text>Delete word?</Text>
-                        <div>
-                            <Button
-                                view={"outlined-danger"}
-                                color={"danger"}
-                                onClick={() => columnProps.onDelete({ item: props.row.original })}
-                            >
-                                {intl.formatMessage({
-                                    defaultMessage: "Delete",
-                                    id: "K3r6DQ",
-                                })}
-                            </Button>
+            <Popover placement="bottom">
+                <PopoverTrigger>
+                    <Button isIconOnly size="sm" variant={"light"} style={{ opacity: 0.5 }}>
+                        <BiTrash size={16} />
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent className="p-3">
+                    <div className="flex items-center gap-2">
+                        <div className="text-small">
+                            {intl.formatMessage({
+                                defaultMessage: "Delete word?",
+                                id: "C3rwYs",
+                            })}
                         </div>
-                    </Flex>
-                }
-            >
-                <Button view={"flat"} style={{ opacity: 0.5 }}>
-                    <Button.Icon>
-                        <Icon data={TrashBin} />
-                    </Button.Icon>
-                </Button>
+                        <Button
+                            onPress={() => columnProps.onDelete({ item: props.row.original })}
+                            size="sm"
+                            color="danger"
+                            variant="bordered"
+                        >
+                            {intl.formatMessage({
+                                defaultMessage: "Delete",
+                                id: "K3r6DQ",
+                            })}
+                        </Button>
+                    </div>
+                </PopoverContent>
             </Popover>
         ),
-        size: 40,
-        minSize: 40,
-        maxSize: 40,
+        size: 50,
+        minSize: 50,
+        maxSize: 50,
     }),
 } satisfies ColumnsDef<WordWithTranslations>;

@@ -1,9 +1,7 @@
 import React from "react";
 
 import { useQueryData } from "@gravity-ui/data-source";
-import { Table, useTable } from "@gravity-ui/table";
-import { type RowSelectionState, getCoreRowModel } from "@gravity-ui/table/tanstack";
-import { Flex } from "@gravity-ui/uikit";
+import { type RowSelectionState, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 
 import { useUserSafe } from "@/entities/user";
 import { wordsDataSource } from "@/entities/word";
@@ -18,17 +16,19 @@ import { DataInfiniteLoader } from "@/shared/data-source";
 import { intl } from "@/shared/i18n";
 import { useDebounceState } from "@/shared/react-utils";
 import {
+    type ActionsPanelProps,
     PlaceholderContainer,
     PlaceholderContainerStatus,
     useTableRowsSelection,
 } from "@/shared/ui";
+import { Table } from "@/shared/ui/Table";
 import { type FetchWordsRequest } from "shared/services/api";
 
 import { WordsTableActionsPanel } from "./WordsTableActionsPanel";
 
 export interface WordsTableWithFiltersProps {
     renderWordsTableActionsPanel: (
-        render: ({ className }: { className: string }) => React.ReactNode,
+        render: (props: Pick<ActionsPanelProps, "className" | "style">) => React.ReactNode,
     ) => unknown;
 }
 
@@ -64,7 +64,7 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
     const showPlaceholders = !showAddWordCard;
 
     const { wordsTableColumns } = useWordsTableColumns();
-    const table = useTable({
+    const table = useReactTable({
         columns: wordsTableColumns,
         data: wordsQuery.data,
         getCoreRowModel: getCoreRowModel(),
@@ -123,19 +123,18 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                                 defaultMessage: "Add your first word",
                                 id: "mNsvXG",
                             }),
-                            onClick: () => {
+                            onPress: () => {
                                 setShowAddWordCard(true);
                             },
                         },
                     ]}
-                    size={"m"}
                 />
             );
         }
 
         return (
             <React.Fragment>
-                <Table table={table} withHeader={false} />
+                <Table table={table} removeWrapper hideHeader isStriped />
                 {showPlaceholders && wordsQuery.data.length === 0 ? (
                     <PlaceholderContainer
                         status={PlaceholderContainerStatus.NoSearchResults}
@@ -153,12 +152,11 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                                     defaultMessage: "Clear filters",
                                     id: "F4gyn3",
                                 }),
-                                onClick: () => {
+                                onPress: () => {
                                     setFilters(initialFilters);
                                 },
                             },
                         ]}
-                        size={"m"}
                     />
                 ) : null}
             </React.Fragment>
@@ -166,9 +164,10 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
     };
 
     return (
-        <Flex justifyContent={"center"} direction={"column"} gap={5}>
+        <div className="flex flex-col justify-center gap-5">
             {hasWordsOrUseFilter ? (
                 <WordsTableFilters
+                    className="pl-3"
                     filters={filters}
                     onUpdate={(value) => {
                         toggleAllRowsSelected(false);
@@ -185,6 +184,7 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                     onClose={() => setShowAddWordCard(false)}
                     onSubmit={() => setShowAddWordCard(false)}
                     sourceWord={filters.text}
+                    className="border-medium border-default-200"
                 />
             ) : null}
 
@@ -195,10 +195,9 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
                 hasNextPage={wordsQuery.hasNextPage}
                 fetchNextPage={wordsQuery.fetchNextPage}
                 isFetchingNextPage={wordsQuery.isFetchingNextPage}
-                errorViewProps={{ size: "m" }}
             >
                 {tableContent()}
             </DataInfiniteLoader>
-        </Flex>
+        </div>
     );
 };

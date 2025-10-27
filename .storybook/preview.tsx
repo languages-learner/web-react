@@ -1,20 +1,18 @@
-import { DocsDecorator } from "./decorators/DocsDecorator";
-import { WithTheme } from "./decorators/withTheme";
-import { themes } from "./theme";
+import { HeroUIProvider } from "@heroui/system";
+import { themes } from "@storybook/theming";
 
 import type { Preview } from "@storybook/react-vite";
 
-import "../src/ui/app/styles/gravity-imports.css";
-import "../src/ui/app/styles/gravity-theme.css";
-import "../src/ui/app/styles/reset.css";
+import "./style.css";
+
+const commonTheme = {
+    brandTitle: "LanguagesLearner UI",
+    brandUrl: "https://github.com/languages-learner/web-react",
+    brandTarget: "_self",
+};
 
 const preview: Preview = {
     parameters: {
-        docs: {
-            theme: themes.light,
-            container: DocsDecorator,
-            codePanel: true,
-        },
         controls: {
             matchers: {
                 color: /(background|color)$/i,
@@ -28,22 +26,31 @@ const preview: Preview = {
             test: "todo",
         },
         jsx: { showFunctions: true },
-    },
-    decorators: [WithTheme],
-    globalTypes: {
-        theme: {
-            defaultValue: "light",
-            toolbar: {
-                title: "Theme",
-                icon: "mirror",
-                items: [
-                    { value: "light", right: "☼", title: "Light" },
-                    { value: "dark", right: "☾", title: "Dark" },
-                ],
-                dynamicTitle: true,
+        darkMode: {
+            current: "dark",
+            stylePreview: true,
+            darkClass: "dark",
+            lightClass: "light",
+            classTarget: "html",
+            dark: {
+                ...themes.dark,
+                ...commonTheme,
+            },
+            light: {
+                ...themes.light,
+                ...commonTheme,
             },
         },
     },
+    decorators: [
+        (Story) => {
+            return (
+                <HeroUIProvider>
+                    <Story />
+                </HeroUIProvider>
+            );
+        },
+    ],
 };
 
 export default preview;

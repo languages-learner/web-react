@@ -26,9 +26,6 @@
   "0LJt/8": {
     "defaultMessage": "Avestan"
   },
-  "0TPWS1": {
-    "defaultMessage": "Action 1"
-  },
   "0UZEdY": {
     "defaultMessage": "Tatar"
   },
@@ -145,6 +142,9 @@
   },
   "C/Mko+": {
     "defaultMessage": "Chamorro"
+  },
+  "C3rwYs": {
+    "defaultMessage": "Delete word?"
   },
   "C5R307": {
     "defaultMessage": "Igbo"
@@ -389,6 +389,9 @@
   "YcU0hY": {
     "defaultMessage": "Walloon"
   },
+  "YeKWbP": {
+    "defaultMessage": "Authentication"
+  },
   "YqsgWz": {
     "defaultMessage": "Slovenian"
   },
@@ -403,6 +406,9 @@
   },
   "Zv4RBA": {
     "defaultMessage": "Maori"
+  },
+  "aA8bDw": {
+    "defaultMessage": "Text"
   },
   "aE6o25": {
     "defaultMessage": "Nepali"
@@ -442,6 +448,9 @@
   },
   "ce6brX": {
     "defaultMessage": "Tsonga"
+  },
+  "cmJriL": {
+    "defaultMessage": "© {year}. <repo-link>languages-learner/web-react</repo-link>. Developed by <profile-link>Aleksandr Chernigin</profile-link>"
   },
   "ctFmEz": {
     "defaultMessage": "Armenian"
@@ -524,6 +533,9 @@
   "jrBc71": {
     "defaultMessage": "Northern Ndebele"
   },
+  "jrzPeb": {
+    "defaultMessage": "Languages<br></br>Learner"
+  },
   "kDcfg3": {
     "defaultMessage": "Western Frisian"
   },
@@ -556,9 +568,6 @@
   },
   "l8QLOY": {
     "defaultMessage": "Malayalam"
-  },
-  "landing-about": {
-    "defaultMessage": "© {year}. <repo-link>languages-learner/web-react</repo-link>. Developed by <profile-link>Aleksandr Chernigin</profile-link>"
   },
   "lbsCV3": {
     "defaultMessage": "Volap_k"
@@ -622,9 +631,6 @@
   },
   "rtJ7E1": {
     "defaultMessage": "Pashto, Pushto"
-  },
-  "sCxNP9": {
-    "defaultMessage": "Languages Learner"
   },
   "sM7TRG": {
     "defaultMessage": "Interface language"
@@ -700,6 +706,9 @@
   },
   "xzyHM+": {
     "defaultMessage": "Vietnamese"
+  },
+  "y1Z3or": {
+    "defaultMessage": "Language"
   },
   "yJmS3E": {
     "defaultMessage": "Norwegian Nynorsk"

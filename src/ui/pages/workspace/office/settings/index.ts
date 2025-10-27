@@ -1,1 +1,1 @@
-export * from "./ui/OfficeSettingsPage";
+export { OfficeSettingsPage } from "./ui/OfficeSettingsPage";

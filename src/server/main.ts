@@ -14,7 +14,7 @@ import { userMiddleware } from "./middlewares/user";
 dotenv.config();
 
 const isProduction = process.env.NODE_ENV === "production";
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5173;
 const base = process.env.BASE || "/";
 
 const createServer = async () => {
@@ -68,7 +68,7 @@ const createServer = async () => {
             const html = template
                 .replace(`<!--app-head-->`, rendered.head ?? "")
                 .replace(`<!--app-html-->`, rendered.html ?? "")
-                .replace(`<body>`, `<body class="g-root g-root_theme_${res.locals.theme}">`)
+                .replace(`<html`, `<html class="${res.locals.theme}"`)
                 .replace("window.CLIENT = {}", `window.CLIENT = ${JSON.stringify(res.locals)}`);
 
             res.status(200).set({ "Content-Type": "text/html" }).send(html);

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { TextInput } from "@gravity-ui/uikit";
+import { Input } from "@heroui/input";
 
 import { FormRowsContainer } from "../FormRowsContainer";
 
@@ -23,13 +23,13 @@ export const Default: Story = {
         children: (
             <React.Fragment>
                 <FormRowsContainer.Row title={"Small title"}>
-                    <TextInput />
+                    <Input placeholder="Your text" />
                 </FormRowsContainer.Row>
                 <FormRowsContainer.Row title={"Very very very long title"}>
-                    <TextInput />
+                    <Input placeholder="Your text" />
                 </FormRowsContainer.Row>
                 <FormRowsContainer.Row title={"Medium title"}>
-                    <TextInput />
+                    <Input placeholder="Your text" />
                 </FormRowsContainer.Row>
             </React.Fragment>
         ),

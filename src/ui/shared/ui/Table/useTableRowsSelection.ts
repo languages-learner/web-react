@@ -1,6 +1,6 @@
 import React from "react";
 
-import { type Table } from "@gravity-ui/table/tanstack";
+import { type Table } from "@tanstack/react-table";
 
 export interface UseTableSelectionProps {
     // eslint-disable-next-line

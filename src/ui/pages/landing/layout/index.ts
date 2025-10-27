@@ -1,1 +1,1 @@
-export * from "./ui/LandingLayout";
+export { LandingLayout, type LandingLayoutProps } from "./ui/LandingLayout";

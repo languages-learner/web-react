@@ -1,1 +1,4 @@
-export * from "./ui/InlineWordTranslationsList";
+export {
+    InlineWordTranslationsList,
+    type InlineWordTranslationsListProps,
+} from "./ui/InlineWordTranslationsList";

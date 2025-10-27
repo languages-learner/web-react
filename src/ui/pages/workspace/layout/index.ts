@@ -1,1 +1,1 @@
-export * from "./ui/WorkspaceLayout";
+export { WorkspaceLayout, type WorkspaceLayoutProps } from "./ui/WorkspaceLayout";

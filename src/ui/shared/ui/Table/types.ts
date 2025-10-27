@@ -1,4 +1,4 @@
-import { type ColumnDef, type RowData } from "@gravity-ui/table/tanstack";
+import { type ColumnDef, type RowData } from "@tanstack/react-table";
 
 export type ColumnDefFactory<TData extends RowData = unknown, TValue = unknown> = (
     props: never,

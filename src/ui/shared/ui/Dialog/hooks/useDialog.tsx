@@ -1,8 +1,8 @@
 import React from "react";
 
-import { type DialogProps as BaseDialogProps } from "@gravity-ui/uikit";
+import { type ModalProps } from "@heroui/modal";
 
-type DialogProps = Pick<BaseDialogProps, "open" | "onClose" | "onOpenChange">;
+type DialogProps = Pick<ModalProps, "isOpen" | "onClose" | "onOpenChange">;
 
 type DialogRenderer = (props: DialogProps) => React.ReactNode;
 
@@ -15,7 +15,7 @@ export const useDialog = (renderer: DialogRenderer) => {
     const DialogElement = React.useMemo(
         () =>
             renderer({
-                open: isOpen,
+                isOpen,
                 onClose: hide,
                 onOpenChange: (value) => {
                     if (value) {

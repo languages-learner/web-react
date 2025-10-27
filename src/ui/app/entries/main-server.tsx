@@ -1,9 +1,8 @@
 import React from "react";
 
-import { Loader } from "@gravity-ui/uikit";
 import { renderToString } from "react-dom/server";
 
-const isProduction = process.env.NODE_ENV === "production";
+import { Loader } from "@/shared/ui";
 
 export const render = () => {
     const html = renderToString(
@@ -17,19 +16,10 @@ export const render = () => {
                     alignItems: "center",
                 }}
             >
-                <Loader size={"l"} />
+                <Loader size={"lg"} />
             </div>
         </React.StrictMode>,
     );
 
-    const head = isProduction
-        ? ``
-        : `
-        <link rel="stylesheet" href="/src/ui/app/styles/gravity-imports.css" />
-        <link rel="stylesheet" href="/src/ui/app/styles/gravity-theme.css" />
-        <link rel="stylesheet" href="/src/ui/app/styles/reset.css" />
-        <link rel="stylesheet" href="/node_modules/@gravity-ui/uikit/build/esm/components/Loader/Loader.css" />
-    `;
-
-    return { html, head };
+    return { html };
 };

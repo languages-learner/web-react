@@ -13,6 +13,7 @@ export const userMiddleware = async function (req: Request, res: Response, next:
     try {
         const user = await supabaseClient.auth.getUser();
         if (user.data.user) {
+            // eslint-disable-next-line no-param-reassign
             res.locals.user = user.data.user;
         }
     } catch {
@@ -21,6 +22,7 @@ export const userMiddleware = async function (req: Request, res: Response, next:
 
     try {
         const userSettings = await sdk.user.fetchUser();
+        // eslint-disable-next-line no-param-reassign
         res.locals.userSettings = userSettings;
     } catch {
         /* empty */

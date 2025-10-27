@@ -1,1 +1,1 @@
-export * from "./ui/LanguageSelector";
+export { LanguageSelector, type LanguageSelectorProps } from "./ui/LanguageSelector";

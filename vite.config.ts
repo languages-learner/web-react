@@ -1,5 +1,6 @@
 import path from "path";
 
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import * as dotenv from "dotenv";
 import { bundleStats } from "rollup-plugin-bundle-stats";
@@ -50,8 +51,14 @@ export default defineConfig({
             json: true,
             html: true,
         }),
+        tailwindcss({
+            optimize: {
+                minify: true,
+            },
+        }),
     ],
-    ssr: {
-        noExternal: ["@gravity-ui/uikit"],
+    server: {
+        // For docker tests running on DEV server (npm run dev)
+        allowedHosts: ["host.docker.internal"],
     },
 });

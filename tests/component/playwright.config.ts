@@ -1,6 +1,7 @@
 import * as path from "path";
 
 import { defineConfig, devices } from "@playwright/experimental-ct-react";
+import tailwindcss from "@tailwindcss/vite";
 
 const pathFromRoot = (p: string) => {
     return path.resolve(__dirname, "../..", p);
@@ -41,6 +42,7 @@ export default defineConfig({
                     shared: pathFromRoot("./src/shared"),
                 },
             },
+            plugins: [tailwindcss()],
         },
     },
     /* Configure projects for major browsers */
