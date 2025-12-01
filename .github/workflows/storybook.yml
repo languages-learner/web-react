@@ -45,7 +45,7 @@ jobs:
       - name: Deploy storybook build to s3
         uses: ./.github/actions/upload-to-s3
         with:
-          source_path: .storybook/dist
+          source_path: dist-storybook
           dest_path: ${{ inputs.dest_path }}
           s3_key_id: ${{ secrets.S3_KEY_ID }}
           s3_secret_key: ${{ secrets.S3_SECRET_KEY }}

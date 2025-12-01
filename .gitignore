@@ -5,6 +5,7 @@ node_modules
 dist
 dist-ssr
 dist-docker
+dist-storybook
 .typecheck
 
 # pwa
