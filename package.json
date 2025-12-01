@@ -8,7 +8,7 @@
     "build:baseline:docker": "npm run build:docker -- --build-arg BUNDLE_STATS_BASELINE=true",
     "build:client": "npm run i18n:manage && vite build --outDir dist/client",
     "build:server": "vite build --ssr src/ui/app/entries/main-server.tsx --outDir dist/server",
-    "build:storybook": "storybook build -o .storybook/dist",
+    "build:storybook": "storybook build -o dist-storybook",
     "bundle-stats:fetch-actual-baseline": "ts-node --project ./scripts/tsconfig.json ./scripts/bundle-stats/fetch-actual-baseline.ts",
     "bundle-stats:get-from-docker": "ts-node --project ./scripts/tsconfig.json ./scripts/bundle-stats/get-bundle-stats.ts --docker-image web-react-app",
     "bundle-stats:get-from-docker:baseline": "npm run bundle-stats:get-from-docker -- --baseline",
@@ -18,14 +18,15 @@
     "generate-types": "ts-node --project ./scripts/tsconfig.json ./scripts/generate-db-types.ts",
     "i18n:extract": "formatjs extract \"src/**/*.{ts,tsx}\" --ignore=\"**/*.d.ts\" --out-file src/locales/extracted.json --id-interpolation-pattern [sha512:contenthash:base64:6]",
     "i18n:manage": "ts-node --project ./scripts/tsconfig.json scripts/manage-translations.ts",
-    "lint": "eslint --config ./eslint.config.mjs .",
+    "lint": "eslint --concurrency=auto --config ./eslint.config.mjs .",
+    "lint:performance": "cross-env TIMING=1 npm run lint",
     "lint:fix": "npm run lint -- --fix",
     "playwright:install": "npx playwright install --with-deps",
     "prepare": "husky",
     "preview": "cross-env NODE_ENV=production nodemon -x tsx src/server/main.ts",
     "sanitize-har": "ts-node --project ./scripts/tsconfig.json ./scripts/sanitize-har-files.ts",
     "storybook": "storybook dev --no-open -p 6006",
-    "stylelint": "stylelint \"**/*.scss\"",
+    "stylelint": "stylelint \"**/*.{css,scss}\" \".storybook/**/*.{css,scss}\"",
     "stylelint:fix": "npm run stylelint -- --fix",
     "test:component": "playwright test --config=tests/component/playwright.config.ts",
     "test:component:docker": "docker compose run --rm playwright-ct test:component",
@@ -41,7 +42,7 @@
     "knip": "knip --config ./knip.config.ts"
   },
   "lint-staged": {
-    "**/*.scss": [
+    "**/*.{css,scss}": [
       "stylelint --fix"
     ],
     "**/*": [
@@ -94,7 +95,7 @@
     "zod": "^3.25.23"
   },
   "devDependencies": {
-    "@eslint/js": "^9.22.0",
+    "@eslint/js": "^9.39.1",
     "@formatjs/cli": "^6.7.1",
     "@gravity-ui/eslint-config": "^4.0.1",
     "@playwright/experimental-ct-react": "^1.52.0",
@@ -122,7 +123,7 @@
     "cross-env": "^7.0.3",
     "crypto": "^1.0.1",
     "dotenv": "^16.5.0",
-    "eslint": "^9.26.0",
+    "eslint": "^9.39.1",
     "eslint-plugin-formatjs": "^5.3.1",
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-import-newlines": "^1.4.0",
@@ -147,9 +148,9 @@
     "storybook": "^9.0.3",
     "stylelint": "^16.20.0",
     "stylelint-config-rational-order": "^0.1.2",
-    "stylelint-config-recommended-scss": "^15.0.1",
+    "stylelint-config-standard": "^39.0.1",
+    "stylelint-config-standard-scss": "^16.0.0",
     "stylelint-order": "^7.0.0",
-    "stylelint-scss": "^6.12.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "~5.7.2",
