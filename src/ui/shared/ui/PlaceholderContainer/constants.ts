@@ -1,14 +1,14 @@
-import { Folder, FolderMagnifier, Hammer } from "@gravity-ui/icons";
-import { type IconData } from "@gravity-ui/uikit";
+import { BiErrorAlt, BiFolder, BiFolderMinus } from "react-icons/bi";
+import { type IconType } from "react-icons/lib";
 
 export enum PlaceholderContainerStatus {
-    Empty,
-    NoSearchResults,
-    Error,
+    Empty = "Empty",
+    NoSearchResults = "NoSearchResults",
+    Error = "Error",
 }
 
-export const STATUS_ICON: Record<PlaceholderContainerStatus, IconData> = {
-    [PlaceholderContainerStatus.Empty]: Folder,
-    [PlaceholderContainerStatus.NoSearchResults]: FolderMagnifier,
-    [PlaceholderContainerStatus.Error]: Hammer,
+export const STATUS_ICON: Record<PlaceholderContainerStatus, IconType> = {
+    [PlaceholderContainerStatus.Empty]: BiFolder,
+    [PlaceholderContainerStatus.NoSearchResults]: BiFolderMinus,
+    [PlaceholderContainerStatus.Error]: BiErrorAlt,
 };

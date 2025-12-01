@@ -1,6 +1,6 @@
 import React from "react";
 
-import { type ColumnDef } from "@gravity-ui/table/tanstack";
+import { type ColumnDef } from "@tanstack/react-table";
 
 import { useUserSafe } from "@/entities/user";
 import { useWordMutations, wordColumns } from "@/entities/word";
@@ -28,7 +28,6 @@ export const useWordsTableColumns = () => {
                             translations: [translation],
                         }),
                         {
-                            name: "wordsTableAddWord",
                             success: intl.formatMessage({
                                 defaultMessage: "Word successfully added!",
                                 id: "OEgSz2",
@@ -47,7 +46,6 @@ export const useWordsTableColumns = () => {
                             translationsIds: [translationId],
                         }),
                         {
-                            name: "wordsTableDeleteWordTranslations",
                             success: intl.formatMessage({
                                 defaultMessage: "Word translation successfully deleted!",
                                 id: "Sq5NhR",
@@ -67,7 +65,6 @@ export const useWordsTableColumns = () => {
                             status,
                         }),
                         {
-                            name: "words-table-update-word-status",
                             success: intl.formatMessage({
                                 defaultMessage: "Status successfully updated!",
                                 id: "WnQWEt",
@@ -97,7 +94,6 @@ export const useWordsTableColumns = () => {
             wordColumns.delete({
                 onDelete: ({ item }) => {
                     return withToasts(deleteWords.mutateAsync({ wordIds: [item.id] }), {
-                        name: "wordsTableDeleteWord",
                         success: intl.formatMessage({
                             defaultMessage: "Word successfully deleted!",
                             id: "u/yYaU",

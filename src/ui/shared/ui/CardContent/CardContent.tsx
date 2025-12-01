@@ -1,9 +1,12 @@
 import React from "react";
 
-import { Xmark } from "@gravity-ui/icons";
-import { Button, Card, type CardProps, Flex, Icon, Text, spacing } from "@gravity-ui/uikit";
+import { Button } from "@heroui/button";
+import { Card, CardBody, CardHeader, type CardProps } from "@heroui/card";
+import { BiX } from "react-icons/bi";
 
-export type CardContentProps = CardProps & {
+import { classNames } from "@/shared/class-names";
+
+export type CardContentProps = Pick<CardProps, "children" | "className" | "classNames"> & {
     title?: string;
     closable?: boolean;
     onClose?: () => void;
@@ -19,22 +22,26 @@ export const CardContent: React.FC<CardContentProps> = ({
     const hasHeader = Boolean(title) || closable;
 
     return (
-        <Card {...cardProps}>
-            <Flex className={spacing({ p: 6 })} direction={"column"} gap={8}>
-                {hasHeader ? (
-                    <Flex justifyContent={"space-between"}>
-                        {title ? <Text variant="subheader-3">{title}</Text> : null}
+        <Card
+            {...cardProps}
+            shadow={"none"}
+            classNames={{
+                base: classNames("p-2", cardProps.classNames?.base),
+            }}
+        >
+            {hasHeader ? (
+                <CardHeader>
+                    <div className="flex w-full items-center justify-between">
+                        {title ? <h3 className="text-lg font-bold">{title}</h3> : null}
                         {closable ? (
-                            <Button view="flat" onClick={onClose}>
-                                <Button.Icon>
-                                    <Icon data={Xmark} />
-                                </Button.Icon>
+                            <Button variant="light" isIconOnly onPress={onClose} size="sm">
+                                <BiX size={16} />
                             </Button>
                         ) : null}
-                    </Flex>
-                ) : null}
-                {children}
-            </Flex>
+                    </div>
+                </CardHeader>
+            ) : null}
+            <CardBody>{children}</CardBody>
         </Card>
     );
 };

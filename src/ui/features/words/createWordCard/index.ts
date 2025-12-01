@@ -1,1 +1,1 @@
-export * from "./ui/CreateWordCard";
+export { CreateWordCard } from "./ui/CreateWordCard";

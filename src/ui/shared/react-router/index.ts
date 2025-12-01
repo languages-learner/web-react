@@ -8,4 +8,4 @@ export {
     patchToWithLocale,
 } from "./locale";
 export { useNavigate } from "./useNavigate";
-export { useIsMatched } from "./useIsMatched";
+export { useIsRouteMatched } from "./useIsRouteMatched";

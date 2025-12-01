@@ -1,20 +1,26 @@
 import React from "react";
 
-import { Select, type SelectProps } from "@gravity-ui/uikit";
+import { Select, SelectItem, type SelectProps } from "@heroui/select";
 
-import { ApiConstants, type ApiDatabase } from "shared/services/api";
+import { classNames } from "@/shared/class-names";
+import { ApiConstants } from "shared/services/api";
 
 import { THEME_NAME } from "./constants";
 
-export type ThemeSelectorProps = Omit<SelectProps, "options">;
+export type ThemeSelectorProps = Omit<SelectProps, "children">;
 
 export const ThemeSelector: React.FC<ThemeSelectorProps> = ({ ...selectProps }) => {
     return (
-        <Select<ApiDatabase["public"]["Enums"]["Theme"]> {...selectProps}>
+        <Select
+            variant="bordered"
+            {...selectProps}
+            classNames={{
+                ...selectProps.classNames,
+                trigger: classNames(selectProps.classNames?.trigger, "cursor-pointer"),
+            }}
+        >
             {ApiConstants.public.Enums.Theme.map((theme) => (
-                <Select.Option key={theme} value={theme}>
-                    {THEME_NAME[theme]}
-                </Select.Option>
+                <SelectItem key={theme}>{THEME_NAME[theme]}</SelectItem>
             ))}
         </Select>
     );

@@ -1,6 +1,6 @@
 {
   "+CwN9C": {
-    "defaultMessage": "[NEEDS_TRANSLATION] System"
+    "defaultMessage": "Системная"
   },
   "+oXbh6": {
     "defaultMessage": "Лингала"
@@ -25,9 +25,6 @@
   },
   "0LJt/8": {
     "defaultMessage": "Авестийский"
-  },
-  "0TPWS1": {
-    "defaultMessage": "Действие 1"
   },
   "0UZEdY": {
     "defaultMessage": "Татарский"
@@ -66,7 +63,7 @@
     "defaultMessage": "Валлийский"
   },
   "3cc4Ct": {
-    "defaultMessage": "[NEEDS_TRANSLATION] Light"
+    "defaultMessage": "Светлая"
   },
   "4LgU10": {
     "defaultMessage": "Тайский"
@@ -146,6 +143,9 @@
   "C/Mko+": {
     "defaultMessage": "Чаморро"
   },
+  "C3rwYs": {
+    "defaultMessage": "Удалить слово?"
+  },
   "C5R307": {
     "defaultMessage": "Игбо"
   },
@@ -213,7 +213,7 @@
     "defaultMessage": "Изучаю"
   },
   "IcY6iN": {
-    "defaultMessage": "[NEEDS_TRANSLATION] User theme successfully updated!"
+    "defaultMessage": "Выбрання тема успешно обновлена!"
   },
   "JBILTX": {
     "defaultMessage": "Навахо"
@@ -276,7 +276,7 @@
     "defaultMessage": "Идо"
   },
   "Pe0ogR": {
-    "defaultMessage": "[NEEDS_TRANSLATION] Theme"
+    "defaultMessage": "Тема"
   },
   "PurNgG": {
     "defaultMessage": "Турецкий"
@@ -389,6 +389,9 @@
   "YcU0hY": {
     "defaultMessage": "Валлонский"
   },
+  "YeKWbP": {
+    "defaultMessage": "Аутентификация"
+  },
   "YqsgWz": {
     "defaultMessage": "Словенский"
   },
@@ -403,6 +406,9 @@
   },
   "Zv4RBA": {
     "defaultMessage": "Маори"
+  },
+  "aA8bDw": {
+    "defaultMessage": "Текст"
   },
   "aE6o25": {
     "defaultMessage": "Непальский"
@@ -442,6 +448,9 @@
   },
   "ce6brX": {
     "defaultMessage": "Тсонга"
+  },
+  "cmJriL": {
+    "defaultMessage": "© {year}. <repo-link>languages-learner/web-react</repo-link>. Developed by <profile-link>Aleksandr Chernigin</profile-link>"
   },
   "ctFmEz": {
     "defaultMessage": "Армянский"
@@ -524,6 +533,9 @@
   "jrBc71": {
     "defaultMessage": "Северный Ндебеле"
   },
+  "jrzPeb": {
+    "defaultMessage": "Languages<br></br>Learner"
+  },
   "kDcfg3": {
     "defaultMessage": "Западно-фризский"
   },
@@ -556,9 +568,6 @@
   },
   "l8QLOY": {
     "defaultMessage": "Малаялам"
-  },
-  "landing-about": {
-    "defaultMessage": "© {year}. <repo-link>languages-learner/web-react</repo-link>. Developed by <profile-link>Aleksandr Chernigin</profile-link>"
   },
   "lbsCV3": {
     "defaultMessage": "Волапюк"
@@ -609,7 +618,7 @@
     "defaultMessage": "Осетинский"
   },
   "qW/XjQ": {
-    "defaultMessage": "[NEEDS_TRANSLATION] Error updating user theme"
+    "defaultMessage": "Возникла ошибка при изменении темы"
   },
   "qqcgIL": {
     "defaultMessage": "Попробуйте изменить значения фильтров или добавить новые слова"
@@ -623,9 +632,6 @@
   "rtJ7E1": {
     "defaultMessage": "Пушту"
   },
-  "sCxNP9": {
-    "defaultMessage": "Languages Learner"
-  },
   "sM7TRG": {
     "defaultMessage": "Язык интерфейса"
   },
@@ -633,7 +639,7 @@
     "defaultMessage": "Изучаемый язык успешно обновлен!"
   },
   "tOdNiY": {
-    "defaultMessage": "[NEEDS_TRANSLATION] Dark"
+    "defaultMessage": "Темная"
   },
   "teM9V9": {
     "defaultMessage": "Кваньяма, Куаньяма"
@@ -700,6 +706,9 @@
   },
   "xzyHM+": {
     "defaultMessage": "Вьетнамский"
+  },
+  "y1Z3or": {
+    "defaultMessage": "Язык"
   },
   "yJmS3E": {
     "defaultMessage": "Норвежский Нюнорск"

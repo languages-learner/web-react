@@ -1,10 +1,10 @@
 import React from "react";
 
 import { idle, useQueryData } from "@gravity-ui/data-source";
-import { Loader } from "@gravity-ui/uikit";
 
 import { DataLoader } from "@/shared/data-source";
 import { useAuth } from "@/shared/services/auth";
+import { Loader } from "@/shared/ui";
 
 import { userDataSource } from "../../queries/user";
 import { type User, type UserContext as UserContextType } from "../../types";
@@ -53,7 +53,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 alignItems: "center",
             }}
         >
-            <Loader size={"l"} />
+            <Loader size="lg" />
         </div>
     );
 

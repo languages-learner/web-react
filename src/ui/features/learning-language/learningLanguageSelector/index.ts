@@ -1,1 +1,1 @@
-export * from "./ui/LearningLanguageSelector";
+export { LearningLanguageSelector } from "./ui/LearningLanguageSelector";

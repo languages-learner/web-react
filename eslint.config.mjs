@@ -11,12 +11,12 @@ import importPlugin from "eslint-plugin-import";
 import importNewLinesPlugin from "eslint-plugin-import-newlines";
 import baseConfig from "@gravity-ui/eslint-config";
 import clientConfig from "@gravity-ui/eslint-config/client";
-import prettierConfig from "@gravity-ui/eslint-config/prettier";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import formatjs from "eslint-plugin-formatjs";
 
 export default tseslint.config(
     ...baseConfig,
-    ...prettierConfig,
+    eslintPluginPrettierRecommended,
     ...clientConfig,
     { ignores: ["**/dist", "node_modules", "**/.cache", "**/.typecheck"] },
     {
@@ -45,6 +45,10 @@ export default tseslint.config(
                             name: "react-router",
                             importNames: ["useNavigate"],
                             message: "Please import 'useNavigate' from '@/shared/react-router'",
+                        },
+                        {
+                            name: "classnames",
+                            message: "Please import 'classNames' from '@/shared/class-names'",
                         },
                     ],
                 },

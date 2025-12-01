@@ -1,9 +1,0 @@
-.FormRowsContainer {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--g-spacing-4) var(--g-spacing-4);
-
-  &__row {
-    display: contents;
-  }
-}

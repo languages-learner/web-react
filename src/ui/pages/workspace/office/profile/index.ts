@@ -1,1 +1,1 @@
-export * from "./ui/OfficeProfilePage";
+export { OfficeProfilePage } from "./ui/OfficeProfilePage";

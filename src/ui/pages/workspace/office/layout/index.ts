@@ -1,1 +1,1 @@
-export * from "./ui/OfficeLayout";
+export { OfficeLayout, type OfficeLayoutProps } from "./ui/OfficeLayout";

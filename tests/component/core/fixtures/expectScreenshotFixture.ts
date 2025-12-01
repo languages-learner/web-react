@@ -1,11 +1,29 @@
 import { ComponentWrapperClassName } from "../constants";
 
-import { expectScreenshotFixtureFactory, waitImagesLoaded } from "@/tests/shared/playwright-utils";
+import {
+    type Theme,
+    expectScreenshotFixtureFactory,
+    waitImagesLoaded,
+} from "@/tests/shared/playwright-utils";
+
+const THEMES: Theme[] = ["light", "dark"];
 
 export const testWithExpectScreenshot = expectScreenshotFixtureFactory({
-    themes: ["light", "dark"],
-    onSwitchTheme: async (theme, page) => {
-        await page.emulateMedia({ colorScheme: theme });
+    themes: THEMES,
+    onSwitchTheme: async (currentTheme, page) => {
+        const html = await page.locator("html");
+        await html.evaluate(
+            (node, params) => {
+                params.themes.forEach((theme) => {
+                    const isCurrent = theme === params.currentTheme;
+                    node.classList.toggle(theme, isCurrent);
+                });
+            },
+            {
+                currentTheme,
+                themes: THEMES,
+            },
+        );
     },
     getLocator: async (page) => {
         return page.locator(`.${ComponentWrapperClassName}`);
