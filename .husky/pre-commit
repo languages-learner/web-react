@@ -1,5 +1,0 @@
-export PRE_COMMIT=1
-
-npx lint-staged
-npm run i18n:manage
-npm run sanitize-har

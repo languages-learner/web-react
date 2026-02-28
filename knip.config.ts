@@ -59,7 +59,6 @@ const config: KnipConfig = {
     //     "@/packages/*": ["src/packages/*"],
     // },
     ignore: [
-        ".husky/install.mjs",
         // Tests snapshots images
         "**/*-snapshots/*",
     ],
