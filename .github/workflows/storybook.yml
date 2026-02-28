@@ -32,8 +32,6 @@ jobs:
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
-        with:
-          frozen-lockfile: 'true'
 
       - name: Build storybook
         run: pnpm --filter @languages-learner/storybook run build

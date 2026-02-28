@@ -1,17 +1,6 @@
 name: 'Install dependencies'
 
-description: 'Cache and install pnpm dependencies with optional frozen lockfile'
-
-inputs:
-  frozen-lockfile:
-    description: 'Use --frozen-lockfile flag'
-    required: false
-    default: 'false'
-
-outputs:
-  cache-hit:
-    description: 'Whether cache was hit'
-    value: ${{ steps.cache.outputs.cache-hit }}
+description: 'Cache and install pnpm dependencies'
 
 runs:
   using: 'composite'
@@ -20,17 +9,10 @@ runs:
       id: cache
       uses: actions/cache@v3
       with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-
+        path: ./node_modules
+        key: modules-${{ hashFiles('pnpm-lock.yaml') }}
 
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        if [ "${{ inputs.frozen-lockfile }}" = "true" ]; then
-          pnpm install --frozen-lockfile
-        else
-          pnpm install
-        fi
+      run: pnpm install
       shell: bash
