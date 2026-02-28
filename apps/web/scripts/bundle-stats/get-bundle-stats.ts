@@ -32,20 +32,19 @@ if (withBaseline && fs.existsSync(BUNDLE_STATS_BASELINE_DIR)) {
 // Create temp container and copy bundle-stats
 execSync(`docker create --name ${TEMP_CONTAINER_NAME} ${dockerImage}`, { stdio: "inherit" });
 
-try {
-    execSync(`docker cp ${TEMP_CONTAINER_NAME}:/app/${BUNDLE_STATS_DIR} ./${BUNDLE_STATS_DIR}`, {
+execSync(
+    `docker cp ${TEMP_CONTAINER_NAME}:/app/apps/web/${BUNDLE_STATS_DIR} ./${BUNDLE_STATS_DIR}`,
+    {
         stdio: "inherit",
-    });
-    if (withBaseline) {
-        execSync(
-            `docker cp ${TEMP_CONTAINER_NAME}:/app/${BUNDLE_STATS_BASELINE_DIR} ./${BUNDLE_STATS_BASELINE_DIR}`,
-            {
-                stdio: "inherit",
-            },
-        );
-    }
-} catch (e) {
-    console.log(`Copy bundle-stats error: ${e}`);
+    },
+);
+if (withBaseline) {
+    execSync(
+        `docker cp ${TEMP_CONTAINER_NAME}:/app/apps/web/${BUNDLE_STATS_BASELINE_DIR} ./${BUNDLE_STATS_BASELINE_DIR}`,
+        {
+            stdio: "inherit",
+        },
+    );
 }
 
 // Delete temp container
