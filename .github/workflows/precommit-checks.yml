@@ -20,38 +20,21 @@ jobs:
       - name: Run lint
         run: pnpm run lint
 
-#   stylelint:
-#     timeout-minutes: 5
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+  stylelint:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Install pnpm
-#         uses: pnpm/action-setup@v4
-#         with:
-#           version: 10.6.2
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 20
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
-#       - name: Cache dependencies
-#         id: cache
-#         uses: actions/cache@v3
-#         with:
-#           path: ~/.pnpm-store
-#           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-#           restore-keys: |
-#             ${{ runner.os }}-pnpm-
-
-#       - name: Install dependencies
-#         if: steps.cache.outputs.cache-hit != 'true'
-#         run: pnpm install --frozen-lockfile
-
-#       - name: Run stylelint
-#         run: pnpm run stylelint
+      - name: Run stylelint
+        run: pnpm run stylelint
 
   typecheck:
     timeout-minutes: 5
@@ -69,103 +52,52 @@ jobs:
       - name: Run typecheck
         run: pnpm run typecheck
 
-#   unit-tests:
-#     timeout-minutes: 5
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+  unit-tests:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Install pnpm
-#         uses: pnpm/action-setup@v4
-#         with:
-#           version: 10.6.2
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 20
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
-#       - name: Cache dependencies
-#         id: cache
-#         uses: actions/cache@v3
-#         with:
-#           path: ~/.pnpm-store
-#           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-#           restore-keys: |
-#             ${{ runner.os }}-pnpm-
+      - name: Run unit-tests
+        run: pnpm run test:unit:ci
 
-#       - name: Install dependencies
-#         if: steps.cache.outputs.cache-hit != 'true'
-#         run: pnpm install --frozen-lockfile
+  find-circular-deps:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Run unit-tests
-#         run: pnpm run test:unit:ci
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-#   find-circular-deps:
-#     timeout-minutes: 5
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
-#       - name: Install pnpm
-#         uses: pnpm/action-setup@v4
-#         with:
-#           version: 10.6.2
+      - name: Run circular-deps
+        run: pnpm run circular-deps
 
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 20
+  find-unused:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Cache dependencies
-#         id: cache
-#         uses: actions/cache@v3
-#         with:
-#           path: ~/.pnpm-store
-#           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-#           restore-keys: |
-#             ${{ runner.os }}-pnpm-
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-#       - name: Install dependencies
-#         if: steps.cache.outputs.cache-hit != 'true'
-#         run: pnpm install --frozen-lockfile
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
-#       - name: Run circular-deps
-#         run: pnpm run circular-deps
-
-#   find-unused:
-#     timeout-minutes: 5
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
-
-#       - name: Install pnpm
-#         uses: pnpm/action-setup@v4
-#         with:
-#           version: 10.6.2
-
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: 20
-
-#       - name: Cache dependencies
-#         id: cache
-#         uses: actions/cache@v3
-#         with:
-#           path: ~/.pnpm-store
-#           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-#           restore-keys: |
-#             ${{ runner.os }}-pnpm-
-
-#       - name: Install dependencies
-#         if: steps.cache.outputs.cache-hit != 'true'
-#         run: pnpm install --frozen-lockfile
-
-#       - name: Run knip
-#         run: pnpm run knip
+      - name: Run knip
+        run: pnpm run knip
 # #  TODO: is all har sanitized?
 # #  TODO: is i18n extracted?

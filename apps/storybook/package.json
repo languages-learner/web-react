@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "@heroui/system": "^2.4.23",
-    "@heroui/theme": "^2.4.23",
     "@languages-learner/tailwind": "workspace:*",
     "@tailwindcss/vite": "^4.1.17",
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@heroui/theme": "^2.4.23",
     "@storybook/addon-a11y": "^9.0.3",
     "@storybook/addon-docs": "^9.0.3",
     "@storybook/addon-vitest": "^9.0.8",
