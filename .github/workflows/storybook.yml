@@ -27,6 +27,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.6.2
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -36,16 +41,25 @@ jobs:
         id: cache
         uses: actions/cache@v3
         with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+          path: |
+            ~/.pnpm-store
+            node_modules
+            **/node_modules
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --frozen-lockfile
 
       - name: Build storybook
-        run: npm run build:storybook
+        run: pnpm --filter @languages-learner/storybook run build
 
       - name: Deploy storybook build to s3
         uses: ./.github/actions/upload-to-s3
         with:
-          source_path: dist-storybook
+          source_path: apps/storybook/dist-storybook
           dest_path: ${{ inputs.dest_path }}
           s3_key_id: ${{ secrets.S3_KEY_ID }}
           s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
