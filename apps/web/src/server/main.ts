@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import path from "node:path";
 
 import cookieParser from "cookie-parser";
 import * as dotenv from "dotenv";
@@ -10,7 +11,7 @@ import { userMiddleware } from "./middlewares/user";
 import type { ViteDevServer } from "vite";
 import type { Response } from "core";
 
-dotenv.config({ path: "../../../../.env" });
+dotenv.config({ path: path.resolve(__dirname, "../../../../.env") });
 
 const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 5173;

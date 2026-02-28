@@ -7,7 +7,6 @@ import type { Request } from "express-serve-static-core";
 export const useSupabaseClient = (req: Request, res: Response) => {
     const supabaseClient = createServerClient<ApiDatabase>(
         process.env.VITE_SUPABASE_PROJECT_URL!,
-
         process.env.VITE_SUPABASE_PROJECT_KEY!,
         {
             cookies: {

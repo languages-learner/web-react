@@ -86,7 +86,8 @@ jobs:
 
       - name: Fetch bundle-stats (baseline) to compare with
         if: inputs.main == false
-        run: pnpm --filter app-web run bundle-stats:fetch-actual-baseline
+        working-directory: apps/web
+        run: pnpm run bundle-stats:fetch-actual-baseline
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_KEY }}
@@ -104,18 +105,20 @@ jobs:
 
       - name: Extract bundle-stats
         if: inputs.main == false
-        run: pnpm --filter app-web run bundle-stats:get-from-docker
+        working-directory: apps/web
+        run: pnpm run bundle-stats:get-from-docker
 
       - name: Extract bundle-stats (baseline)
         if: inputs.main == true
-        run: pnpm --filter app-web run bundle-stats:get-from-docker:baseline
+        working-directory: apps/web
+        run: pnpm run bundle-stats:get-from-docker:baseline
 
       - name: Save bundle-stats
         uses: actions/upload-artifact@v4
         with:
           name: bundle-stats
           if-no-files-found: warn
-          path: .bundle-stats
+          path: apps/web/.bundle-stats
           include-hidden-files: true
 
       - name: Save bundle-stats (baseline)
@@ -124,7 +127,7 @@ jobs:
         with:
           name: bundle-stats-baseline
           if-no-files-found: error
-          path: .bundle-stats-baseline
+          path: apps/web/.bundle-stats-baseline
           include-hidden-files: true
 
       - name: Login to Docker Hub
