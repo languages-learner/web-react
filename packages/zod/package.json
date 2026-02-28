@@ -1,0 +1,21 @@
+{
+  "name": "@languages-learner/zod",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.21",
+    "zod": "^3.25.23"
+  },
+  "peerDependencies": {
+    "zod": "^3.25.23"
+  }
+}

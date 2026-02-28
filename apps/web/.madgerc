@@ -1,0 +1,22 @@
+{
+	"fileExtensions": [
+		"js",
+		"jsx",
+		"ts",
+		"tsx"
+	],
+	"detectiveOptions": {
+		"ts": {
+			"mixedImports": true,
+			"skipTypeImports": true,
+			"skipAsyncImports": true,
+			"jsx": true
+		},
+		"tsx": {
+			"mixedImports": true,
+			"skipTypeImports": true,
+			"skipAsyncImports": true,
+			"jsx": true
+		}
+	}
+}

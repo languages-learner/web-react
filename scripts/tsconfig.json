@@ -1,7 +1,14 @@
 {
   "extends": "../tsconfig.base.json",
-  "include": [".", "../project.config.ts"],
-  "references": [{ "path": "../src/packages/har-sanitizer" }],
+  "include": [
+    ".",
+    "../project.config.ts"
+, "../apps/web/scripts/bundle-stats", "../apps/web/scripts/aws-cli", "../apps/web/scripts/npm-run-all.js", "../packages/api/scripts/generate-db-types.ts"  ],
+  "references": [
+    {
+      "path": "../packages/har-sanitizer"
+    }
+  ],
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",

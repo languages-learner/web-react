@@ -1,9 +1,0 @@
-{
-  "extends": ["../tsconfig.base.json"],
-  "include": ["**/*", "../shared/playwright-utils/types/goToWithLocaleFixture.d.ts"],
-  "exclude": ["**/*.d.ts"],
-  "references": [{ "path": "../shared" }, { "path": "../../src/ui" }],
-  "compilerOptions": {
-    "baseUrl": "../"
-  }
-}

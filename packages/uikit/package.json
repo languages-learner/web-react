@@ -1,0 +1,50 @@
+{
+  "name": "@languages-learner/uikit",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "pnpm run lint -- --fix",
+    "test:component": "playwright test --config=tests/component/playwright.config.ts",
+    "test:component:docker:base": "docker compose build --pull playwright-ct & docker compose run --rm playwright-ct --filter uikit",
+    "test:component:docker": "pnpm run test:component:docker:base -- test:component",
+    "test:component:update": "pnpm run test:component -- -update",
+    "test:component:update:docker": "pnpm run test:component:docker:base -- uikit test:component:update",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@heroui/avatar": "^2.2.22",
+    "@heroui/button": "^2.2.27",
+    "@heroui/card": "^2.2.25",
+    "@heroui/checkbox": "^2.3.27",
+    "@heroui/chip": "^2.2.22",
+    "@heroui/dropdown": "^2.3.27",
+    "@heroui/input": "^2.4.28",
+    "@heroui/modal": "^2.2.24",
+    "@heroui/popover": "^2.3.27",
+    "@heroui/select": "^2.4.28",
+    "@heroui/spinner": "^2.2.24",
+    "@heroui/system": "^2.4.23",
+    "@heroui/table": "^2.2.27",
+    "@heroui/tabs": "^2.2.24",
+    "@heroui/theme": "^2.4.23",
+    "@heroui/toast": "^2.0.17",
+    "@heroui/use-theme": "^2.1.10",
+    "@tailwindcss/vite": "^4.1.17",
+    "@tanstack/react-table": "^8.21.3",
+    "react": "^19.2.0",
+    "react-icons": "^5.5.0",
+    "tailwindcss": "^4.1.17",
+    "@playwright/experimental-ct-react": "1.52.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.28.5",
+    "@languages-learner/class-names": "workspace:*",
+    "@languages-learner/component-core-tests-utils": "workspace:*",
+    "@languages-learner/error-utils": "workspace:*",
+    "@languages-learner/tailwind": "workspace:*",
+    "@storybook/react": "^10.1.4",
+    "@storybook/react-vite": "^10.1.4"
+  }
+}

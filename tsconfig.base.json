@@ -1,34 +1,30 @@
 {
   "compilerOptions": {
-    "target": "ES2023",
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-
-    "rootDir": ".",
-    "outDir": "./.typecheck",
-
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "types": [
+      "node"
+    ],
     /* Bundler mode */
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
     "jsx": "react-jsx",
-
-    /* Referenced Project */
-    "declaration": true,
-    // Referenced project may not disable emit - https://github.com/microsoft/TypeScript/issues/49844
-    "emitDeclarationOnly": true,
-    "noEmitOnError": false,
-    "composite": true,
-    "incremental": true,
-    "disableReferencedProjectLoad": true,
-
     /* Linting */
+    "skipLibCheck": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true
   },
-  "exclude": ["**/node_modules", "**/dist", "**/.typecheck"]
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/.typecheck"
+  ]
 }

@@ -1,0 +1,16 @@
+{
+  "name": "@languages-learner/tailwind",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@heroui/theme": "^2.4.23",
+    "tailwindcss": "^4.1.17"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@languages-learner/class-names",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "test:unit": "vitest",
+    "test:unit:ci": "vitest --run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@bem-react/classname": "^1.7.0",
+    "classnames": "^2.5.1",
+    "vitest": "^3.1.4"
+  }
+}

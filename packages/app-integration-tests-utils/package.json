@@ -1,0 +1,16 @@
+{
+  "name": "@languages-learner/app-integration-tests-utils",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@languages-learner/playwright-utils": "workspace:*",
+    "@languages-learner/app-core-tests-utils": "workspace:*",
+    "@playwright/test": "^1.57.0"
+  }
+}
