@@ -69,7 +69,6 @@ for (const lang of LANGUAGES) {
 
     // For each message in the extracted file
     Object.entries(extractedMessages).forEach(([messageId, message]) => {
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         if (existingTranslations[messageId]) {
             // Keep existing translation
             updatedTranslations[messageId] = existingTranslations[messageId];

@@ -12,7 +12,7 @@
     "bundle-stats:fetch-actual-baseline": "ts-node --project ./scripts/tsconfig.json ./scripts/bundle-stats/fetch-actual-baseline.ts",
     "bundle-stats:get-from-docker": "ts-node --project ./scripts/tsconfig.json ./scripts/bundle-stats/get-bundle-stats.ts --docker-image web-react-app",
     "bundle-stats:get-from-docker:baseline": "npm run bundle-stats:get-from-docker -- --baseline",
-    "circular-deps": "node scripts/npm-run-all.js --parallel circular-deps:*",
+    "circular-deps": "npm-run-all circular-deps:*",
     "circular-deps:ui": "madge --circular --extensions ts,tsx --ts-config src/ui/tsconfig.json src/ui",
     "dev": "nodemon -w src/server -x tsx src/server/main.ts",
     "i18n:extract": "formatjs extract \"src/**/*.{ts,tsx}\" --ignore=\"**/*.d.ts\" --out-file src/locales/extracted.json --id-interpolation-pattern [sha512:contenthash:base64:6]",

@@ -11,6 +11,5 @@ export const getLocaleFromPath = ({ path, availableLocales }: GetLocaleFromPathP
 };
 
 export const getLocaleFromPathSafe = (props: GetLocaleFromPathProps) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return getLocaleFromPath(props)!;
 };

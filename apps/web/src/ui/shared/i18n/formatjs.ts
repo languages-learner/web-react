@@ -5,12 +5,6 @@ import type { ResolvedIntlConfig } from "react-intl";
 import type { InterfaceLocale } from "shared/project-config";
 
 // Ignoring if locales are not compiled during typecheck
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-
 import { getLocaleFromPath } from "@/shared/react-router";
 
 const cache = createIntlCache();
