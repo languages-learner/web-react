@@ -45,6 +45,7 @@ jobs:
       main: false
       pr_number: ${{ github.event.pull_request.number }}
       bundle_stats_s3_dir: /pull-requests/${{ github.event.pull_request.number }}/bundle-stats
+      working_directory: apps/web
 
   precommit-checks:
     name: "Pre-commit checks"

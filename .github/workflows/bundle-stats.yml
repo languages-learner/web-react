@@ -22,6 +22,10 @@ on:
         description: S3 dir to store bundle-stats
         type: string
         required: true
+      working_directory:
+        description: Working directory
+        type: string
+        required: true
 
 jobs:
   bundle-stats:
@@ -37,19 +41,19 @@ jobs:
         uses: actions/download-artifact@main
         with:
           name: bundle-stats
-          path: .bundle-stats
+          path: ${{ inputs.working_directory }}/.bundle-stats
 
       - name: Download bundle-stats (baseline)
         if: inputs.main == true
         uses: actions/download-artifact@main
         with:
           name: bundle-stats-baseline
-          path: .bundle-stats-baseline
+          path: ${{ inputs.working_directory }}/.bundle-stats-baseline
 
       - name: Upload bundle-stats to s3
         uses: ./.github/actions/upload-to-s3
         with:
-          source_path: .bundle-stats
+          source_path: ${{ inputs.working_directory }}/.bundle-stats
           dest_path: ${{ inputs.bundle_stats_s3_dir }}
           s3_key_id: ${{ secrets.S3_KEY_ID }}
           s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
@@ -58,7 +62,7 @@ jobs:
         if: inputs.main == true
         uses: ./.github/actions/upload-to-s3
         with:
-          source_path: .bundle-stats-baseline/baseline.json
+          source_path: ${{ inputs.working_directory }}/.bundle-stats-baseline/baseline.json
           dest_path: ${{ inputs.bundle_stats_s3_dir }}/baseline.json
           s3_key_id: ${{ secrets.S3_KEY_ID }}
           s3_secret_key: ${{ secrets.S3_SECRET_KEY }}
