@@ -195,6 +195,7 @@ jobs:
 
       - name: Configure Api Gateway
         id: configure_api_gateway
+        working-directory: apps/web
         run: |
           export sa_id="${{ inputs.sa_deployer_id }}"
           export container_id="${{ steps.create_container.outputs.container_id }}"
