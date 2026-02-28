@@ -1,12 +1,6 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../../../tsconfig.scripts.base.json",
   "include": [
     ".",
-    "../project.config.ts",
-  ],
-  "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "esModuleInterop": true
-  }
+  ]
 }
