@@ -13,6 +13,5 @@ runs:
         key: modules-${{ hashFiles('pnpm-lock.yaml') }}
 
     - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
       run: pnpm install
       shell: bash
