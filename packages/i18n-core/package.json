@@ -1,0 +1,11 @@
+{
+  "name": "@languages-learner/i18n-core",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit"
+  }
+}

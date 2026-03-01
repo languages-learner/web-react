@@ -59,12 +59,11 @@ jobs:
       - name: Fetch main branch only
         run: git fetch origin main --depth=100
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Install Yandex Cloud CLI
         uses: ./.github/actions/yc-cli-install
@@ -87,7 +86,8 @@ jobs:
 
       - name: Fetch bundle-stats (baseline) to compare with
         if: inputs.main == false
-        run: npm run bundle-stats:fetch-actual-baseline
+        working-directory: apps/web
+        run: pnpm run bundle-stats:fetch-actual-baseline
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_KEY }}
@@ -95,26 +95,30 @@ jobs:
 
       - name: Create Docker Image
         if: inputs.main == false
-        run: npm run build:docker
+        working-directory: apps/web
+        run: pnpm run build:docker
 
       - name: Create Docker Image (main)
         if: inputs.main == true
-        run: npm run build:baseline:docker
+        working-directory: apps/web
+        run: pnpm run build:baseline:docker
 
       - name: Extract bundle-stats
         if: inputs.main == false
-        run: npm run bundle-stats:get-from-docker
+        working-directory: apps/web
+        run: pnpm run bundle-stats:get-from-docker
 
       - name: Extract bundle-stats (baseline)
         if: inputs.main == true
-        run: npm run bundle-stats:get-from-docker:baseline
+        working-directory: apps/web
+        run: pnpm run bundle-stats:get-from-docker:baseline
 
       - name: Save bundle-stats
         uses: actions/upload-artifact@v4
         with:
           name: bundle-stats
           if-no-files-found: warn
-          path: .bundle-stats
+          path: apps/web/.bundle-stats
           include-hidden-files: true
 
       - name: Save bundle-stats (baseline)
@@ -123,7 +127,7 @@ jobs:
         with:
           name: bundle-stats-baseline
           if-no-files-found: error
-          path: .bundle-stats-baseline
+          path: apps/web/.bundle-stats-baseline
           include-hidden-files: true
 
       - name: Login to Docker Hub
@@ -191,6 +195,7 @@ jobs:
 
       - name: Configure Api Gateway
         id: configure_api_gateway
+        working-directory: apps/web
         run: |
           export sa_id="${{ inputs.sa_deployer_id }}"
           export container_id="${{ steps.create_container.outputs.container_id }}"

@@ -1,10 +1,6 @@
 {
-  "extends": "../tsconfig.base.json",
-  "include": [".", "../project.config.ts"],
-  "references": [{ "path": "../src/packages/har-sanitizer" }],
-  "compilerOptions": {
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "esModuleInterop": true
-  }
+  "extends": "../tsconfig.scripts.base.json",
+  "include": [
+    "."
+  ]
 }

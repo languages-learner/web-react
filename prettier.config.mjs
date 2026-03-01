@@ -20,5 +20,5 @@ export default {
         },
     ],
     endOfLine: "lf",
-    tailwindConfig: "./tailwind.config.mjs",
+    tailwindConfig: "./packages/tailwind/tailwind.config.js",
 };

@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "../../tsconfig.base.composite.json"
+  ],
+  "exclude": [
+    "**/node_modules",
+    "**/dist",
+    "**/.typecheck"
+  ]
+}

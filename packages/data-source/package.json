@@ -1,0 +1,20 @@
+{
+  "name": "@languages-learner/data-source",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gravity-ui/data-source": "^0.6.1",
+    "@heroui/button": "^2.2.27",
+    "@languages-learner/api": "workspace:*",
+    "@languages-learner/class-names": "workspace:*",
+    "@languages-learner/uikit": "workspace:*",
+    "react": "^19.2.0",
+    "react-intl": "^7.1.14"
+  }
+}

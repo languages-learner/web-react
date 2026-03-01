@@ -1,2 +1,29 @@
 node_modules
-*.cache
+**/node_modules
+**/*.cache
+.git
+.gitignore
+*.md
+README.md
+CHANGELOG.md
+LICENSE
+.vscode
+.idea
+*.log
+dist
+dist-*
+build
+coverage
+.nyc_output
+.DS_Store
+*.swp
+*.swo
+*~
+.env.local
+.env.*.local
+playwright-report
+test-results
+*.snap
+**/*-snapshots
+# Note: .docker-package-json/ is created by prepare-package-json.ts before build
+# and should be included in the build context, so we don't ignore it here

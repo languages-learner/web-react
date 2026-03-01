@@ -12,8 +12,8 @@ concurrency:
 
 jobs:
   npm-ci:
-    name: "npm ci"
-    uses: ./.github/workflows/npm-ci.yml
+    name: "pnpm install"
+    uses: ./.github/workflows/pnpm-install.yml
 
   deploy:
     name: "Deploy staging"
@@ -44,6 +44,7 @@ jobs:
     with:
       main: true
       bundle_stats_s3_dir: /prod/commits/${{ github.sha }}/bundle-stats
+      working_directory: apps/web
 
   precommit-checks:
     name: "Pre-commit checks"

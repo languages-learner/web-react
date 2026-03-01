@@ -2,6 +2,22 @@ FROM mcr.microsoft.com/playwright:v1.52.0-noble
 
 WORKDIR /app
 
-COPY package.json package-lock.json .npmrc ./
+# Copy root files required by pnpm
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+RUN npm install -g pnpm
 
-RUN npm ci
+# Copy only package.json files from .docker-package-json structure
+# This structure is prepared by scripts/component-tests/prepare-package-json.ts
+# and contains only package.json files to minimize image size and improve caching
+COPY .docker-package-json/packages/ ./packages/
+COPY .docker-package-json/apps/ ./apps/
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile && \
+    # Clean pnpm store to reduce image size
+    pnpm store prune && \
+    # Remove unnecessary files
+    rm -rf /root/.npm /root/.cache && \
+    # Clean apt cache if any packages were installed
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*

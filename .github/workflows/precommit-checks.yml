@@ -11,20 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Run lint
-        run: npm run lint
+        run: pnpm run lint
 
   stylelint:
     timeout-minutes: 5
@@ -33,20 +27,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Run stylelint
-        run: npm run stylelint
+        run: pnpm run stylelint
 
   typecheck:
     timeout-minutes: 5
@@ -55,20 +43,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Run typecheck
-        run: npm run typecheck
+        run: pnpm run typecheck
 
   unit-tests:
     timeout-minutes: 5
@@ -77,20 +59,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Run unit-tests
-        run: npm run test:unit:ci
+        run: pnpm run test:unit:ci
 
   find-circular-deps:
     timeout-minutes: 5
@@ -99,20 +75,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Run circular-deps
-        run: npm run circular-deps
+        run: pnpm run circular-deps
 
   find-unused:
     timeout-minutes: 5
@@ -121,19 +91,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: ./node_modules
-          key: modules-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
 
       - name: Run knip
-        run: npm run knip
-#  TODO: is all har sanitized?
-#  TODO: is i18n extracted?
+        run: pnpm run knip
+
+  check-dependency-versions:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+
+      - name: Check dependency versions
+        run: pnpm run deps:check
+# #  TODO: is all har sanitized?
+# #  TODO: is i18n extracted?

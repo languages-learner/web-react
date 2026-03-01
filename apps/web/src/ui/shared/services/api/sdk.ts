@@ -1,0 +1,5 @@
+import { createSdk } from "@languages-learner/api";
+
+import { supabase } from "./supabase";
+
+export const sdk: ReturnType<typeof createSdk> = createSdk(supabase);

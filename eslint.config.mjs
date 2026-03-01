@@ -1,120 +1,32 @@
 // For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import storybook from "eslint-plugin-storybook";
 
-import js from "@eslint/js";
-import globals from "globals";
+import { tanstackConfig } from "@tanstack/eslint-config";
 import reactHooks from "eslint-plugin-react-hooks";
-import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 import react from "eslint-plugin-react";
-import importPlugin from "eslint-plugin-import";
 import importNewLinesPlugin from "eslint-plugin-import-newlines";
-import baseConfig from "@gravity-ui/eslint-config";
-import clientConfig from "@gravity-ui/eslint-config/client";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import formatjs from "eslint-plugin-formatjs";
 
 export default tseslint.config(
-    ...baseConfig,
+    ...tanstackConfig,
     eslintPluginPrettierRecommended,
-    ...clientConfig,
-    { ignores: ["**/dist", "node_modules", "**/.cache", "**/.typecheck"] },
+    react.configs.flat.recommended,
+    reactHooks.configs["recommended-latest"],
+    { ignores: ["**/dist", "**/dist-storybook", "node_modules", "**/.cache", "**/.typecheck"] },
     {
-        extends: [js.configs.recommended, ...tseslint.configs.recommended],
-        files: ["**/*.{ts,tsx}"],
-        languageOptions: {
-            ecmaVersion: 2020,
-            globals: globals.browser,
-        },
+        files: ["**/*.{js,ts,tsx}"],
         plugins: {
-            "react-refresh": reactRefresh,
-            react,
-            import: importPlugin,
             "import-newlines": importNewLinesPlugin,
             formatjs,
         },
         rules: {
-            ...reactHooks.configs.recommended.rules,
-            ...react.configs.recommended.rules,
-
-            "no-restricted-imports": [
-                "error",
-                {
-                    paths: [
-                        {
-                            name: "react-router",
-                            importNames: ["useNavigate"],
-                            message: "Please import 'useNavigate' from '@/shared/react-router'",
-                        },
-                        {
-                            name: "classnames",
-                            message: "Please import 'classNames' from '@/shared/class-names'",
-                        },
-                    ],
-                },
-            ],
+            // Import
             "import/no-named-as-default": "off",
-            "import/first": "error",
-            "import/newline-after-import": "error",
-            "import/order": [
-                "error",
-                {
-                    alphabetize: {
-                        order: "asc",
-                    },
-                    "newlines-between": "always",
-                    groups: [
-                        "builtin",
-                        "external",
-                        "internal",
-                        "parent",
-                        "sibling",
-                        "index",
-                        "object",
-                        "type",
-                    ],
-                    pathGroups: [
-                        {
-                            pattern: "react",
-                            group: "external",
-                            position: "before",
-                        },
-                        {
-                            pattern: "@($*|$*/**/*)",
-                            group: "internal",
-                            position: "before",
-                        },
-                        {
-                            pattern: "*.{svg,png,jpg,jpeg,json}",
-                            patternOptions: {
-                                dot: true,
-                                nocomment: true,
-                                matchBase: true,
-                            },
-                            group: "type",
-                            position: "after",
-                        },
-                        {
-                            pattern: "*.{css,scss}",
-                            patternOptions: {
-                                dot: true,
-                                nocomment: true,
-                                matchBase: true,
-                            },
-                            group: "type",
-                            position: "after",
-                        },
-                    ],
-                    pathGroupsExcludedImportTypes: [
-                        "*.{css,scss}",
-                        "*.{svg,png,jpg,jpeg,json}",
-                        "react",
-                    ],
-                    warnOnUnassignedImports: true,
-                },
-            ],
+            "import/no-extraneous-dependencies": "error",
 
-            "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+            // Typescript
             "react/react-in-jsx-scope": "off",
             "newline-before-return": "error",
             "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -126,6 +38,16 @@ export default tseslint.config(
                     fixStyle: "inline-type-imports",
                 },
             ],
+            "@typescript-eslint/naming-convention": [
+                "error",
+                {
+                    selector: "typeParameter",
+                    format: ["PascalCase"],
+                    leadingUnderscore: "forbid",
+                    trailingUnderscore: "forbid",
+                },
+            ],
+            "@typescript-eslint/array-type": "off",
             "comma-dangle": ["error", "always-multiline"],
             "react/prop-types": "off",
             "linebreak-style": ["error", "unix"],

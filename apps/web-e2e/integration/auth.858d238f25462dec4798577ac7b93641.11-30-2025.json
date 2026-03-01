@@ -1,0 +1,35 @@
+{
+  "cookies": [
+    {
+      "name": "system-theme",
+      "value": "light",
+      "domain": "host.docker.internal",
+      "path": "/",
+      "expires": 1796032069.424648,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "sb-xvqmpesikdezfqklonvs-auth-token",
+      "value": "base64-eyJhY2Nlc3NfdG9rZW4iOiJleUpoYkdjaU9pSklVekkxTmlJc0ltdHBaQ0k2SW1GRFYwNHhTMXByTmpWQ1NFeENhVElpTENKMGVYQWlPaUpLVjFRaWZRLmV5SnBjM01pT2lKb2RIUndjem92TDNoMmNXMXdaWE5wYTJSbGVtWnhhMnh2Ym5aekxuTjFjR0ZpWVhObExtTnZMMkYxZEdndmRqRWlMQ0p6ZFdJaU9pSXdNVE01T1RBeFlTMW1OVEl3TFRSaU5qY3RZVEZpWVMxak56VmxNV0U0WkdSaFlXRWlMQ0poZFdRaU9pSmhkWFJvWlc1MGFXTmhkR1ZrSWl3aVpYaHdJam94TnpZME5EazVOamN4TENKcFlYUWlPakUzTmpRME9UWXdOekVzSW1WdFlXbHNJam9pZEdWemRFQm5iV0ZwYkM1amIyMGlMQ0p3YUc5dVpTSTZJaUlzSW1Gd2NGOXRaWFJoWkdGMFlTSTZleUp3Y205MmFXUmxjaUk2SW1WdFlXbHNJaXdpY0hKdmRtbGtaWEp6SWpwYkltVnRZV2xzSWwxOUxDSjFjMlZ5WDIxbGRHRmtZWFJoSWpwN0ltVnRZV2xzWDNabGNtbG1hV1ZrSWpwMGNuVmxmU3dpY205c1pTSTZJbUYxZEdobGJuUnBZMkYwWldRaUxDSmhZV3dpT2lKaFlXd3hJaXdpWVcxeUlqcGJleUp0WlhSb2IyUWlPaUp3WVhOemQyOXlaQ0lzSW5ScGJXVnpkR0Z0Y0NJNk1UYzJORFE1TmpBM01YMWRMQ0p6WlhOemFXOXVYMmxrSWpvaU1UWm1OVE5tWmpFdE1EQTJNaTAwTkRkbExUaGxOekF0TWpKaU5ETXdORE01WlRBMElpd2lhWE5mWVc1dmJubHRiM1Z6SWpwbVlXeHpaWDAuMDZ6ZTVTVUk4QTNrRzU4ekd6SmNjLUFNckljTjZFdkFVeDRrQ2JmZ1Y1ZyIsInRva2VuX3R5cGUiOiJiZWFyZXIiLCJleHBpcmVzX2luIjozNjAwLCJleHBpcmVzX2F0IjoxNzY0NDk5NjcxLCJyZWZyZXNoX3Rva2VuIjoibDIzd3p2aDNhNms1IiwidXNlciI6eyJpZCI6IjAxMzk5MDFhLWY1MjAtNGI2Ny1hMWJhLWM3NWUxYThkZGFhYSIsImF1ZCI6ImF1dGhlbnRpY2F0ZWQiLCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJlbWFpbF9jb25maXJtZWRfYXQiOiIyMDI1LTA2LTA1VDEyOjQ5OjU3LjE1MzU3NloiLCJwaG9uZSI6IiIsImNvbmZpcm1lZF9hdCI6IjIwMjUtMDYtMDVUMTI6NDk6NTcuMTUzNTc2WiIsImxhc3Rfc2lnbl9pbl9hdCI6IjIwMjUtMTEtMzBUMDk6NDc6NTEuNjQ1NTEyMzk5WiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl19LCJ1c2VyX21ldGFkYXRhIjp7ImVtYWlsX3ZlcmlmaWVkIjp0cnVlfSwiaWRlbnRpdGllcyI6W3siaWRlbnRpdHlfaWQiOiI0YTcxMTMyOC0wMmNjLTQ2MGEtOTA0OS00MzlkMzdiMzU3MzkiLCJpZCI6IjAxMzk5MDFhLWY1MjAtNGI2Ny1hMWJhLWM3NWUxYThkZGFhYSIsInVzZXJfaWQiOiIwMTM5OTAxYS1mNTIwLTRiNjctYTFiYS1jNzVlMWE4ZGRhYWEiLCJpZGVudGl0eV9kYXRhIjp7ImVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInBob25lX3ZlcmlmaWVkIjpmYWxzZSwic3ViIjoiMDEzOTkwMWEtZjUyMC00YjY3LWExYmEtYzc1ZTFhOGRkYWFhIn0sInByb3ZpZGVyIjoiZW1haWwiLCJsYXN0X3NpZ25faW5fYXQiOiIyMDI1LTA2LTA1VDEyOjQ5OjU3LjE0NjgwOFoiLCJjcmVhdGVkX2F0IjoiMjAyNS0wNi0wNVQxMjo0OTo1Ny4xNDY4NTlaIiwidXBkYXRlZF9hdCI6IjIwMjUtMDYtMDVUMTI6NDk6NTcuMTQ2ODU5WiIsImVtYWlsIjoidGVzdEBnbWFpbC5jb20ifV0sImNyZWF0ZWRfYXQiOiIyMDI1LTA2LTA1VDEyOjQ5OjU3LjEzOTU3MVoiLCJ1cGRhdGVkX2F0IjoiMjAyNS0xMS0zMFQwOTo0Nzo1MS42NTY3MzZaIiwiaXNfYW5vbnltb3VzIjpmYWxzZX0sIndlYWtfcGFzc3dvcmQiOnsibWVzc2FnZSI6IlBhc3N3b3JkIHNob3VsZCBiZSBhdCBsZWFzdCA2IGNoYXJhY3RlcnMuIiwicmVhc29ucyI6WyJsZW5ndGgiXX19",
+      "domain": "host.docker.internal",
+      "path": "/",
+      "expires": 1799056070.942108,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "http://host.docker.internal:5173",
+      "localStorage": [
+        {
+          "name": "heroui-theme",
+          "value": "system"
+        }
+      ]
+    }
+  ]
+}

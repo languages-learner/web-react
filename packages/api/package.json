@@ -1,0 +1,19 @@
+{
+  "name": "@languages-learner/api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit",
+    "generate-types": "ts-node --project ./scripts/tsconfig.json ./scripts/generate-db-types.ts"
+  },
+  "dependencies": {
+    "@supabase/postgrest-js": "1.19.4",
+    "@supabase/supabase-js": "2.49.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.5.0"
+  }
+}

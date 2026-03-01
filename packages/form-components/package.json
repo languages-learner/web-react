@@ -1,0 +1,22 @@
+{
+  "name": "@languages-learner/form-components",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "npm run lint -- --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@heroui/input": "^2.4.28",
+    "@languages-learner/class-names": "workspace:*",
+    "react": "^19.2.0"
+  },
+  "devDependencies": {
+    "@languages-learner/component-core-tests-utils": "workspace:*",
+    "@storybook/react": "^9.0.3",
+    "@storybook/react-vite": "^9.0.3",
+    "react-final-form": "^6.5.9"
+  }
+}

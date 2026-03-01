@@ -1,0 +1,734 @@
+{
+  "+CwN9C": {
+    "defaultMessage": "System"
+  },
+  "+oXbh6": {
+    "defaultMessage": "Lingala"
+  },
+  "+ozGrs": {
+    "defaultMessage": "Polish"
+  },
+  "+sPOQ6": {
+    "defaultMessage": "Yiddish"
+  },
+  "/5Hyyf": {
+    "defaultMessage": "Indonesian"
+  },
+  "/g0o/G": {
+    "defaultMessage": "Venda"
+  },
+  "/vCXIP": {
+    "defaultMessage": "Translation"
+  },
+  "0/xfKd": {
+    "defaultMessage": "Belarusian"
+  },
+  "0LJt/8": {
+    "defaultMessage": "Avestan"
+  },
+  "0UZEdY": {
+    "defaultMessage": "Tatar"
+  },
+  "0Ul1ZD": {
+    "defaultMessage": "Amharic"
+  },
+  "13R3L0": {
+    "defaultMessage": "Tajik"
+  },
+  "1gkv1A": {
+    "defaultMessage": "Estonian"
+  },
+  "2/2yg+": {
+    "defaultMessage": "Add"
+  },
+  "2E0SZe": {
+    "defaultMessage": "{count} words"
+  },
+  "2h9dMx": {
+    "defaultMessage": "Guarani"
+  },
+  "2p8A6e": {
+    "defaultMessage": "Bihari languages"
+  },
+  "3EElpV": {
+    "defaultMessage": "Web application for learning languages"
+  },
+  "3ESc9L": {
+    "defaultMessage": "Rundi"
+  },
+  "3Iqr2F": {
+    "defaultMessage": "Albanian"
+  },
+  "3MC1Yh": {
+    "defaultMessage": "Welsh"
+  },
+  "3cc4Ct": {
+    "defaultMessage": "Light"
+  },
+  "4LgU10": {
+    "defaultMessage": "Thai"
+  },
+  "4Rwd8/": {
+    "defaultMessage": "Gaelic, Scottish Gaelic"
+  },
+  "4chyO0": {
+    "defaultMessage": "Norwegian Bokmål"
+  },
+  "4g7O+o": {
+    "defaultMessage": "Interlingua (International Auxiliary Language Association)"
+  },
+  "4tH4ib": {
+    "defaultMessage": "Nauru"
+  },
+  "5ZT5Sv": {
+    "defaultMessage": "Aragonese"
+  },
+  "5gfUzO": {
+    "defaultMessage": "Ganda"
+  },
+  "5yQSjb": {
+    "defaultMessage": "Afar"
+  },
+  "6E8mQm": {
+    "defaultMessage": "Kanuri"
+  },
+  "7DKrB+": {
+    "defaultMessage": "Azerbaijani"
+  },
+  "7luvTu": {
+    "defaultMessage": "Spanish, Castilian"
+  },
+  "81HOEl": {
+    "defaultMessage": "Tamil"
+  },
+  "8HJxXG": {
+    "defaultMessage": "Sign up"
+  },
+  "9J9Rj9": {
+    "defaultMessage": "Error updating user active learning language"
+  },
+  "9OkVBI": {
+    "defaultMessage": "Bashkir"
+  },
+  "9u4ZIr": {
+    "defaultMessage": "Chichewa, Chewa, Nyanja"
+  },
+  "A4UTjl": {
+    "defaultMessage": "Portuguese"
+  },
+  "A7LR4X": {
+    "defaultMessage": "Malay"
+  },
+  "AGH8O0": {
+    "defaultMessage": "Languages Learner"
+  },
+  "AQav1f": {
+    "defaultMessage": "Swahili"
+  },
+  "AiSwim": {
+    "defaultMessage": "Kannada"
+  },
+  "AkSN7P": {
+    "defaultMessage": "Macedonian"
+  },
+  "AxApyG": {
+    "defaultMessage": "Error updating user native language"
+  },
+  "BL/PMc": {
+    "defaultMessage": "South Ndebele"
+  },
+  "BYA5HI": {
+    "defaultMessage": "Northern Sami"
+  },
+  "C/Mko+": {
+    "defaultMessage": "Chamorro"
+  },
+  "C3rwYs": {
+    "defaultMessage": "Delete word?"
+  },
+  "C5R307": {
+    "defaultMessage": "Igbo"
+  },
+  "CACPC+": {
+    "defaultMessage": "Czech"
+  },
+  "CLkbaI": {
+    "defaultMessage": "Bosnian"
+  },
+  "Clr/Fk": {
+    "defaultMessage": "Kongo"
+  },
+  "D3idYv": {
+    "defaultMessage": "Settings"
+  },
+  "DQG6va": {
+    "defaultMessage": "Quechua"
+  },
+  "Dj5u49": {
+    "defaultMessage": "Learned"
+  },
+  "Drr1tq": {
+    "defaultMessage": "Abkhazian"
+  },
+  "E9Vfe9": {
+    "defaultMessage": "Pali"
+  },
+  "F4gyn3": {
+    "defaultMessage": "Clear filters"
+  },
+  "Fjx2oN": {
+    "defaultMessage": "Gujarati"
+  },
+  "GAyB2V": {
+    "defaultMessage": "Afrikaans"
+  },
+  "GIiOZa": {
+    "defaultMessage": "Assamese"
+  },
+  "GYoPXv": {
+    "defaultMessage": "Irish"
+  },
+  "GpWVa1": {
+    "defaultMessage": "Sindhi"
+  },
+  "GwL5P4": {
+    "defaultMessage": "Moldovan, Moldavian, Romanian"
+  },
+  "Gx1lH/": {
+    "defaultMessage": "Gikuyu, Kikuyu"
+  },
+  "H/Wro7": {
+    "defaultMessage": "Marshallese"
+  },
+  "H9zLLp": {
+    "defaultMessage": "Error deleting word translation"
+  },
+  "Ht+qS7": {
+    "defaultMessage": "Inuktitut"
+  },
+  "IPa7ex": {
+    "defaultMessage": "Uighur, Uyghur"
+  },
+  "IbrSk1": {
+    "defaultMessage": "Learn"
+  },
+  "IcY6iN": {
+    "defaultMessage": "User theme successfully updated!"
+  },
+  "JBILTX": {
+    "defaultMessage": "Navajo, Navaho"
+  },
+  "JPW5lF": {
+    "defaultMessage": "Uzbek"
+  },
+  "Jb3mKo": {
+    "defaultMessage": "Slovak"
+  },
+  "JpRlIY": {
+    "defaultMessage": "Wolof"
+  },
+  "K3NZ2q": {
+    "defaultMessage": "Ojibwa"
+  },
+  "K3r6DQ": {
+    "defaultMessage": "Delete"
+  },
+  "K4DTAh": {
+    "defaultMessage": "Cree"
+  },
+  "KDLj9t": {
+    "defaultMessage": "Telugu"
+  },
+  "KN7zKn": {
+    "defaultMessage": "Error"
+  },
+  "Ljo9dF": {
+    "defaultMessage": "Bulgarian"
+  },
+  "Me89Yu": {
+    "defaultMessage": "Xhosa"
+  },
+  "NEmnAV": {
+    "defaultMessage": "Italian"
+  },
+  "O19okS": {
+    "defaultMessage": "Dictionary"
+  },
+  "ODbx9n": {
+    "defaultMessage": "Tahitian"
+  },
+  "OEgSz2": {
+    "defaultMessage": "Word successfully added!"
+  },
+  "OQSnl5": {
+    "defaultMessage": "Malagasy"
+  },
+  "OiGM9v": {
+    "defaultMessage": "Burmese"
+  },
+  "Ok37J5": {
+    "defaultMessage": "Letzeburgesch, Luxembourgish"
+  },
+  "OoAyWg": {
+    "defaultMessage": "Interlingue"
+  },
+  "PK05cC": {
+    "defaultMessage": "Ido"
+  },
+  "Pe0ogR": {
+    "defaultMessage": "Theme"
+  },
+  "PurNgG": {
+    "defaultMessage": "Turkish"
+  },
+  "QGuX0Z": {
+    "defaultMessage": "Fulah"
+  },
+  "QWTNl5": {
+    "defaultMessage": "Chechen"
+  },
+  "Qj8bEA": {
+    "defaultMessage": "Dzongkha"
+  },
+  "QmWU9I": {
+    "defaultMessage": "Tagalog"
+  },
+  "Qz9qLS": {
+    "defaultMessage": "Swati"
+  },
+  "R1QL2E": {
+    "defaultMessage": "Source word"
+  },
+  "REyqqC": {
+    "defaultMessage": "Kinyarwanda"
+  },
+  "RIUFf+": {
+    "defaultMessage": "Ukrainian"
+  },
+  "RsD3Mg": {
+    "defaultMessage": "Chinese"
+  },
+  "RwplMX": {
+    "defaultMessage": "Limburgish, Limburgan, Limburger"
+  },
+  "S7y0Y8": {
+    "defaultMessage": "Native language"
+  },
+  "SQJto2": {
+    "defaultMessage": "Sign in"
+  },
+  "SjLM72": {
+    "defaultMessage": "Hausa"
+  },
+  "Sq5NhR": {
+    "defaultMessage": "Word translation successfully deleted!"
+  },
+  "Sy3MAE": {
+    "defaultMessage": "Nuosu, Sichuan Yi"
+  },
+  "T08s+2": {
+    "defaultMessage": "Fijian"
+  },
+  "TEMpMH": {
+    "defaultMessage": "You can add new words"
+  },
+  "TnA3lc": {
+    "defaultMessage": "Shona"
+  },
+  "U+OZv/": {
+    "defaultMessage": "Bengali"
+  },
+  "U/NPbq": {
+    "defaultMessage": "German"
+  },
+  "UgCctn": {
+    "defaultMessage": "Avaric"
+  },
+  "VPcJNw": {
+    "defaultMessage": "Divehi, Dhivehi, Maldivian"
+  },
+  "VVFu/K": {
+    "defaultMessage": "Hebrew"
+  },
+  "Vh6Bkv": {
+    "defaultMessage": "Inupiaq"
+  },
+  "VtS1Zf": {
+    "defaultMessage": "Sotho, Southern"
+  },
+  "W3t7Ob": {
+    "defaultMessage": "Japanese"
+  },
+  "W8wyR3": {
+    "defaultMessage": "Akan"
+  },
+  "WfEDh2": {
+    "defaultMessage": "Romansh"
+  },
+  "WkrNSk": {
+    "defaultMessage": "English"
+  },
+  "WnQWEt": {
+    "defaultMessage": "Status successfully updated!"
+  },
+  "WvA01e": {
+    "defaultMessage": "User interface language successfully updated!"
+  },
+  "X1qEgp": {
+    "defaultMessage": "Maltese"
+  },
+  "X3Fsez": {
+    "defaultMessage": "Ewe"
+  },
+  "XVe5Xb": {
+    "defaultMessage": "Oromo"
+  },
+  "YadL/k": {
+    "defaultMessage": "Twi"
+  },
+  "YcU0hY": {
+    "defaultMessage": "Walloon"
+  },
+  "YeKWbP": {
+    "defaultMessage": "Authentication"
+  },
+  "YqsgWz": {
+    "defaultMessage": "Slovenian"
+  },
+  "ZJE4Ya": {
+    "defaultMessage": "Sundanese"
+  },
+  "ZjRAwv": {
+    "defaultMessage": "Chuvash"
+  },
+  "ZrnRmj": {
+    "defaultMessage": "Hindi"
+  },
+  "Zv4RBA": {
+    "defaultMessage": "Maori"
+  },
+  "aA8bDw": {
+    "defaultMessage": "Text"
+  },
+  "aE6o25": {
+    "defaultMessage": "Nepali"
+  },
+  "aEcE/S": {
+    "defaultMessage": "Persian"
+  },
+  "aFyu8N": {
+    "defaultMessage": "Translations"
+  },
+  "aJSvf0": {
+    "defaultMessage": "Georgian"
+  },
+  "afRsSE": {
+    "defaultMessage": "Esperanto"
+  },
+  "b9Ypq9": {
+    "defaultMessage": "Aymara"
+  },
+  "bW7B87": {
+    "defaultMessage": "New"
+  },
+  "cD/L1D": {
+    "defaultMessage": "No words"
+  },
+  "cEP2o6": {
+    "defaultMessage": "User native language successfully updated!"
+  },
+  "cPO6DA": {
+    "defaultMessage": "Herero"
+  },
+  "cc8Wyn": {
+    "defaultMessage": "Latvian"
+  },
+  "ce6brX": {
+    "defaultMessage": "Tsonga"
+  },
+  "cmJriL": {
+    "defaultMessage": "© {year}. <repo-link>languages-learner/web-react</repo-link>. Developed by <profile-link>Aleksandr Chernigin</profile-link>"
+  },
+  "ctFmEz": {
+    "defaultMessage": "Armenian"
+  },
+  "dblIW3": {
+    "defaultMessage": "Tonga (Tonga Islands)"
+  },
+  "e9YDZo": {
+    "defaultMessage": "Urdu"
+  },
+  "eHmVh4": {
+    "defaultMessage": "Icelandic"
+  },
+  "eIdxbu": {
+    "defaultMessage": "Zulu"
+  },
+  "eyuFrc": {
+    "defaultMessage": "Yoruba"
+  },
+  "f/jyk+": {
+    "defaultMessage": "Croatian"
+  },
+  "f1EqW9": {
+    "defaultMessage": "Javanese"
+  },
+  "fA1Grb": {
+    "defaultMessage": "Latin"
+  },
+  "fAtSM3": {
+    "defaultMessage": "Tigrinya"
+  },
+  "fJ/RT7": {
+    "defaultMessage": "Learning language"
+  },
+  "fQ5yno": {
+    "defaultMessage": "Arabic"
+  },
+  "fXelj0": {
+    "defaultMessage": "Add new word"
+  },
+  "g8J1m+": {
+    "defaultMessage": "Tswana"
+  },
+  "gbcBQx": {
+    "defaultMessage": "Catalan, Valencian"
+  },
+  "h/qSeQ": {
+    "defaultMessage": "Lithuanian"
+  },
+  "hRiRF/": {
+    "defaultMessage": "Faroese"
+  },
+  "hfXlpq": {
+    "defaultMessage": "Hungarian"
+  },
+  "hkemAh": {
+    "defaultMessage": "Hiri Motu"
+  },
+  "hywNC+": {
+    "defaultMessage": "Danish"
+  },
+  "iSj7ww": {
+    "defaultMessage": "Kashmiri"
+  },
+  "iTJyw/": {
+    "defaultMessage": "Add word"
+  },
+  "itPgxd": {
+    "defaultMessage": "Profile"
+  },
+  "j58r0o": {
+    "defaultMessage": "Error updating status"
+  },
+  "jOQdpM": {
+    "defaultMessage": "Bislama"
+  },
+  "jdHDEC": {
+    "defaultMessage": "Sardinian"
+  },
+  "jrBc71": {
+    "defaultMessage": "Northern Ndebele"
+  },
+  "jrzPeb": {
+    "defaultMessage": "Languages<br></br>Learner"
+  },
+  "kDcfg3": {
+    "defaultMessage": "Western Frisian"
+  },
+  "kQ8QFg": {
+    "defaultMessage": "Cornish"
+  },
+  "kTt/ND": {
+    "defaultMessage": "Russian"
+  },
+  "kWxHnJ": {
+    "defaultMessage": "Norwegian"
+  },
+  "kXRyr+": {
+    "defaultMessage": "Sinhala, Sinhalese"
+  },
+  "kZu6bA": {
+    "defaultMessage": "Zhuang, Chuang"
+  },
+  "keA8xm": {
+    "defaultMessage": "Manx"
+  },
+  "keE3T4": {
+    "defaultMessage": "Sango"
+  },
+  "kt12Y/": {
+    "defaultMessage": "Breton"
+  },
+  "l2C5wN": {
+    "defaultMessage": "Mongolian"
+  },
+  "l8QLOY": {
+    "defaultMessage": "Malayalam"
+  },
+  "lbsCV3": {
+    "defaultMessage": "Volap_k"
+  },
+  "mHjOY8": {
+    "defaultMessage": "Serbian"
+  },
+  "mNsvXG": {
+    "defaultMessage": "Add your first word"
+  },
+  "n7SpjF": {
+    "defaultMessage": "Kazakh"
+  },
+  "nc4geQ": {
+    "defaultMessage": "Corsican"
+  },
+  "ngp1Rq": {
+    "defaultMessage": "Finnish"
+  },
+  "ni0ohk": {
+    "defaultMessage": "Occitan (post 1500)"
+  },
+  "njAU72": {
+    "defaultMessage": "French"
+  },
+  "nsgiuY": {
+    "defaultMessage": "Haitian, Haitian Creole"
+  },
+  "oaO8hC": {
+    "defaultMessage": "Luba-Katanga"
+  },
+  "ovr4vj": {
+    "defaultMessage": "Swedish"
+  },
+  "p9PNBI": {
+    "defaultMessage": "Go to workspace"
+  },
+  "q7WVnC": {
+    "defaultMessage": "Ndonga"
+  },
+  "qIeGWT": {
+    "defaultMessage": "Somali"
+  },
+  "qQ+Xla": {
+    "defaultMessage": "Korean"
+  },
+  "qRTodB": {
+    "defaultMessage": "Ossetian, Ossetic"
+  },
+  "qW/XjQ": {
+    "defaultMessage": "Error updating user theme"
+  },
+  "qqcgIL": {
+    "defaultMessage": "Try to change filter values or add new words"
+  },
+  "rEdBfL": {
+    "defaultMessage": "Kurdish"
+  },
+  "rR/A8C": {
+    "defaultMessage": "Oriya"
+  },
+  "rtJ7E1": {
+    "defaultMessage": "Pashto, Pushto"
+  },
+  "sM7TRG": {
+    "defaultMessage": "Interface language"
+  },
+  "t/MnRq": {
+    "defaultMessage": "User active learning language successfully updated!"
+  },
+  "tOdNiY": {
+    "defaultMessage": "Dark"
+  },
+  "teM9V9": {
+    "defaultMessage": "Kwanyama, Kuanyama"
+  },
+  "tfxRwT": {
+    "defaultMessage": "Marathi"
+  },
+  "to6vVZ": {
+    "defaultMessage": "No found words"
+  },
+  "tpGxc3": {
+    "defaultMessage": "{lang} (Native)"
+  },
+  "trS6/J": {
+    "defaultMessage": "Dutch, Flemish"
+  },
+  "tsxDRp": {
+    "defaultMessage": "Basque"
+  },
+  "tvorNQ": {
+    "defaultMessage": "Error updating user interface language"
+  },
+  "u/yYaU": {
+    "defaultMessage": "Word successfully deleted!"
+  },
+  "u8Bo1E": {
+    "defaultMessage": "Error deleting word"
+  },
+  "uP99HQ": {
+    "defaultMessage": "Lao"
+  },
+  "uizxnQ": {
+    "defaultMessage": "Kyrgyz"
+  },
+  "uxAxwA": {
+    "defaultMessage": "Galician"
+  },
+  "vH6Af4": {
+    "defaultMessage": "Greek (Modern)"
+  },
+  "wNOACE": {
+    "defaultMessage": "Bambara"
+  },
+  "wkeUgR": {
+    "defaultMessage": "Tibetan"
+  },
+  "xGsJwX": {
+    "defaultMessage": "Central Khmer"
+  },
+  "xPDx7E": {
+    "defaultMessage": "Turkmen"
+  },
+  "xXbJso": {
+    "defaultMessage": "Sign out"
+  },
+  "xkVqPL": {
+    "defaultMessage": "Panjabi, Punjabi"
+  },
+  "xmcVZ0": {
+    "defaultMessage": "Search"
+  },
+  "xxGgP2": {
+    "defaultMessage": "Sanskrit"
+  },
+  "xzyHM+": {
+    "defaultMessage": "Vietnamese"
+  },
+  "y1Z3or": {
+    "defaultMessage": "Language"
+  },
+  "yJmS3E": {
+    "defaultMessage": "Norwegian Nynorsk"
+  },
+  "yn0wCl": {
+    "defaultMessage": "Error adding word"
+  },
+  "ysSAXt": {
+    "defaultMessage": "Greenlandic, Kalaallisut"
+  },
+  "yvBiyQ": {
+    "defaultMessage": "Samoan"
+  },
+  "zCAHPc": {
+    "defaultMessage": "Update status"
+  },
+  "zQvVDJ": {
+    "defaultMessage": "All"
+  },
+  "zjUHLu": {
+    "defaultMessage": "Komi"
+  },
+  "zk7Eje": {
+    "defaultMessage": "Church Slavonic, Old Bulgarian, Old Church Slavonic"
+  }
+}

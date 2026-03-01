@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "../../tsconfig.base.json"
+  ],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./.typecheck",
+  },
+  "include": [
+    "*.config.ts",
+    "./src/vite-env.d.ts",
+  ],
+  "references": [
+    {
+      "path": "./src/locales"
+    },
+    {
+      "path": "./src/shared"
+    },
+    {
+      "path": "./src/ui"
+    },
+    {
+      "path": "./src/server"
+    },
+  ]
+}

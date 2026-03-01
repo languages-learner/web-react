@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "../../tsconfig.base.json"
+  ],
+  "include": [
+    ".",
+    "../../packages/playwright-utils/src/types/goToWithLocaleFixture.d.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+  }
+}

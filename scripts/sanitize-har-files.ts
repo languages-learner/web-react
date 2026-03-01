@@ -1,9 +1,9 @@
-import { execSync } from "child_process";
-import fs from "fs/promises";
-import path from "path";
-import process from "process";
+import { execSync } from "node:child_process";
+import fs from "node:fs/promises";
+import path from "node:path";
+import process from "node:process";
 
-import { sanitizeHarFile as baseSanitizeHarFile } from "../src/packages/har-sanitizer";
+import { sanitizeHarFile as baseSanitizeHarFile } from "@languages-learner/har-sanitizer";
 
 const projectRoot = path.resolve(__dirname, "..");
 const IGNORED_FOLDERS = ["node_modules", ".git"];

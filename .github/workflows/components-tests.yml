@@ -11,20 +11,64 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
 
-      #      - name: Install dependencies
-      #        run: npm ci
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v3
+
+      # - name: Prepare package.json structure for Docker build
+      #   run: pnpm exec ts-node ./scripts/component-tests/prepare-package-json.ts
+
+      # - name: Prepare docker-compose volumes for Docker build
+      #   run: pnpm exec ts-node ./scripts/component-tests/generate-volumes.ts
+
+      - name: Build Docker image
+        run: pnpm exec ts-node ./scripts/component-tests/build-image.ts
+
+      # - name: Debug - List all Docker images
+      #   run: |
+      #     echo "=== All Docker images ==="
+      #     docker images
+      #     echo ""
+      #     echo "=== Images matching web-react-playwright-ct ==="
+      #     docker images | grep web-react-playwright-ct || echo "No images found matching web-react-playwright-ct"
+      #     echo ""
+      #     echo "=== Image details for web-react-playwright-ct:latest ==="
+      #     docker image inspect web-react-playwright-ct:latest 2>&1 || echo "Image web-react-playwright-ct:latest not found"
+      #     echo ""
+      #     echo "=== Image details for web-react-playwright-ct (no tag) ==="
+      #     docker image inspect web-react-playwright-ct 2>&1 || echo "Image web-react-playwright-ct not found"
+
+      # - name: Debug - Check docker-compose expected image name
+      #   run: |
+      #     echo "=== Docker Compose Project Name ==="
+      #     echo "COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME"
+      #     echo ""
+      #     echo "=== Expected image name format ==="
+      #     echo "Docker-compose expects: ${COMPOSE_PROJECT_NAME:-web-react}-playwright-ct"
+      #     echo ""
+      #     echo "=== Checking if docker-compose can find the image ==="
+      #     docker compose config --services || true
+      #     docker compose config | grep -A 5 "playwright-ct" || true
+      #   env:
+      #     COMPOSE_PROJECT_NAME: web-react
 
       - name: Run Components tests
-        run: npm run test:component:docker
+        run: pnpm nx run-many -t test:component:docker
+        env:
+          SKIP_BUILD: "true"
+          # DOCKER_BUILDKIT: 1
+          # BUILDKIT_INLINE_CACHE: 1
+          # COMPOSE_DOCKER_CLI_BUILD: 1
+          # COMPOSE_PROJECT_NAME: web-react
 
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+      # - uses: actions/upload-artifact@v4
+      #   if: ${{ !cancelled() }}
+      #   with:
+      #     name: playwright-report
+      #     path: playwright-report/
+      #     retention-days: 30

@@ -1,0 +1,40 @@
+{
+  "name": "@languages-learner/uikit",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --concurrency=auto .",
+    "lint:fix": "pnpm run lint -- --fix",
+    "test:component": "playwright test --config=tests/component/playwright.config.ts",
+    "test:component:docker": "pnpm -w run component-tests:test uikit test:component",
+    "test:component:update": "npm run test:component -- -update",
+    "test:component:update:docker": "pnpm -w run component-tests:test uikit test:component:update",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@heroui/button": "^2.2.27",
+    "@heroui/card": "^2.2.25",
+    "@heroui/checkbox": "^2.3.27",
+    "@heroui/modal": "^2.2.24",
+    "@heroui/table": "^2.2.27",
+    "@heroui/spinner": "^2.2.24",
+    "@heroui/system": "^2.4.23",
+    "@heroui/theme": "^2.4.23",
+    "@heroui/toast": "^2.0.17",
+    "@tailwindcss/vite": "^4.1.17",
+    "@tanstack/react-table": "^8.21.3",
+    "react": "^19.2.0",
+    "react-icons": "^5.5.0",
+    "tailwindcss": "^4.1.17",
+    "@playwright/experimental-ct-react": "1.52.0"
+  },
+  "devDependencies": {
+    "@languages-learner/class-names": "workspace:*",
+    "@languages-learner/component-core-tests-utils": "workspace:*",
+    "@languages-learner/error-utils": "workspace:*",
+    "@languages-learner/tailwind": "workspace:*",
+    "@storybook/react": "^9.0.3",
+    "@storybook/react-vite": "^9.0.3"
+  }
+}
