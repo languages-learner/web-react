@@ -44,6 +44,7 @@ src/locales/compiled
 storybook-static
 .bundle-stats
 .bundle-stats-baseline
+.docker-package-json
 
 # Playwright
 test-results

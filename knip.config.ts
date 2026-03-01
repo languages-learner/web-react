@@ -48,6 +48,7 @@ const config: KnipConfig = {
     },
 
     ignoreDependencies: ["react", "react-dom", "@types/react-dom"],
+    ignoreBinaries: ["component-tests:test"],
     ignore: [
         // Tests snapshots images
         "**/*-snapshots/*",

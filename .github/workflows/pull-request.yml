@@ -52,10 +52,10 @@ jobs:
     needs: npm-ci
     uses: ./.github/workflows/precommit-checks.yml
 
-  # components-tests:
-  #   name: "Components tests"
-  #   needs: npm-ci
-  #   uses: ./.github/workflows/components-tests.yml
+  components-tests:
+    name: "Components tests"
+    needs: npm-ci
+    uses: ./.github/workflows/components-tests.yml
 
   check-pr-title:
     name: "Check PR title"

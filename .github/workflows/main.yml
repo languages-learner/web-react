@@ -44,16 +44,17 @@ jobs:
     with:
       main: true
       bundle_stats_s3_dir: /prod/commits/${{ github.sha }}/bundle-stats
+      working_directory: apps/web
 
   precommit-checks:
     name: "Pre-commit checks"
     needs: npm-ci
     uses: ./.github/workflows/precommit-checks.yml
 
-  # components-tests:
-  #   name: "Components tests"
-  #   needs: npm-ci
-  #   uses: ./.github/workflows/components-tests.yml
+  components-tests:
+    name: "Components tests"
+    needs: npm-ci
+    uses: ./.github/workflows/components-tests.yml
 
   deploy-storybook:
     name: Deploy storybook

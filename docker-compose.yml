@@ -15,15 +15,19 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.tests.component
-    # TODO: Validate list of packages/apps volumes using script
+    # Volumes are auto-generated for all workspace packages by scripts/component-tests/generate-volumes.ts
+    # Run: pnpm run component-tests:generate-volumes to update volumes
     volumes:
       # Mount the whole workspace
       - .:/app:cached
 
       # Prevent host from overwriting container-installed deps
+      # Node_modules volumes are generated automatically for all workspace packages
       - /app/node_modules
-
-      ## packages
+      # Node_modules volumes (auto-generated for all workspace packages)
+      - /app/apps/storybook/node_modules
+      - /app/apps/web-e2e/node_modules
+      - /app/apps/web/node_modules
       - /app/packages/api/node_modules
       - /app/packages/app-core-tests-utils/node_modules
       - /app/packages/app-integration-tests-utils/node_modules
@@ -33,6 +37,7 @@ services:
       - /app/packages/error-utils/node_modules
       - /app/packages/form-components/node_modules
       - /app/packages/har-sanitizer/node_modules
+      - /app/packages/i18n-core/node_modules
       - /app/packages/locale/node_modules
       - /app/packages/playwright-utils/node_modules
       - /app/packages/react-router-utils/node_modules
@@ -40,14 +45,9 @@ services:
       - /app/packages/tailwind/node_modules
       - /app/packages/uikit/node_modules
       - /app/packages/zod/node_modules
-      - /app/packages/i18n-core/node_modules
-
-      ## apps
-      - /app/apps/storybook/node_modules
-      - /app/apps/web/node_modules
-      - /app/apps/web-e2e/node_modules
 
       # Prevent host from overwriting playwright cache
       - /app/packages/uikit/tests/component/playwright/.cache
+
     entrypoint: ["pnpm"]
 

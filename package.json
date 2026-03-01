@@ -11,7 +11,9 @@
     "test:unit:ci": "nx run-many -t test:unit:ci",
     "circular-deps": "nx run-many -t circular-deps",
     "knip": "knip --config ./knip.config.ts",
-    "sanitize-har": "ts-node ./scripts/sanitize-har-files.ts"
+    "sanitize-har": "ts-node ./scripts/sanitize-har-files.ts",
+    "component-tests:build-image": "ts-node ./scripts/component-tests/build-image.ts",
+    "component-tests:test": "ts-node ./scripts/component-tests/run-tests.ts"
   },
   "devDependencies": {
     "react": "^19.2.0",

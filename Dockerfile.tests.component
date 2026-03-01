@@ -6,31 +6,18 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
 RUN npm install -g pnpm
 
-# TODO: Copy only needed files
-COPY packages/api/package.json packages/api/
-COPY packages/app-core-tests-utils/package.json packages/app-core-tests-utils/
-COPY packages/app-integration-tests-utils/package.json packages/app-integration-tests-utils/
-COPY packages/class-names/package.json packages/class-names/
-COPY packages/component-core-tests-utils/package.json packages/component-core-tests-utils/
-COPY packages/data-source/package.json packages/data-source/
-COPY packages/error-utils/package.json packages/error-utils/
-COPY packages/form-components/package.json packages/form-components/
-COPY packages/har-sanitizer/package.json packages/har-sanitizer/
-COPY packages/locale/package.json packages/locale/
-COPY packages/playwright-utils/package.json packages/playwright-utils/
-COPY packages/react-router-utils/package.json packages/react-router-utils/
-COPY packages/react-utils/package.json packages/react-utils/
-COPY packages/tailwind/package.json packages/tailwind/
-COPY packages/uikit/package.json packages/uikit/
-COPY packages/zod/package.json packages/zod/
-COPY packages/i18n-core/package.json packages/i18n-core/
+# Copy only package.json files from .docker-package-json structure
+# This structure is prepared by scripts/component-tests/prepare-package-json.ts
+# and contains only package.json files to minimize image size and improve caching
+COPY .docker-package-json/packages/ ./packages/
+COPY .docker-package-json/apps/ ./apps/
 
-COPY apps/storybook/package.json apps/storybook/
-COPY apps/web/package.json apps/web/
-COPY apps/web-e2e/package.json apps/web-e2e/
-
-# COPY packages/*/package.json packages/*/
-# COPY apps/*/package.json apps/*/
-
-RUN pnpm install --frozen-lockfile
-RUN pnpm i
+# Install dependencies
+RUN pnpm install --frozen-lockfile && \
+    # Clean pnpm store to reduce image size
+    pnpm store prune && \
+    # Remove unnecessary files
+    rm -rf /root/.npm /root/.cache && \
+    # Clean apt cache if any packages were installed
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
