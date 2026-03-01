@@ -26,7 +26,7 @@ export const ActionsPanel: React.FC<ActionsPanelProps> = ({
             style={style}
         >
             <div className="flex items-center gap-20">
-                1{note ? <span className="font-semibold text-medium">{note}</span> : null}
+                {note ? <span className="font-semibold text-medium">{note}</span> : null}
                 {actions}
             </div>
             <Button
