@@ -15,8 +15,8 @@
   },
   "devDependencies": {
     "@languages-learner/component-core-tests-utils": "workspace:*",
-    "@storybook/react": "^9.1.16",
-    "@storybook/react-vite": "^9.1.16",
+    "@storybook/react": "^10.1.4",
+    "@storybook/react-vite": "^10.1.4",
     "react-final-form": "^6.5.9"
   }
 }

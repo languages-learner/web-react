@@ -11,6 +11,6 @@
   "devDependencies": {
     "@languages-learner/playwright-utils": "workspace:*",
     "@languages-learner/app-core-tests-utils": "workspace:*",
-    "@playwright/test": "^1.57.0"
+    "@playwright/test": "1.52.0"
   }
 }
