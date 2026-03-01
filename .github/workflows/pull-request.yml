@@ -17,13 +17,15 @@ jobs:
   check-web-affected:
     name: "Check if app-web is affected"
     runs-on: ubuntu-latest
+    needs: npm-ci
     outputs:
       web-affected: ${{ steps.check.outputs.web-affected }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 200
+          fetch-depth: 0
+          filter: tree:0
 
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
