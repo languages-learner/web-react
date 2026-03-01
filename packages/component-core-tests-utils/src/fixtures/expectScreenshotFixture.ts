@@ -24,6 +24,7 @@ export const testWithExpectScreenshot = expectScreenshotFixtureFactory({
             },
         );
     },
+    // eslint-disable-next-line @typescript-eslint/require-await
     getLocator: async (page) => {
         return page.locator(`.${ComponentWrapperClassName}`);
     },
