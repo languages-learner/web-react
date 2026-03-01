@@ -10,12 +10,29 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 200
 
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
 
       - name: Install dependencies
         uses: ./.github/actions/install-dependencies
+
+      - name: Derive SHAs for base and head
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Check if any project with test:component:docker is affected
+        id: check-affected
+        run: |
+          # Используем --with-target для фильтрации затронутых проектов по наличию target
+          AFFECTED_WITH_TARGET=$(pnpm nx show projects --affected --with-target test:component:docker --json)
+          HAS_TARGET=$(echo "$AFFECTED_WITH_TARGET" | jq -r 'if type == "array" then (length > 0) else false end')
+          echo "has-affected-projects=$HAS_TARGET" >> $GITHUB_OUTPUT
+          echo "Affected projects with test:component:docker target: $AFFECTED_WITH_TARGET"
+          if [ "$HAS_TARGET" != "true" ]; then
+            echo "No affected projects with test:component:docker target, skipping Docker build and tests"
+          fi
 
       # - name: Set up Docker Buildx
       #   uses: docker/setup-buildx-action@v3
@@ -27,6 +44,7 @@ jobs:
       #   run: pnpm exec ts-node ./scripts/component-tests/generate-volumes.ts
 
       - name: Build Docker image
+        if: steps.check-affected.outputs.has-affected-projects == 'true'
         run: pnpm exec ts-node ./scripts/component-tests/build-image.ts
 
       # - name: Debug - List all Docker images
@@ -58,7 +76,8 @@ jobs:
       #     COMPOSE_PROJECT_NAME: web-react
 
       - name: Run Components tests
-        run: pnpm nx run-many -t test:component:docker
+        if: steps.check-affected.outputs.has-affected-projects == 'true'
+        run: pnpm nx affected -t test:component:docker
         env:
           SKIP_BUILD: "true"
           # DOCKER_BUILDKIT: 1

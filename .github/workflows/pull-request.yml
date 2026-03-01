@@ -14,10 +14,40 @@ jobs:
     name: "pnpm install"
     uses: ./.github/workflows/pnpm-install.yml
 
+  check-web-affected:
+    name: "Check if app-web is affected"
+    runs-on: ubuntu-latest
+    outputs:
+      web-affected: ${{ steps.check.outputs.web-affected }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 200
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Install dependencies
+        uses: ./.github/actions/install-dependencies
+
+      - name: Derive SHAs for base and head
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Check if app-web is affected
+        id: check
+        run: |
+          AFFECTED=$(pnpm nx show projects --affected --json)
+          WEB_AFFECTED=$(echo "$AFFECTED" | jq -r 'any(. == "app-web")')
+          echo "web-affected=$WEB_AFFECTED" >> $GITHUB_OUTPUT
+          echo "Affected projects: $AFFECTED"
+          echo "app-web affected: $WEB_AFFECTED"
+
   deploy:
     name: "Deploy staging"
     uses: ./.github/workflows/deploy.yml
-    needs: npm-ci
+    needs: [npm-ci, check-web-affected]
+    if: needs.check-web-affected.outputs.web-affected == 'true'
     secrets:
       SA_DEPLOYER_PRIVATE_KEY: ${{ secrets.SA_STAGING_DEPLOYER_PRIVATE_KEY }}
       S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
@@ -37,7 +67,8 @@ jobs:
   bundle-stats:
     name: "Bundle stats"
     uses: ./.github/workflows/bundle-stats.yml
-    needs: deploy
+    needs: [deploy, check-web-affected]
+    if: needs.check-web-affected.outputs.web-affected == 'true'
     secrets:
       S3_KEY_ID: ${{ secrets.S3_KEY_ID }}
       S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
