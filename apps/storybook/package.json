@@ -2,6 +2,8 @@
   "name": "@languages-learner/storybook",
   "version": "1.0.0",
   "private": true,
+  "description": "Storybook workspace for shared UI components and design documentation.",
+  "homepage": "https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.htm",
   "scripts": {
     "build": "storybook build -o dist-storybook",
     "storybook": "storybook dev --no-open -p 6006",

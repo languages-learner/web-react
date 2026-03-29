@@ -2,6 +2,8 @@
   "name": "app-web",
   "version": "1.0.0",
   "private": true,
+  "description": "Main Languages Learner web application — React, Vite, SSR, and Supabase.",
+  "homepage": "https://languages-learner.chernigin.tech/",
   "scripts": {
     "build": "npm run build:server && npm run build:client",
     "build:docker": "docker build -t web-react-app -f Dockerfile ../..",

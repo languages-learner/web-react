@@ -2,6 +2,7 @@
   "name": "@languages-learner/data-source",
   "version": "1.0.0",
   "private": true,
+  "description": "Gravity UI DataSource wiring and app data-layer helpers.",
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint --concurrency=auto .",

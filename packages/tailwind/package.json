@@ -2,6 +2,7 @@
   "name": "@languages-learner/tailwind",
   "version": "1.0.0",
   "private": true,
+  "description": "Shared Tailwind CSS configuration and design tokens for apps.",
   "type": "module",
   "main": "index.ts",
   "scripts": {

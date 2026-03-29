@@ -2,6 +2,7 @@
   "name": "@languages-learner/api",
   "version": "1.0.0",
   "private": true,
+  "description": "Supabase and PostgREST client helpers and database type generation for Languages Learner.",
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint --concurrency=auto .",
