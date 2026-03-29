@@ -12,37 +12,13 @@ dotenv.config({ path: "../../.env" });
 
 const isBaseline = process.env.BUNDLE_STATS_BASELINE === "true";
 
-function manualVendorChunks(id: string): string | undefined {
-    if (!id.includes("node_modules")) {
-        return;
-    }
-    if (
-        id.includes("node_modules/react/") ||
-        id.includes("node_modules/react-dom") ||
-        id.includes("node_modules/react-router") ||
-        id.includes("node_modules/scheduler/")
-    ) {
-        return "vendor-react";
-    }
-    if (id.includes("@tanstack")) {
-        return "vendor-tanstack";
-    }
-    if (id.includes("@supabase")) {
-        return "vendor-supabase";
-    }
-    if (id.includes("@heroui")) {
-        return "vendor-heroui";
-    }
-}
-
 // https://vite.dev/config/
 export default defineConfig({
     build: {
+        // No manualChunks: splitting @heroui / @tanstack / etc. from react caused prod
+        // "Cannot read properties of undefined (reading 'createContext')".
         rollupOptions: {
             treeshake: true,
-            output: {
-                manualChunks: manualVendorChunks,
-            },
         },
     },
     resolve: {
@@ -72,7 +48,6 @@ export default defineConfig({
             // .bundle-stats
             outDir: `../../${BUNDLE_STATS_DIR}`,
             baselineFilepath: `../${BUNDLE_STATS_BASELINE_PATH}`,
-            // TODO: Comparing baseline works wrong
             compare: !isBaseline,
             json: true,
             html: true,
