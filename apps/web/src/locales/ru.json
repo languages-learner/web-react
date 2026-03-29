@@ -179,6 +179,9 @@
   "Fjx2oN": {
     "defaultMessage": "Гуджарати"
   },
+  "G3IOTz": {
+    "defaultMessage": "Произошла непредвиденная ошибка. Попробуйте перезагрузить страницу или вернуться на главную."
+  },
   "GAyB2V": {
     "defaultMessage": "Африкаанс"
   },
@@ -226,6 +229,9 @@
   },
   "JpRlIY": {
     "defaultMessage": "Волоф"
+  },
+  "JqiqNj": {
+    "defaultMessage": "Что-то пошло не так"
   },
   "K3NZ2q": {
     "defaultMessage": "Оджибве"
@@ -307,6 +313,9 @@
   },
   "RsD3Mg": {
     "defaultMessage": "Китайский"
+  },
+  "RtfJfe": {
+    "defaultMessage": "Перезагрузить страницу"
   },
   "RwplMX": {
     "defaultMessage": "Лимбургский"
@@ -464,6 +473,9 @@
   "eIdxbu": {
     "defaultMessage": "Зулу"
   },
+  "ejEGdx": {
+    "defaultMessage": "Главная"
+  },
   "eyuFrc": {
     "defaultMessage": "Йоруба"
   },
@@ -496,6 +508,9 @@
   },
   "h/qSeQ": {
     "defaultMessage": "Литовский"
+  },
+  "hMQwVu": {
+    "defaultMessage": "Не удалось загрузить эту страницу или выполнить запрос."
   },
   "hRiRF/": {
     "defaultMessage": "Фарерский"

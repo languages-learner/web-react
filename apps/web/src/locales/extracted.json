@@ -179,6 +179,9 @@
   "Fjx2oN": {
     "defaultMessage": "Gujarati"
   },
+  "G3IOTz": {
+    "defaultMessage": "An unexpected error occurred. Try reloading the page or return to the home page."
+  },
   "GAyB2V": {
     "defaultMessage": "Afrikaans"
   },
@@ -226,6 +229,9 @@
   },
   "JpRlIY": {
     "defaultMessage": "Wolof"
+  },
+  "JqiqNj": {
+    "defaultMessage": "Something went wrong"
   },
   "K3NZ2q": {
     "defaultMessage": "Ojibwa"
@@ -307,6 +313,9 @@
   },
   "RsD3Mg": {
     "defaultMessage": "Chinese"
+  },
+  "RtfJfe": {
+    "defaultMessage": "Reload page"
   },
   "RwplMX": {
     "defaultMessage": "Limburgish, Limburgan, Limburger"
@@ -464,6 +473,9 @@
   "eIdxbu": {
     "defaultMessage": "Zulu"
   },
+  "ejEGdx": {
+    "defaultMessage": "Home"
+  },
   "eyuFrc": {
     "defaultMessage": "Yoruba"
   },
@@ -496,6 +508,9 @@
   },
   "h/qSeQ": {
     "defaultMessage": "Lithuanian"
+  },
+  "hMQwVu": {
+    "defaultMessage": "Could not load this page or complete the request."
   },
   "hRiRF/": {
     "defaultMessage": "Faroese"
