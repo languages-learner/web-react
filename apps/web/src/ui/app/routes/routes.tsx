@@ -4,10 +4,6 @@ import { RequireAuthMiddleware } from "./guards/RequireAuthMiddleware";
 import { RequireLocaleMiddleware } from "./guards/RequireLocaleMiddleware";
 import type { RouteObject } from "react-router";
 
-import { LandingPage } from "@/pages/landing/landingPage";
-import { WorkspaceDictionaryPage } from "@/pages/workspace/dictionary";
-import { OfficeProfilePage } from "@/pages/workspace/office/profile";
-import { OfficeSettingsPage } from "@/pages/workspace/office/settings";
 import { landingRoutes, officeRoutes, workspaceRoutes } from "@/shared/routes";
 
 export const routes: RouteObject[] = [
@@ -19,7 +15,10 @@ export const routes: RouteObject[] = [
             {
                 id: "landing",
                 path: landingRoutes.root,
-                element: <LandingPage />,
+                lazy: () =>
+                    import("@/pages/landing/landingPage").then((m) => ({
+                        Component: m.LandingPage,
+                    })),
             },
             {
                 id: "workspace",
@@ -29,7 +28,10 @@ export const routes: RouteObject[] = [
                     {
                         id: "workspace-dictionary",
                         path: workspaceRoutes.dictionary,
-                        element: <WorkspaceDictionaryPage />,
+                        lazy: () =>
+                            import("@/pages/workspace/dictionary").then((m) => ({
+                                Component: m.WorkspaceDictionaryPage,
+                            })),
                     },
                 ],
             },
@@ -41,12 +43,18 @@ export const routes: RouteObject[] = [
                     {
                         id: "office-settings",
                         path: officeRoutes.settings,
-                        element: <OfficeSettingsPage />,
+                        lazy: () =>
+                            import("@/pages/workspace/office/settings").then((m) => ({
+                                Component: m.OfficeSettingsPage,
+                            })),
                     },
                     {
                         id: "office-profile",
                         path: officeRoutes.profile,
-                        element: <OfficeProfilePage />,
+                        lazy: () =>
+                            import("@/pages/workspace/office/profile").then((m) => ({
+                                Component: m.OfficeProfilePage,
+                            })),
                     },
                 ],
             },

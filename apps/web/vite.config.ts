@@ -15,6 +15,8 @@ const isBaseline = process.env.BUNDLE_STATS_BASELINE === "true";
 // https://vite.dev/config/
 export default defineConfig({
     build: {
+        // No manualChunks: splitting @heroui / @tanstack / etc. from react caused prod
+        // "Cannot read properties of undefined (reading 'createContext')".
         rollupOptions: {
             treeshake: true,
         },
@@ -46,7 +48,6 @@ export default defineConfig({
             // .bundle-stats
             outDir: `../../${BUNDLE_STATS_DIR}`,
             baselineFilepath: `../${BUNDLE_STATS_BASELINE_PATH}`,
-            // TODO: Comparing baseline works wrong
             compare: !isBaseline,
             json: true,
             html: true,

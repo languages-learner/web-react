@@ -1,22 +1,13 @@
 import React from "react";
 
-import { Loader } from "@languages-learner/uikit";
 import { renderToString } from "react-dom/server";
+
+import { RouteChunkFallback } from "./router";
 
 export const render = () => {
     const html = renderToString(
         <React.StrictMode>
-            <div
-                style={{
-                    width: "100wh",
-                    height: "100vh",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Loader size={"lg"} />
-            </div>
+            <RouteChunkFallback />
         </React.StrictMode>,
     );
 
