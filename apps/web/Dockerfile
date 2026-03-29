@@ -28,10 +28,13 @@ RUN pnpm install --frozen-lockfile
 
 RUN echo "BUNDLE_STATS_BASELINE is $BUNDLE_STATS_BASELINE"
 RUN pnpm --filter app-web run build
+RUN pnpm --filter app-backend run build
 
 EXPOSE 8080
 
 ENV PORT=8080
+ENV BACKEND_PORT=3001
 ENV NODE_ENV=production
 
-CMD ["pnpm", "--filter", "app-web", "run", "preview"]
+# Start both backend and frontend servers (backend on 3001, frontend on 8080)
+CMD ["sh", "-c", "PORT=3001 pnpm --filter app-backend run start:prod & PORT=8080 pnpm --filter app-web run preview & wait"]

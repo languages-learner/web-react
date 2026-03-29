@@ -1,0 +1,1014 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/health": {
+      "get": {
+        "operationId": "AppController_getHealth",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api/user": {
+      "get": {
+        "operationId": "UserController_getUser",
+        "summary": "Get current user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "user"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "UserController_updateUser",
+        "summary": "Update current user",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "user"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/words": {
+      "get": {
+        "operationId": "WordsController_getWords",
+        "summary": "Get words",
+        "parameters": [
+          {
+            "name": "language",
+            "required": true,
+            "in": "query",
+            "description": "Language code",
+            "schema": {
+              "example": "en",
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": true,
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "example": 20,
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageToken",
+            "required": false,
+            "in": "query",
+            "description": "Page token for pagination",
+            "schema": {
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "name": "filterText",
+            "required": false,
+            "in": "query",
+            "description": "Filter by word text",
+            "schema": {
+              "example": "hello",
+              "type": "string"
+            }
+          },
+          {
+            "name": "filterStatus",
+            "required": false,
+            "in": "query",
+            "description": "Filter by word status",
+            "schema": {
+              "example": "New",
+              "enum": [
+                "New",
+                "Learn",
+                "Learned"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Language code",
+            "name": "language",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "example": "en",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Number of items per page",
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "example": 20,
+              "type": "number"
+            }
+          },
+          {
+            "description": "Page token for pagination",
+            "required": false,
+            "name": "pageToken",
+            "in": "query",
+            "schema": {
+              "example": 10,
+              "type": "number"
+            }
+          },
+          {
+            "description": "Filter by word text",
+            "required": false,
+            "name": "filterText",
+            "in": "query",
+            "schema": {
+              "example": "hello",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by word status",
+            "required": false,
+            "name": "filterStatus",
+            "in": "query",
+            "schema": {
+              "example": "New",
+              "enum": [
+                "New",
+                "Learn",
+                "Learned"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Words retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FetchWordsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "words"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "post": {
+        "operationId": "WordsController_createWord",
+        "summary": "Create word",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Word created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateWordResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "words"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "WordsController_deleteWords",
+        "summary": "Delete words",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteWordsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Words deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteWordsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "words"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/words/status": {
+      "patch": {
+        "operationId": "WordsController_updateWordsStatus",
+        "summary": "Update words status",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWordsStatusRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Words status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateWordsStatusResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "words"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/words/{wordId}/translations": {
+      "post": {
+        "operationId": "WordsController_addWordTranslations",
+        "summary": "Add translations to word",
+        "parameters": [
+          {
+            "name": "wordId",
+            "required": true,
+            "in": "path",
+            "description": "Word ID",
+            "schema": {
+              "example": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddWordTranslationsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Translations added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddWordTranslationsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "words"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "WordsController_deleteWordTranslations",
+        "summary": "Delete translations from word",
+        "parameters": [
+          {
+            "name": "wordId",
+            "required": true,
+            "in": "path",
+            "description": "Word ID",
+            "schema": {
+              "example": "uuid",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteWordTranslationsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Translations deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteWordTranslationsResponse"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "words"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Languages Learner API",
+    "description": "API for Languages Learner application",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "UpdateUserPayloadDto": {
+        "type": "object",
+        "properties": {
+          "active_learning_language": {
+            "type": "string",
+            "description": "Active learning language code",
+            "example": "en"
+          },
+          "interface_language": {
+            "type": "string",
+            "description": "Interface language code",
+            "example": "en"
+          },
+          "native_language": {
+            "type": "string",
+            "description": "Native language code",
+            "example": "ru"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Theme preference",
+            "enum": [
+              "system",
+              "dark",
+              "light"
+            ],
+            "example": "system"
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "User ID",
+            "example": "uuid"
+          },
+          "active_learning_language": {
+            "type": "string",
+            "description": "Active learning language code",
+            "example": "en"
+          },
+          "interface_language": {
+            "type": "string",
+            "description": "Interface language code",
+            "example": "en"
+          },
+          "native_language": {
+            "type": "string",
+            "description": "Native language code",
+            "example": "ru"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Theme preference",
+            "enum": [
+              "system",
+              "dark",
+              "light"
+            ],
+            "example": "system"
+          }
+        },
+        "required": [
+          "id",
+          "active_learning_language",
+          "interface_language",
+          "native_language",
+          "theme"
+        ]
+      },
+      "GetUserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "User ID",
+            "example": "uuid"
+          },
+          "active_learning_language": {
+            "type": "string",
+            "description": "Active learning language code",
+            "example": "en"
+          },
+          "interface_language": {
+            "type": "string",
+            "description": "Interface language code",
+            "example": "en"
+          },
+          "native_language": {
+            "type": "string",
+            "description": "Native language code",
+            "example": "ru"
+          },
+          "theme": {
+            "type": "string",
+            "description": "Theme preference",
+            "enum": [
+              "system",
+              "dark",
+              "light"
+            ],
+            "example": "system"
+          }
+        },
+        "required": [
+          "id",
+          "active_learning_language",
+          "interface_language",
+          "native_language",
+          "theme"
+        ]
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "description": "Partial user data to update",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UpdateUserPayloadDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      },
+      "TranslationResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Translation ID",
+            "example": "uuid"
+          },
+          "text": {
+            "type": "string",
+            "description": "Translation text",
+            "example": "привет"
+          },
+          "language": {
+            "type": "string",
+            "description": "Translation language code",
+            "example": "ru"
+          }
+        },
+        "required": [
+          "id",
+          "text",
+          "language"
+        ]
+      },
+      "WordWithTranslationsDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Word ID",
+            "example": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Update timestamp",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID",
+            "example": "uuid"
+          },
+          "language": {
+            "type": "string",
+            "description": "Word language code",
+            "example": "en"
+          },
+          "text": {
+            "type": "string",
+            "description": "Word text",
+            "example": "hello"
+          },
+          "sort_id": {
+            "type": "number",
+            "description": "Sort ID for ordering",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Word status",
+            "enum": [
+              "New",
+              "Learn",
+              "Learned"
+            ],
+            "example": "New"
+          },
+          "translations": {
+            "description": "Array of translations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslationResponseDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "updated_at",
+          "user_id",
+          "language",
+          "text",
+          "sort_id",
+          "status",
+          "translations"
+        ]
+      },
+      "FetchWordsResponse": {
+        "type": "object",
+        "properties": {
+          "words": {
+            "description": "Array of words with translations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WordWithTranslationsDto"
+            }
+          },
+          "nextPageToken": {
+            "type": "number",
+            "description": "Token for next page pagination",
+            "example": 10,
+            "nullable": true
+          }
+        },
+        "required": [
+          "words",
+          "nextPageToken"
+        ]
+      },
+      "CreateWordResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Word ID",
+            "example": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Update timestamp",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID",
+            "example": "uuid"
+          },
+          "language": {
+            "type": "string",
+            "description": "Word language code",
+            "example": "en"
+          },
+          "text": {
+            "type": "string",
+            "description": "Word text",
+            "example": "hello"
+          },
+          "sort_id": {
+            "type": "number",
+            "description": "Sort ID for ordering",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Word status",
+            "enum": [
+              "New",
+              "Learn",
+              "Learned"
+            ],
+            "example": "New"
+          },
+          "translations": {
+            "description": "Array of translations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslationResponseDto"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "updated_at",
+          "user_id",
+          "language",
+          "text",
+          "sort_id",
+          "status",
+          "translations"
+        ]
+      },
+      "WordResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Word ID",
+            "example": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "description": "Creation timestamp",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "Update timestamp",
+            "example": "2024-01-01T00:00:00Z"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "User ID",
+            "example": "uuid"
+          },
+          "language": {
+            "type": "string",
+            "description": "Word language code",
+            "example": "en"
+          },
+          "text": {
+            "type": "string",
+            "description": "Word text",
+            "example": "hello"
+          },
+          "sort_id": {
+            "type": "number",
+            "description": "Sort ID for ordering",
+            "example": 1
+          },
+          "status": {
+            "type": "string",
+            "description": "Word status",
+            "enum": [
+              "New",
+              "Learn",
+              "Learned"
+            ],
+            "example": "New"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "updated_at",
+          "user_id",
+          "language",
+          "text",
+          "sort_id",
+          "status"
+        ]
+      },
+      "UpdateWordsStatusResponse": {
+        "type": "object",
+        "properties": {
+          "words": {
+            "description": "Array of updated words",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WordResponseDto"
+            }
+          }
+        },
+        "required": [
+          "words"
+        ]
+      },
+      "DeleteWordsResponse": {
+        "type": "object",
+        "properties": {
+          "words": {
+            "description": "Array of deleted words",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WordResponseDto"
+            }
+          }
+        },
+        "required": [
+          "words"
+        ]
+      },
+      "AddWordTranslationsResponse": {
+        "type": "object",
+        "properties": {
+          "translations": {
+            "description": "Array of added translations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslationResponseDto"
+            }
+          }
+        },
+        "required": [
+          "translations"
+        ]
+      },
+      "DeleteWordTranslationsResponse": {
+        "type": "object",
+        "properties": {
+          "translations": {
+            "description": "Array of deleted translations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslationResponseDto"
+            }
+          }
+        },
+        "required": [
+          "translations"
+        ]
+      },
+      "WordDto": {
+        "type": "object",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "Language code",
+            "example": "en"
+          },
+          "text": {
+            "type": "string",
+            "description": "Word text",
+            "example": "hello"
+          }
+        },
+        "required": [
+          "language",
+          "text"
+        ]
+      },
+      "TranslationDto": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Translation text",
+            "example": "привет"
+          },
+          "language": {
+            "type": "string",
+            "description": "Translation language code",
+            "example": "ru"
+          }
+        },
+        "required": [
+          "text",
+          "language"
+        ]
+      },
+      "CreateWordRequest": {
+        "type": "object",
+        "properties": {
+          "word": {
+            "description": "Word information",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WordDto"
+              }
+            ]
+          },
+          "translations": {
+            "description": "Array of translations",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslationDto"
+            }
+          }
+        },
+        "required": [
+          "word",
+          "translations"
+        ]
+      },
+      "UpdateWordsStatusRequest": {
+        "type": "object",
+        "properties": {
+          "wordsIds": {
+            "description": "Array of word IDs",
+            "example": [
+              "uuid1",
+              "uuid2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "New status for words",
+            "enum": [
+              "New",
+              "Learn",
+              "Learned"
+            ],
+            "example": "New"
+          }
+        },
+        "required": [
+          "wordsIds",
+          "status"
+        ]
+      },
+      "DeleteWordsRequest": {
+        "type": "object",
+        "properties": {
+          "wordIds": {
+            "description": "Array of word IDs to delete",
+            "example": [
+              "uuid1",
+              "uuid2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "wordIds"
+        ]
+      },
+      "AddWordTranslationsRequest": {
+        "type": "object",
+        "properties": {
+          "translations": {
+            "description": "Array of translations to add",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TranslationDto"
+            }
+          }
+        },
+        "required": [
+          "translations"
+        ]
+      },
+      "DeleteWordTranslationsRequest": {
+        "type": "object",
+        "properties": {
+          "translationsIds": {
+            "description": "Array of translation IDs to delete",
+            "example": [
+              "uuid1",
+              "uuid2"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "translationsIds"
+        ]
+      }
+    }
+  }
+}

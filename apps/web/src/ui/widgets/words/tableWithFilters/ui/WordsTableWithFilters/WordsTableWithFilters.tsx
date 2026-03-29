@@ -14,7 +14,6 @@ import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { WordsTableActionsPanel } from "./WordsTableActionsPanel";
 
 import type { WordsTableFiltersType } from "@/features/words/table";
-import type { FetchWordsRequest } from "@languages-learner/api";
 import type { ActionsPanelProps } from "@languages-learner/uikit";
 import type { RowSelectionState } from "@tanstack/react-table";
 
@@ -41,12 +40,9 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
     );
     const [showAddWordCard, setShowAddWordCard] = React.useState(false);
 
-    const requestFilter = React.useMemo<FetchWordsRequest["filter"]>(() => {
+    const requestFilter = React.useMemo<WordsTableFiltersType | undefined>(() => {
         if (debouncedFilters.text || debouncedFilters.status) {
-            return {
-                text: debouncedFilters.text,
-                status: debouncedFilters.status,
-            };
+            return debouncedFilters;
         }
 
         return undefined;
@@ -55,7 +51,8 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
     const wordsQuery = useQueryData(wordsDataSource, {
         pageSize: 100,
         language: user.activeLearningLanguage,
-        filter: requestFilter,
+        filterStatus: requestFilter?.status,
+        filterText: requestFilter?.text,
     });
 
     const hasWordsOrUseFilter = wordsQuery.data.length > 0 || requestFilter;

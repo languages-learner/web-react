@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ActionsPanel, withToasts } from "@languages-learner/uikit";
-import type { WordWithTranslations } from "@languages-learner/api";
+import type { components } from "@languages-learner/api";
 import type { ActionsPanelProps } from "@languages-learner/uikit";
 
 import { WordStatusSelector, useWordMutations } from "@/entities/word";
@@ -11,7 +11,7 @@ export interface WordsTableActionsPanelProps extends Pick<
     ActionsPanelProps,
     "className" | "style"
 > {
-    selectedWords: WordWithTranslations["translations"];
+    selectedWords: components["schemas"]["WordWithTranslationsDto"]["translations"];
     onClose: () => unknown;
 }
 

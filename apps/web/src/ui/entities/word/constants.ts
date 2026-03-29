@@ -1,11 +1,8 @@
-import type { ApiDatabase } from "@languages-learner/api";
+import type { ApiEnums } from "@languages-learner/api";
 
 import { intl } from "@/shared/i18n";
 
-export const WORD_STATUS_NAME: Record<
-    ApiDatabase["public"]["Tables"]["words"]["Row"]["status"],
-    string
-> = {
+export const WORD_STATUS_NAME: Record<ApiEnums<"UserWordStatus">, string> = {
     New: intl.formatMessage({
         defaultMessage: "New",
         id: "bW7B87",

@@ -3,7 +3,7 @@ import React from "react";
 import { withToasts } from "@languages-learner/uikit";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import type { WordWithTranslations } from "@languages-learner/api";
+import type { components } from "@languages-learner/api";
 
 import { useUserSafe } from "@/entities/user";
 import { useWordMutations, wordColumns } from "@/entities/word";
@@ -16,7 +16,9 @@ export const useWordsTableColumns = () => {
     const { updateWordsStatus, addWordTranslations, deleteWordTranslations, deleteWords } =
         useWordMutations();
 
-    const wordsTableColumns = React.useMemo<ColumnDef<WordWithTranslations>[]>(() => {
+    const wordsTableColumns = React.useMemo<
+        ColumnDef<components["schemas"]["WordWithTranslationsDto"]>[]
+    >(() => {
         return [
             wordColumns.selection,
             wordColumns.textAndTranslationWithEdit({

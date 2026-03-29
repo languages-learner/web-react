@@ -23,7 +23,6 @@ export const LearningLanguageSelector: React.FC<LearningLanguageSelectorProps> =
         (value: string) => {
             withToasts(
                 updateUser.mutateAsync({
-                    userId: user.uid,
                     payload: {
                         active_learning_language: value,
                     },

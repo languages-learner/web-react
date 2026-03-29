@@ -1,4 +1,4 @@
-import type { ApiTables } from "@languages-learner/api";
+import type { ApiEnums } from "@languages-learner/api";
 
 export interface User {
     uid: string;
@@ -9,7 +9,7 @@ export interface User {
     nativeLanguage: string;
     activeLearningLanguage: string;
     interfaceLanguage: string;
-    theme: ApiTables<"user">["theme"];
+    theme: ApiEnums<"Theme">;
 }
 
 export interface UserContext {

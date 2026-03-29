@@ -2,7 +2,7 @@ import { Button } from "@heroui/button";
 import { createHrefTyped } from "@languages-learner/react-router-utils";
 import { BASE_THEME, INTERFACE_LOCALES } from "shared/project-config";
 
-import type { ApiTables } from "@languages-learner/api";
+import type { ApiEnums } from "@languages-learner/api";
 
 import { useUser, useUserMutations } from "@/entities/user";
 import { LanguageSelector } from "@/features/language/languageSelector";
@@ -26,7 +26,6 @@ export const LandingHeader = () => {
     const handleUpdateInterfaceLanguage = (language: string) => {
         if (user) {
             return updateUser.mutateAsync({
-                userId: user.uid,
                 payload: {
                     interface_language: language,
                 },
@@ -39,12 +38,11 @@ export const LandingHeader = () => {
     };
 
     const currentTheme = user ? user.theme : (themeQuery.theme ?? BASE_THEME);
-    const handleUpdateTheme = (theme: ApiTables<"user">["theme"]) => {
+    const handleUpdateTheme = (theme: ApiEnums<"Theme">) => {
         if (user) {
             themeQuery.clearTheme();
 
             return updateUser.mutateAsync({
-                userId: user.uid,
                 payload: {
                     theme,
                 },
@@ -68,7 +66,7 @@ export const LandingHeader = () => {
                     selectedKeys={[currentTheme]}
                     onSelectionChange={(value) => {
                         if (value.currentKey) {
-                            handleUpdateTheme(value.currentKey as ApiTables<"user">["theme"]);
+                            handleUpdateTheme(value.currentKey as ApiEnums<"Theme">);
                         }
                     }}
                     startContent={intl.formatMessage({ defaultMessage: "Theme", id: "Pe0ogR" })}

@@ -1,7 +1,7 @@
 import { FormRowsContainer } from "@languages-learner/form-components";
 import { withToasts } from "@languages-learner/uikit";
 import { INTERFACE_LOCALES } from "shared/project-config";
-import type { ApiTables } from "@languages-learner/api";
+import type { ApiEnums } from "@languages-learner/api";
 
 import { useUserMutations, useUserSafe } from "@/entities/user";
 import { LanguageSelector } from "@/features/language/languageSelector";
@@ -17,7 +17,6 @@ export const OfficeSettingsPage = () => {
     const handleUpdateNativeLanguage = (language: string) => {
         return withToasts(
             updateUser.mutateAsync({
-                userId: user.uid,
                 payload: {
                     native_language: language,
                 },
@@ -38,7 +37,6 @@ export const OfficeSettingsPage = () => {
     const handleUpdateInterfaceLanguage = (language: string) => {
         return withToasts(
             updateUser.mutateAsync({
-                userId: user.uid,
                 payload: {
                     interface_language: language,
                 },
@@ -56,10 +54,9 @@ export const OfficeSettingsPage = () => {
         );
     };
 
-    const handleUpdateTheme = (theme: ApiTables<"user">["theme"]) => {
+    const handleUpdateTheme = (theme: ApiEnums<"Theme">) => {
         return withToasts(
             updateUser.mutateAsync({
-                userId: user.uid,
                 payload: {
                     theme,
                 },
@@ -130,7 +127,7 @@ export const OfficeSettingsPage = () => {
                         selectedKeys={[user.theme]}
                         onSelectionChange={(value) => {
                             if (value.currentKey) {
-                                handleUpdateTheme(value.currentKey as ApiTables<"user">["theme"]);
+                                handleUpdateTheme(value.currentKey as ApiEnums<"Theme">);
                             }
                         }}
                     />

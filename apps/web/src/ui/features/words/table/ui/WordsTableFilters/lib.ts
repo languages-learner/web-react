@@ -1,8 +1,8 @@
-import type { ApiTables } from "@languages-learner/api";
+import type { ApiEnums } from "@languages-learner/api";
 
 export interface WordsTableFiltersType {
     text?: string;
-    status?: ApiTables<"words">["status"];
+    status?: ApiEnums<"UserWordStatus">;
 }
 
 export const initialFilters: WordsTableFiltersType = {

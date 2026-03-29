@@ -2,28 +2,22 @@ import { classNames } from "@languages-learner/class-names";
 import { BiCheck, BiCheckDouble } from "react-icons/bi";
 import type { IconBaseProps, IconType } from "react-icons/lib";
 
-import type { ApiDatabase } from "@languages-learner/api";
+import type { ApiEnums } from "@languages-learner/api";
 
-const WORD_STATUS_TO_ICON: Record<
-    ApiDatabase["public"]["Tables"]["words"]["Row"]["status"],
-    IconType
-> = {
+const WORD_STATUS_TO_ICON: Record<ApiEnums<"UserWordStatus">, IconType> = {
     New: BiCheck,
     Learn: BiCheck,
     Learned: BiCheckDouble,
 };
 
-const WORD_STATUS_ICON_CLASS_NAME: Record<
-    ApiDatabase["public"]["Tables"]["words"]["Row"]["status"],
-    string
-> = {
+const WORD_STATUS_ICON_CLASS_NAME: Record<ApiEnums<"UserWordStatus">, string> = {
     New: "text-[hsl(var(--app-default-400))]",
     Learn: "text-[hsl(var(--app-warning))]",
     Learned: "text-[hsl(var(--app-success))]",
 };
 
 export interface WordStatusIconProps extends IconBaseProps {
-    status: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"];
+    status: ApiEnums<"UserWordStatus">;
 }
 
 export const WordStatusIcon: React.FC<WordStatusIconProps> = ({ status, ...iconProps }) => {

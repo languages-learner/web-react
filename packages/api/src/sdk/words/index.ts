@@ -1,1 +1,0 @@
-export { createWordsActions } from "./words";

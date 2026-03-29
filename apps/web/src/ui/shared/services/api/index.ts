@@ -1,2 +1,2 @@
-export { supabase } from "./supabase";
 export { sdk } from "./sdk";
+export { supabase } from "./supabase";

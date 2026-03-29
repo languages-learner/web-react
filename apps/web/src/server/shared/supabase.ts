@@ -1,11 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 
-import type { ApiDatabase } from "@languages-learner/api";
 import type { Response } from "core";
 import type { Request } from "express-serve-static-core";
 
 export const useSupabaseClient = (req: Request, res: Response) => {
-    const supabaseClient = createServerClient<ApiDatabase>(
+    const supabaseClient = createServerClient(
         process.env.VITE_SUPABASE_PROJECT_URL!,
         process.env.VITE_SUPABASE_PROJECT_KEY!,
         {

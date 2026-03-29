@@ -4,6 +4,7 @@ import path from "node:path";
 import cookieParser from "cookie-parser";
 import * as dotenv from "dotenv";
 import express from "express";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 import { localeMiddleware } from "./middlewares/locale";
 import { themeMiddleware } from "./middlewares/theme";
@@ -16,12 +17,22 @@ dotenv.config({ path: path.resolve(__dirname, "../../../../.env") });
 const isProduction = process.env.NODE_ENV === "production";
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || "/";
+const backendPort = process.env.BACKEND_PORT || 3001;
 
 const createServer = async () => {
     const templateHtml = isProduction ? await fs.readFile("./dist/client/index.html", "utf-8") : "";
 
     const app = express();
     let vite: ViteDevServer;
+
+    // Proxy API requests to backend - MUST BE FIRST to intercept /api/* requests
+    app.use(
+        "/api",
+        createProxyMiddleware({
+            target: `http://localhost:${backendPort}/api`,
+            changeOrigin: true,
+        }),
+    );
 
     if (isProduction) {
         const compression = (await import("compression")).default;
@@ -31,7 +42,15 @@ const createServer = async () => {
     } else {
         const { createServer: createViteServer } = await import("vite");
         vite = await createViteServer({
-            server: { middlewareMode: true },
+            server: {
+                middlewareMode: true,
+                proxy: {
+                    "/api": {
+                        target: `http://localhost:${backendPort}`,
+                        changeOrigin: true,
+                    },
+                },
+            },
             appType: "custom",
             logLevel: "info",
             base,

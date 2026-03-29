@@ -8,14 +8,14 @@ import { BiEdit } from "react-icons/bi";
 import { WORD_STATUS_NAME } from "../constants";
 
 import { WordStatusIcon } from "./WordStatusIcon";
-import type { ApiDatabase } from "@languages-learner/api";
+import type { ApiEnums } from "@languages-learner/api";
 import type { WordStatusIconProps } from "./WordStatusIcon";
 
 import { intl } from "@/shared/i18n";
 
 export interface WordStatusSelectorProps {
-    status?: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"];
-    onUpdate: (status: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"]) => unknown;
+    status?: ApiEnums<"UserWordStatus">;
+    onUpdate: (status: ApiEnums<"UserWordStatus">) => unknown;
     variant: "icon" | "button";
     classNames?: {
         trigger?: string;
@@ -55,8 +55,6 @@ export const WordStatusSelector: React.FC<WordStatusSelectorProps> = ({
                 })}
             </Button>
         );
-
-        return null;
     };
 
     return (
@@ -70,9 +68,7 @@ export const WordStatusSelector: React.FC<WordStatusSelectorProps> = ({
                 variant="flat"
                 onSelectionChange={(values) => {
                     if (values.currentKey) {
-                        onUpdate(
-                            values.currentKey as ApiDatabase["public"]["Tables"]["words"]["Row"]["status"],
-                        );
+                        onUpdate(values.currentKey as ApiEnums<"UserWordStatus">);
                     }
                 }}
             >

@@ -3,7 +3,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
 import { selectionColumn } from "@languages-learner/uikit";
 import { BiPencil, BiTrash } from "react-icons/bi";
 import { WordStatusSelector } from "../ui/WordStatusSelector";
-import type { ApiDatabase, WordWithTranslations } from "@languages-learner/api";
+import type { components } from "@languages-learner/api";
 import type { ColumnsDef } from "@languages-learner/uikit";
 import type { ColumnDef } from "@tanstack/react-table";
 
@@ -13,13 +13,13 @@ import { InlineWordTranslationsList } from "@/features/words/inlineWordTranslati
 import { intl } from "@/shared/i18n";
 
 type BaseColumnCallbackPayload = {
-    item: WordWithTranslations;
+    item: components["schemas"]["WordWithTranslationsDto"];
 };
 
 export const wordColumns = {
-    selection: selectionColumn as ColumnDef<WordWithTranslations>,
+    selection: selectionColumn as ColumnDef<components["schemas"]["WordWithTranslationsDto"]>,
     textAndTranslationWithEdit: (columnProps: {
-        editView: (item: WordWithTranslations) => boolean;
+        editView: (item: components["schemas"]["WordWithTranslationsDto"]) => boolean;
         onAddWord: (
             payload: BaseColumnCallbackPayload & {
                 translation: AddWordTranslationFormType;
@@ -71,7 +71,7 @@ export const wordColumns = {
         maxSize: 600,
     }),
     edit: (columnProps: {
-        editView: (item: WordWithTranslations) => boolean;
+        editView: (item: components["schemas"]["WordWithTranslationsDto"]) => boolean;
         onEditClick: (payload: BaseColumnCallbackPayload) => unknown;
     }) => ({
         id: "edit",
@@ -94,7 +94,7 @@ export const wordColumns = {
     status: (columnProps: {
         onUpdate: (
             payload: BaseColumnCallbackPayload & {
-                status: ApiDatabase["public"]["Tables"]["words"]["Row"]["status"];
+                status: components["schemas"]["WordWithTranslationsDto"]["status"];
             },
         ) => unknown;
     }) => ({
@@ -153,4 +153,4 @@ export const wordColumns = {
         minSize: 50,
         maxSize: 50,
     }),
-} satisfies ColumnsDef<WordWithTranslations>;
+} satisfies ColumnsDef<components["schemas"]["WordWithTranslationsDto"]>;
