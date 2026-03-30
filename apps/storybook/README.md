@@ -4,7 +4,7 @@ Storybook workspace for shared UI components and design documentation.
 
 ## Links
 
-- [Deployed Storybook](https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.htm)
+- [Deployed Storybook](https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.html)
 - [Live product](https://languages-learner.chernigin.tech/)
 
 ## Scripts
