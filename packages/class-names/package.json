@@ -2,6 +2,7 @@
   "name": "@languages-learner/class-names",
   "version": "1.0.0",
   "private": true,
+  "description": "Class name utility helpers.",
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint --concurrency=auto .",

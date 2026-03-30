@@ -2,6 +2,7 @@
   "name": "@languages-learner/form-components",
   "version": "1.0.0",
   "private": true,
+  "description": "Shared form-related React components.",
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint --concurrency=auto .",

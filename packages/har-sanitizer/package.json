@@ -2,6 +2,7 @@
   "name": "@languages-learner/har-sanitizer",
   "version": "1.0.0",
   "private": true,
+  "description": "Sanitize HAR files for fixtures and debugging.",
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint --concurrency=auto .",

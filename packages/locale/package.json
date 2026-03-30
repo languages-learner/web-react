@@ -2,6 +2,7 @@
   "name": "@languages-learner/locale",
   "version": "1.0.0",
   "private": true,
+  "description": "Locale data and constants for Languages Learner.",
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint --concurrency=auto .",
