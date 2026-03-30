@@ -38,7 +38,7 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                 <div className="flex flex-col gap-5">
                     <div
                         className={classNames(
-                            "flex max-w-[500px] flex-col gap-3",
+                            "flex w-full min-w-0 max-w-full flex-col gap-3 md:max-w-[500px]",
                             contentClassName,
                         )}
                     >
@@ -49,27 +49,32 @@ export const CreateWordForm: React.FC<CreateWordFormProps> = ({
                                     id: "R1QL2E",
                                 })}
                             >
-                                <div className="flex gap-3">
-                                    <Field<string> name={"source.text"}>
-                                        {(props) => (
-                                            <FormTextInput
-                                                size="sm"
-                                                variant="bordered"
-                                                placeholder={intl.formatMessage({
-                                                    defaultMessage: "Text",
-                                                    id: "aA8bDw",
-                                                })}
-                                                fieldProps={props}
-                                                autoFocus
-                                            />
-                                        )}
-                                    </Field>
+                                <div className="flex min-w-0 flex-col gap-3 md:flex-row md:items-end">
+                                    <div className="min-w-0 flex-1">
+                                        <Field<string> name={"source.text"}>
+                                            {(props) => (
+                                                <FormTextInput
+                                                    size="sm"
+                                                    variant="bordered"
+                                                    placeholder={intl.formatMessage({
+                                                        defaultMessage: "Text",
+                                                        id: "aA8bDw",
+                                                    })}
+                                                    fieldProps={props}
+                                                    autoFocus
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
                                     <Field name={"source.language"}>
                                         {(props) => (
-                                            <div>
+                                            <div className="w-full shrink-0 md:w-auto">
                                                 <LanguageSelector
                                                     classNames={{
-                                                        innerWrapper: "w-full pr-6",
+                                                        base: "w-full min-w-0 md:w-fit",
+                                                        innerWrapper:
+                                                            "w-full min-w-0 pr-6 md:w-auto",
+                                                        trigger: "w-full md:w-auto",
                                                     }}
                                                     size="sm"
                                                     isDisabled

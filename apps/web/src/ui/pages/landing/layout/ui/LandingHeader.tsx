@@ -1,95 +1,24 @@
 import { Button } from "@heroui/button";
-import { createHrefTyped } from "@languages-learner/react-router-utils";
-import { BASE_THEME, INTERFACE_LOCALES } from "shared/project-config";
 
-import type { ApiTables } from "@languages-learner/api";
-
-import { useUser, useUserMutations } from "@/entities/user";
-import { LanguageSelector } from "@/features/language/languageSelector";
-import { ThemeSelector } from "@/features/theme/themeSelector";
+import { LandingPreferencesControls } from "./LandingPreferencesControls";
 import { intl } from "@/shared/i18n";
-import { getLocaleFromPathSafe, useNavigate } from "@/shared/react-router";
-import { landingRoutes, workspaceRoutes } from "@/shared/routes";
+import { useNavigate } from "@/shared/react-router";
+import { workspaceRoutes } from "@/shared/routes";
 import { useAuth } from "@/shared/services/auth";
-import { useThemeQuery } from "@/shared/theme";
 import { useAuthenticationDialog } from "@/widgets/auth/auth-dialog";
 
 export const LandingHeader = () => {
     const { isLoggedIn } = useAuth();
     const { showAuthenticationDialog, AuthenticationDialog } = useAuthenticationDialog();
     const navigate = useNavigate();
-    const { user } = useUser();
-    const { updateUser } = useUserMutations();
-    const themeQuery = useThemeQuery();
-
-    const currentInterfaceLanguage = user ? user.interfaceLanguage : getLocaleFromPathSafe();
-    const handleUpdateInterfaceLanguage = (language: string) => {
-        if (user) {
-            return updateUser.mutateAsync({
-                userId: user.uid,
-                payload: {
-                    interface_language: language,
-                },
-            });
-        }
-
-        window.location.pathname = createHrefTyped(landingRoutes.root, { locale: language });
-
-        return Promise.resolve();
-    };
-
-    const currentTheme = user ? user.theme : (themeQuery.theme ?? BASE_THEME);
-    const handleUpdateTheme = (theme: ApiTables<"user">["theme"]) => {
-        if (user) {
-            themeQuery.clearTheme();
-
-            return updateUser.mutateAsync({
-                userId: user.uid,
-                payload: {
-                    theme,
-                },
-            });
-        }
-
-        themeQuery.setTheme(theme);
-        window.location.reload();
-
-        return Promise.resolve();
-    };
 
     return (
-        <div className={"h-(--app-layout-header-height) flex items-center justify-end gap-3 px-5"}>
-            <div>
-                <ThemeSelector
-                    // TODO: Remove after fixing issue - https://github.com/heroui-inc/heroui/issues/5853
-                    classNames={{
-                        innerWrapper: "w-full pr-6",
-                    }}
-                    selectedKeys={[currentTheme]}
-                    onSelectionChange={(value) => {
-                        if (value.currentKey) {
-                            handleUpdateTheme(value.currentKey as ApiTables<"user">["theme"]);
-                        }
-                    }}
-                    startContent={intl.formatMessage({ defaultMessage: "Theme", id: "Pe0ogR" })}
-                />
-            </div>
-            <div>
-                <LanguageSelector
-                    startContent={intl.formatMessage({ defaultMessage: "Language", id: "y1Z3or" })}
-                    classNames={{
-                        innerWrapper: "w-full pr-6",
-                    }}
-                    fullName
-                    languages={INTERFACE_LOCALES}
-                    selectedKeys={[currentInterfaceLanguage]}
-                    onSelectionChange={(value) => {
-                        if (value.currentKey) {
-                            handleUpdateInterfaceLanguage(value.currentKey);
-                        }
-                    }}
-                />
-            </div>
+        <div
+            className={
+                "h-(--app-layout-header-height) flex shrink-0 items-center justify-end gap-2 px-4 sm:gap-3 sm:px-5"
+            }
+        >
+            <LandingPreferencesControls className="hidden md:flex" />
             {isLoggedIn ? (
                 <Button onPress={() => navigate(workspaceRoutes.dictionary)} color="primary">
                     {intl.formatMessage({
@@ -98,7 +27,7 @@ export const LandingHeader = () => {
                     })}
                 </Button>
             ) : (
-                <div className="flex gap-3">
+                <div className="flex gap-2 sm:gap-3">
                     <Button color="primary" onPress={showAuthenticationDialog}>
                         {intl.formatMessage({
                             defaultMessage: "Sign in",

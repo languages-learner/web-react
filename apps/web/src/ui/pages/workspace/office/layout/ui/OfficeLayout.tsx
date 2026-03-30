@@ -4,6 +4,7 @@ import { Tab, Tabs } from "@heroui/tabs";
 import { useIsRouteMatched } from "@languages-learner/react-router-utils";
 
 import { WorkspaceLayout } from "@/pages/workspace/layout";
+import { MD_MIN_WIDTH_QUERY, useMediaQuery } from "@/shared/hooks/useMediaQuery";
 import { intl } from "@/shared/i18n";
 import { getPathWithCurrentLocale, useNavigate } from "@/shared/react-router";
 import { officeRoutes } from "@/shared/routes";
@@ -15,6 +16,8 @@ export interface OfficeLayoutProps extends React.PropsWithChildren {
 export const OfficeLayout: React.FC<OfficeLayoutProps> = ({ title, children }) => {
     const navigate = useNavigate();
     const isRouteMatched = useIsRouteMatched();
+    /** Assume desktop tabs on SSR until hydrated (matches previous behavior). */
+    const isMdUp = useMediaQuery(MD_MIN_WIDTH_QUERY, () => true);
 
     const menuItems = [
         {
@@ -41,16 +44,16 @@ export const OfficeLayout: React.FC<OfficeLayoutProps> = ({ title, children }) =
 
     return (
         <WorkspaceLayout>
-            <div className={"grid grid-cols-[200px_1fr] gap-5"}>
-                <div>
+            <div className={"grid grid-cols-1 gap-5 md:grid-cols-[200px_1fr]"}>
+                <div className="min-w-0 overflow-x-auto md:w-[200px] md:overflow-visible">
                     <Tabs
-                        isVertical
+                        isVertical={isMdUp}
                         size="lg"
                         variant="light"
                         classNames={{
-                            base: "w-full",
+                            base: "w-full min-w-max md:min-w-0",
                             tabList: "w-full",
-                            tab: "h-12",
+                            tab: isMdUp ? "h-12" : "h-10",
                         }}
                         color="primary"
                         selectedKey={activeMenuItem?.key}
@@ -64,9 +67,9 @@ export const OfficeLayout: React.FC<OfficeLayoutProps> = ({ title, children }) =
                         ))}
                     </Tabs>
                 </div>
-                <div>
+                <div className="min-w-0">
                     <div className={"mb-5"}>
-                        <h2 className="text-2xl font-semibold">{title}</h2>
+                        <h2 className="text-xl font-semibold md:text-2xl">{title}</h2>
                     </div>
                     {children}
                 </div>

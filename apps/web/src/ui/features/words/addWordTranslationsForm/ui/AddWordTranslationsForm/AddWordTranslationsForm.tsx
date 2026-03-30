@@ -34,73 +34,80 @@ export const AddWordTranslationsForm: React.FC<AddWordTranslationsFormProps> = (
             }}
         >
             {({ submitting, handleSubmit, valid }) => (
-                <div className="flex gap-2">
-                    <Field name={"text"}>
-                        {(props) => (
-                            <FormTextInput
-                                size="sm"
-                                variant="bordered"
-                                fieldProps={props}
-                                placeholder={intl.formatMessage({
-                                    defaultMessage: "Translation",
-                                    id: "/vCXIP",
-                                })}
-                                className="w-[130px]"
-                                isClearable
-                                onKeyDown={(data) => {
-                                    if (valid && data.code === "Enter") {
-                                        handleSubmit();
-                                    }
-                                }}
-                            />
-                        )}
-                    </Field>
-
-                    <Field name="language">
-                        {(props) => (
-                            <div>
-                                <LanguageSelector
+                <div className="flex w-full min-w-0 flex-col gap-2 md:flex-row md:items-end md:gap-2">
+                    <div className="w-full min-w-0 md:w-[130px] md:shrink-0">
+                        <Field name={"text"}>
+                            {(props) => (
+                                <FormTextInput
                                     size="sm"
-                                    isVirtualized
-                                    disallowEmptySelection
-                                    selectedKeys={[props.input.value]}
-                                    onSelectionChange={(value) => {
-                                        if (value.currentKey) {
-                                            props.input.onChange(value.currentKey);
+                                    variant="bordered"
+                                    fieldProps={props}
+                                    placeholder={intl.formatMessage({
+                                        defaultMessage: "Translation",
+                                        id: "/vCXIP",
+                                    })}
+                                    className="w-full"
+                                    isClearable
+                                    onKeyDown={(data) => {
+                                        if (valid && data.code === "Enter") {
+                                            handleSubmit();
                                         }
                                     }}
-                                    classNames={{
-                                        innerWrapper: "w-full pr-6",
-                                    }}
-                                    overrideLanguageName={(language) => {
-                                        return language === user.nativeLanguage
-                                            ? intl.formatMessage(
-                                                  {
-                                                      defaultMessage: "{lang} (Native)",
-                                                      id: "tpGxc3",
-                                                  },
-                                                  {
-                                                      lang: getShortLanguageName(language),
-                                                  },
-                                              )
-                                            : null;
-                                    }}
                                 />
-                            </div>
-                        )}
-                    </Field>
-                    <Button
-                        color="primary"
-                        size="sm"
-                        isDisabled={!valid}
-                        onPress={() => handleSubmit()}
-                        isLoading={submitting}
-                    >
-                        {intl.formatMessage({
-                            defaultMessage: "Add",
-                            id: "2/2yg+",
-                        })}
-                    </Button>
+                            )}
+                        </Field>
+                    </div>
+
+                    <div className="flex w-full min-w-0 flex-row items-end gap-2 md:w-auto">
+                        <Field name="language">
+                            {(props) => (
+                                <div className="min-w-0 flex-1 md:flex-initial">
+                                    <LanguageSelector
+                                        size="sm"
+                                        isVirtualized
+                                        disallowEmptySelection
+                                        selectedKeys={[props.input.value]}
+                                        onSelectionChange={(value) => {
+                                            if (value.currentKey) {
+                                                props.input.onChange(value.currentKey);
+                                            }
+                                        }}
+                                        classNames={{
+                                            base: "w-full min-w-0 md:w-fit",
+                                            innerWrapper: "w-full min-w-0 pr-6 md:w-auto",
+                                            trigger: "w-full md:w-auto",
+                                        }}
+                                        overrideLanguageName={(language) => {
+                                            return language === user.nativeLanguage
+                                                ? intl.formatMessage(
+                                                      {
+                                                          defaultMessage: "{lang} (Native)",
+                                                          id: "tpGxc3",
+                                                      },
+                                                      {
+                                                          lang: getShortLanguageName(language),
+                                                      },
+                                                  )
+                                                : null;
+                                        }}
+                                    />
+                                </div>
+                            )}
+                        </Field>
+                        <Button
+                            className="shrink-0"
+                            color="primary"
+                            size="sm"
+                            isDisabled={!valid}
+                            onPress={() => handleSubmit()}
+                            isLoading={submitting}
+                        >
+                            {intl.formatMessage({
+                                defaultMessage: "Add",
+                                id: "2/2yg+",
+                            })}
+                        </Button>
+                    </div>
                 </div>
             )}
         </Form>
