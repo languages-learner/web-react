@@ -1,7 +1,7 @@
 {
   "name": "web-react",
   "version": "0.0.0",
-  "description": "Languages Learner — Nx + pnpm monorepo for the language-learning web app. Live app: https://languages-learner.chernigin.tech/ — Storybook: https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.htm",
+  "description": "Languages Learner — Nx + pnpm monorepo for the language-learning web app. Live app: https://languages-learner.chernigin.tech/ — Storybook: https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.html",
   "homepage": "https://languages-learner.chernigin.tech/",
   "repository": {
     "type": "git",

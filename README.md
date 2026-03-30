@@ -5,11 +5,11 @@
 
 Monorepo for **Languages Learner** — a language-learning web application built with React, Vite, and Supabase.
 
-| Resource    | URL                                                                                                     |
-| ----------- | ------------------------------------------------------------------------------------------------------- |
-| Live app    | [languages-learner.chernigin.tech](https://languages-learner.chernigin.tech/)                           |
-| Storybook   | [Deployed Storybook](https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.htm) |
-| Source code | [github.com/languages-learner/web-react](https://github.com/languages-learner/web-react)                |
+| Resource    | URL                                                                                                      |
+| ----------- | -------------------------------------------------------------------------------------------------------- |
+| Live app    | [languages-learner.chernigin.tech](https://languages-learner.chernigin.tech/)                            |
+| Storybook   | [Deployed Storybook](https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.html) |
+| Source code | [github.com/languages-learner/web-react](https://github.com/languages-learner/web-react)                 |
 
 > **Note:** If you publish under a different GitHub owner or repository name, update links in this file, root `package.json` (`repository` / `bugs`), and badges above.
 

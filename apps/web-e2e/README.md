@@ -5,7 +5,7 @@ End-to-end and integration tests for the **Languages Learner** web app.
 ## Links
 
 - [Live app](https://languages-learner.chernigin.tech/)
-- [Storybook](https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.htm)
+- [Storybook](https://languages-learner-static.website.yandexcloud.net/prod/storybook/index.html)
 
 ## Layout
 
