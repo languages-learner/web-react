@@ -10,7 +10,7 @@ export const WorkspaceLayout: React.FC<WorkspaceLayoutProps> = ({ children }) =>
             <WorkspaceHeader />
             <div
                 className={
-                    "mx-auto min-h-[calc(100vh-var(--app-layout-header-height))] max-w-[calc(var(--spacing)*10+var(--workspace-page-max-width))] overflow-y-auto px-5 py-10"
+                    "mx-auto min-h-[calc(100vh-var(--app-layout-header-height))] max-w-[calc(var(--spacing)*10+var(--workspace-page-max-width))] overflow-y-auto px-4 py-6 sm:px-5 md:py-10"
                 }
             >
                 {children}

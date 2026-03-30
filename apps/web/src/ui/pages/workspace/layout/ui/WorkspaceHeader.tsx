@@ -20,12 +20,12 @@ export const WorkspaceHeader: React.FC = () => {
     return (
         <header
             className={
-                "h-(--app-layout-header-height) bg-(--color-base-generic-ultralight) grid grid-cols-[auto_1fr_1fr] gap-5 px-4 shadow-sm"
+                "bg-(--color-base-generic-ultralight) md:h-(--app-layout-header-height) flex flex-wrap items-center gap-x-3 gap-y-2 px-4 py-2 shadow-sm md:flex-nowrap md:gap-5 md:py-0"
             }
         >
-            <div className="flex items-center justify-start px-7">
-                <Link to={landingRoutes.root} className={"flex h-full items-center"}>
-                    <h1 className="text-2xl font-semibold text-success">
+            <div className="order-1 min-w-0 shrink grow basis-0 md:grow-0 md:basis-auto md:px-7">
+                <Link to={landingRoutes.root} className={"flex h-full min-w-0 items-center"}>
+                    <h1 className="truncate text-lg font-semibold text-success sm:text-xl md:text-2xl">
                         {intl.formatMessage({
                             defaultMessage: "Languages Learner",
                             id: "AGH8O0",
@@ -33,7 +33,7 @@ export const WorkspaceHeader: React.FC = () => {
                     </h1>
                 </Link>
             </div>
-            <div className="flex items-center">
+            <div className="order-2 shrink-0">
                 <Link to={workspaceRoutes.dictionary}>
                     <Button
                         onPress={(e) => {
@@ -53,19 +53,7 @@ export const WorkspaceHeader: React.FC = () => {
                     </Button>
                 </Link>
             </div>
-            <div className="flex items-center justify-end gap-3">
-                <div>
-                    <LearningLanguageSelector
-                        classNames={{
-                            innerWrapper: "w-full pr-6",
-                        }}
-                        startContent={intl.formatMessage({
-                            defaultMessage: "Learn",
-                            id: "IbrSk1",
-                        })}
-                        fullName
-                    />
-                </div>
+            <div className="order-3 shrink-0 md:order-5 md:ml-0">
                 <Dropdown>
                     <DropdownTrigger>
                         <UserAvatar as={"button"} className="cursor-pointer" disableAnimation />
@@ -99,6 +87,18 @@ export const WorkspaceHeader: React.FC = () => {
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
+            </div>
+            <div className="hidden md:order-4 md:ml-auto md:block">
+                <LearningLanguageSelector
+                    classNames={{
+                        innerWrapper: "w-full pr-6",
+                    }}
+                    startContent={intl.formatMessage({
+                        defaultMessage: "Learn",
+                        id: "IbrSk1",
+                    })}
+                    fullName
+                />
             </div>
         </header>
     );

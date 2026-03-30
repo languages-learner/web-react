@@ -31,17 +31,27 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
     className,
 }) => {
     return (
-        <div className={classNames("flex justify-between", className)}>
-            <div className="flex items-center gap-x-3">
+        <div
+            className={classNames(
+                "flex flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-2",
+                className,
+            )}
+        >
+            <div className="flex min-w-0 flex-nowrap items-center gap-2 md:gap-x-3">
                 <Checkbox
                     disableAnimation
+                    className="shrink-0"
                     size="sm"
                     radius="sm"
                     isSelected={isAllSelected}
                     onValueChange={onUpdateAllSelection}
                 />
-                <div>
+                <div className="min-w-0 flex-1">
                     <Input
+                        classNames={{
+                            base: "w-full min-w-0",
+                            inputWrapper: "w-full min-w-0",
+                        }}
                         placeholder={intl.formatMessage({
                             defaultMessage: "Search",
                             id: "xmcVZ0",
@@ -60,7 +70,7 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                     />
                 </div>
                 {showAddWordButton ? (
-                    <div>
+                    <div className="shrink-0">
                         <Button
                             color="primary"
                             variant="bordered"
@@ -76,8 +86,13 @@ export const WordsTableFilters: React.FC<WordsTableFiltersProps> = ({
                     </div>
                 ) : null}
             </div>
-            <div className="flex items-center gap-x-3 pl-2">
+            <div className="w-full min-w-0 md:w-auto md:pl-2">
                 <Tabs
+                    classNames={{
+                        base: "w-full max-md:max-w-full",
+                        tabList:
+                            "h-full w-full justify-between sm:gap-2 md:w-auto md:justify-start",
+                    }}
                     variant="bordered"
                     color="primary"
                     defaultSelectedKey={filters.status ?? "All"}

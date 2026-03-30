@@ -132,8 +132,10 @@ export const WordsTableWithFilters: React.FC<WordsTableWithFiltersProps> = ({
 
         return (
             <React.Fragment>
-                <Table table={table} removeWrapper hideHeader isStriped />
-                {showPlaceholders && wordsQuery.data.length === 0 ? (
+                <div className="overflow-x-auto">
+                    <Table table={table} removeWrapper hideHeader isStriped />
+                </div>
+                {requestFilter && wordsQuery.data.length === 0 ? (
                     <PlaceholderContainer
                         status={PlaceholderContainerStatus.NoSearchResults}
                         title={intl.formatMessage({
